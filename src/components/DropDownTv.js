@@ -44,8 +44,6 @@ const DropDownTv = (props) => {
             setSeasons(season)
              let imgSrc = `https://image.tmdb.org/t/p/w500/` + data?.results?.[currentResult].poster_path;
              setimgSrc(imgSrc)
-            let def = "Default..."
-            setDef(def)
         })
     })
   };
