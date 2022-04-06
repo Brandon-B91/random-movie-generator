@@ -11,7 +11,6 @@ const DropDownTv = (props) => {
   const [network, setNetwork] = useState();
   const [season, setSeasons] = useState();
   const [imgSrc, setimgSrc] = useState();
-  const [def, setDef] = useState()
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -78,6 +77,7 @@ const DropDownTv = (props) => {
       <div className="card">
         <img
           src={imgSrc ? imgSrc : data?.results?.[currentResult].backdrop_path } 
+          alt="movie poster"
         />
         <hr />
         <h2>{data?.results?.[currentResult].name ? data?.results?.[currentResult].name : data?.results?.[currentResult].original_name }</h2>
