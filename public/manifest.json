@@ -1,19 +1,19 @@
 {
-  "short_name": "Random Movie Generator",
-  "name": "Random Movie Generator",
+  "short_name": "Movie Night",
+  "name": "Random Movie Gene",
   "icons": [
     {
-      "src": "src/images/rmgicon.png",
+      "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "src/images/rmgicon.png",
+      "src": "rmgicon.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "src/images/rmgicon.png",
+      "src": "rmgicon.png",
       "type": "image/png",
       "sizes": "512x512"
     }
