@@ -14,6 +14,7 @@ header img {
 .navbar {
   position: fixed;
   bottom: 0;
+  padding-bottom:25px;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -168,7 +169,7 @@ li {
 /* Home page */
 
 .trendingList {
-  margin-bottom: 7%;
+  margin-bottom: 20%;
 }
 
 .trendingList h1 {

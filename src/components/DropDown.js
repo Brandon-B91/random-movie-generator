@@ -41,7 +41,7 @@ const DropDown = () => {
         console.log(buy);
         console.log(response.results);
         setStream(stream);
-        setBuy(buy)
+        setBuy(buy);
       });
   };
 
@@ -103,7 +103,7 @@ const DropDown = () => {
             <h4>Where to Stream...</h4>
             <ul className="whereToWatchList">
               {stream?.length > 0
-                ? stream?.map(item => {
+                ? stream?.map((item) => {
                     return (
                       <li key={item.provider_id} className="badge">
                         {item.provider_name}
@@ -114,16 +114,17 @@ const DropDown = () => {
             </ul>
           </div>
           <div className="whereToBuy">
-          <h4>Where to buy...</h4>
+            <h4>Where to buy...</h4>
             <ul className="whereToBuyList">
-              {buy?.length > 0 ?
-                buy?.map(item => {
-                return (
-                  <li key={item.provider_id} className="badge">
-                    {item.provider_name}
-                  </li>
-                );
-              }): "No purchase options available"}
+              {buy?.length > 0
+                ? buy?.map((item) => {
+                    return (
+                      <li key={item.provider_id} className="badge">
+                        {item.provider_name}
+                      </li>
+                    );
+                  })
+                : "No purchase options available"}
             </ul>
           </div>
         </div>
