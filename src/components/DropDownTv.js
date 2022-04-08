@@ -97,7 +97,7 @@ const DropDownTv = (props) => {
         <h3>Overview</h3>
         <p>{data?.results?.[currentResult].overview ? data?.results?.[currentResult].overview : "No overview available" }</p>
         <div className="whereToWatch">
-          <h4>Where to watch...</h4>
+          <h4>Where to Stream...</h4>
           <ul className="whereToWatchList">
             {network?.length > 0
               ? network?.map(item => {
