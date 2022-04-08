@@ -95,7 +95,8 @@ header img {
   height: 30px;
   font-size: 1rem;
   padding: 1%;
-  box-shadow: 4px 4px 8px;
+  color: black;
+  box-shadow: 4px 4px 8px lightblue;
   background: linear-gradient(to right, lightblue, pink, purple);
 }
 
