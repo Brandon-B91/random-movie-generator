@@ -49,7 +49,7 @@ const MovieSearch = () => {
           className="searchbar"
           placeholder="Search by movie name..."
         />
-        <button type="submit">Search For Movie!</button>
+        <button>Search For Movie!</button>
       </form>
         {search?.filter((items, idx) => idx < 1).map((item) => {
            return (

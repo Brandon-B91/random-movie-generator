@@ -96,7 +96,7 @@ header img {
   font-size: 1rem;
   padding: 1%;
   color: black;
-  box-shadow: 4px 4px 8px lightblue;
+  box-shadow: 4px 4px 8px black;
   background: linear-gradient(to right, lightblue, pink, purple);
 }
 
