@@ -76,7 +76,7 @@ const DropDown = () => {
         <div className="card">
           <img
             src={
-              `https://image.tmdb.org/t/p/w500/` +
+              `https://image.tmdb.org/t/p/original/` +
               data?.results?.[currentResult].poster_path
             }
             alt="movie poster"

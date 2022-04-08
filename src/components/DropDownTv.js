@@ -42,7 +42,7 @@ const DropDownTv = (props) => {
             console.log(network);
             setNetwork(network);
             setSeasons(season)
-             let imgSrc = `https://image.tmdb.org/t/p/w500/` + data?.results?.[currentResult].poster_path;
+             let imgSrc = `https://image.tmdb.org/t/p/original/` + data?.results?.[currentResult].poster_path;
              setimgSrc(imgSrc)
         })
     })

@@ -49,13 +49,13 @@ const MovieSearch = () => {
           className="searchbar"
           placeholder="Search by movie name..."
         />
-        <input type="submit" value="Search for movie" className="searchBtn"/>
+        <button type="submit">Search For Movie!</button>
       </form>
         {search?.filter((items, idx) => idx < 1).map((item) => {
            return (
             <div className="card">
               <img
-                src={`https://image.tmdb.org/t/p/w500/` + search?.[0].poster_path}
+                src={`https://image.tmdb.org/t/p/original/` + search?.[0].poster_path}
                 alt="movie poster"
               />
               <hr />
