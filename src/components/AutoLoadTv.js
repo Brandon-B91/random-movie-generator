@@ -17,7 +17,7 @@ const AutoLoadTv = () => {
           .map((item) => {
             return item.id;
           });
-        console.log(id)
+        // console.log(id)
         setId(id);
         setTrending(trending);
         console.log(trending);

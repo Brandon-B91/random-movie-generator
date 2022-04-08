@@ -47,6 +47,7 @@ header img {
 }
 
 #selectList {
+  color: black;
   margin: 0 auto;
   width: 80%;
   min-width: 300px;
@@ -62,6 +63,7 @@ header img {
 }
 
 .dropDownStyle button {
+  color: black;
   border-radius: 16px;
   box-shadow: 4px 4px 8px;
   background: linear-gradient(to right, lightblue, pink, purple);
@@ -96,7 +98,7 @@ header img {
   font-size: 1rem;
   padding: 1%;
   color: black;
-  box-shadow: 4px 4px 8px black;
+  box-shadow: 4px 4px 8px;
   background: linear-gradient(to right, lightblue, pink, purple);
 }
 

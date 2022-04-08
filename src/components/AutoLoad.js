@@ -27,7 +27,7 @@ const AutoLoad = () => {
       })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response)
+        // console.log(response)
         let stream = response.results.US.flatrate
         let buy = response.results.US.buy
         setStream(stream)
@@ -74,7 +74,7 @@ const AutoLoad = () => {
                           </li>
                         );
                       })
-                    : "No streaming options available"}
+                    : "No streaming options available / In theatres"}
                 </ul>
               </div>
               <div className="whereToBuy">
