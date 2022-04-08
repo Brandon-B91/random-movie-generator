@@ -63,7 +63,7 @@ header img {
 }
 
 .dropDownStyle button {
-  color: black;
+  color: lightblue;
   border-radius: 16px;
   box-shadow: 4px 4px 8px;
   background: linear-gradient(to right, lightblue, pink, purple);
@@ -97,7 +97,7 @@ header img {
   height: 30px;
   font-size: 1rem;
   padding: 1%;
-  color: black;
+  color: lightblue;
   box-shadow: 4px 4px 8px;
   background: linear-gradient(to right, lightblue, pink, purple);
 }
