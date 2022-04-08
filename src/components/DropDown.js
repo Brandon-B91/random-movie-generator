@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { FaStar } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { FaStar, FaSearch } from "react-icons/fa";
+import MovieSearch from "./MovieSearch";
 
 const DropDown = () => {
   const [value, setValue] = useState();
@@ -69,7 +70,7 @@ const DropDown = () => {
           <option value="10752">War</option>
           <option value="37">Western</option>
         </select>
-        <button onClick={handleClick}>Search!</button>
+        <button onClick={handleClick}>Get Random Movie!</button>
       </div>
       {currentResult && (
         <div className="card">
@@ -129,6 +130,8 @@ const DropDown = () => {
           </div>
         </div>
       )}
+            <MovieSearch />
+
     </div>
   );
 };
