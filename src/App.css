@@ -51,7 +51,7 @@ header img {
   margin: 0 auto;
   width: 80%;
   min-width: 300px;
-  height: 30px;
+  height: 34px;
   font: 1.7rem;
   border-radius: 32px;
   border: 2px solid black;
@@ -65,7 +65,8 @@ header img {
 .dropDownStyle button {
   color: black;
   border-radius: 16px;
-  box-shadow: 4px 4px 8px skyblue;
+  box-shadow: 4px 4px 8px #0096FF
+  ;
   background: linear-gradient(to right, lightblue, pink, purple);
 }
 
@@ -73,10 +74,10 @@ header img {
   margin-left: 50%;
   margin-bottom: 3%;
   transform: translateX(-50%);
-  width: 80%;
+  width: 349.59px;
   min-width: 300px;
   height: 30px;
-  font: 1.7rem;
+  font: 1.4rem;
   border-radius: 32px;
   border: 2px solid black;
   padding-left: 3%;
@@ -98,7 +99,7 @@ header img {
   font-size: 1rem;
   padding: 1%;
   color: black;
-  box-shadow: 4px 4px 8px skyblue;
+  box-shadow: 4px 4px 8px #0096FF;
   background: linear-gradient(to right, lightblue, pink, purple);
 }
 
