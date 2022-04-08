@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./components/Header";
 import AutoLoad from "./components/AutoLoad";
 import Nav from './components/Nav'
+import AutoLoadTv from './components/AutoLoadTv'
 import "./App.css";
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
       <Header />
       <div className="App">
         <AutoLoad />
+        <AutoLoadTv />
         <Nav />
       </div>
     </>

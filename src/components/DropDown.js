@@ -130,8 +130,7 @@ const DropDown = () => {
           </div>
         </div>
       )}
-            <MovieSearch />
-
+      <MovieSearch />
     </div>
   );
 };

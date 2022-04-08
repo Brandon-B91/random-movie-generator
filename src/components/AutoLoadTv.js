@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 
-const AutoLoad = () => {
+const AutoLoadTv = () => {
   const [trending, setTrending] = useState();
   const [id, setId] = useState();
   const [stream, setStream] = useState();
   const [buy, setBuy] = useState();
 
   useEffect(() => {
-    const auto = fetch(`
-        https://api.themoviedb.org/3/trending/movie/week?api_key=f79df266a37e366257a09e6b64a14de9`)
+    const auto = fetch(`https://api.themoviedb.org/3/trending/tv/week?api_key=f79df266a37e366257a09e6b64a14de9`)
       .then((response) => response.json())
       .then((response) => {
         let trending = response.results;
@@ -18,11 +17,12 @@ const AutoLoad = () => {
           .map((item) => {
             return item.id;
           });
+        console.log(id)
         setId(id);
         setTrending(trending);
         console.log(trending);
         return fetch(`
-        https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=f79df266a37e366257a09e6b64a14de9`
+        https://api.themoviedb.org/3/tv/${id}/watch/providers?api_key=f79df266a37e366257a09e6b64a14de9`
         )
       })
       .then((response) => response.json())
@@ -37,7 +37,7 @@ const AutoLoad = () => {
 
   return (
     <div className="trendingList">
-      <h1>Top Movie This Week!</h1>
+      <h1>Top in TV This Week!</h1>
       {trending
         ?.filter((items, idx) => idx < 1)
         .map((item) => {
@@ -52,7 +52,7 @@ const AutoLoad = () => {
               <ul className="top">
                 <li className="li1">
                   {" "}
-                  <cite>Release Date: {item.release_date}</cite>
+                  <cite>Release Date: {item.first_air_date}</cite>
                 </li>
                 <li className="li2">
                   {" "}
@@ -98,4 +98,4 @@ const AutoLoad = () => {
   );
 };
 
-export default AutoLoad;
+export default AutoLoadTv;
