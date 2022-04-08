@@ -110,7 +110,7 @@ const DropDownTv = (props) => {
               : "No streams available"}
           </ul>
         </div>
-        <div className="">
+        <div className="whereToBuy">
         <h4>Seasons</h4>
             <p>{season}</p>
         </div>
