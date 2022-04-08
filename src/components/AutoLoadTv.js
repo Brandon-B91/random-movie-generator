@@ -4,11 +4,13 @@ import { FaStar } from "react-icons/fa";
 const AutoLoadTv = () => {
   const [trending, setTrending] = useState();
   const [id, setId] = useState();
-  const [stream, setStream] = useState();
-  const [buy, setBuy] = useState();
+  const [season, setSeasons] = useState();
+  const [network, setNetwork] = useState();
 
   useEffect(() => {
-    const auto = fetch(`https://api.themoviedb.org/3/trending/tv/week?api_key=f79df266a37e366257a09e6b64a14de9`)
+    const auto = fetch(
+      `https://api.themoviedb.org/3/trending/tv/week?api_key=f79df266a37e366257a09e6b64a14de9`
+    )
       .then((response) => response.json())
       .then((response) => {
         let trending = response.results;
@@ -17,22 +19,20 @@ const AutoLoadTv = () => {
           .map((item) => {
             return item.id;
           });
-        // console.log(id)
         setId(id);
         setTrending(trending);
         console.log(trending);
-        return fetch(`
-        https://api.themoviedb.org/3/tv/${id}/watch/providers?api_key=f79df266a37e366257a09e6b64a14de9`
-        )
+        return fetch(
+          `https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US`
+        );
       })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response)
-        let stream = response.results.US.flatrate
-        let buy = response.results.US.buy
-        setStream(stream)
-        setBuy(buy)
-      })
+        let network = response.networks;
+        let season = response.seasons.length;
+        setNetwork(network);
+        setSeasons(season);
+      });
   }, []);
 
   return (
@@ -66,11 +66,11 @@ const AutoLoadTv = () => {
               <div className="whereToWatch">
                 <h4>Where to Stream...</h4>
                 <ul className="whereToWatchList">
-                  {stream?.length > 0
-                    ? stream?.map((item) => {
+                  {network?.length > 0
+                    ? network?.map((item) => {
                         return (
-                          <li key={item.provider_id} className="badge">
-                            {item.provider_name}
+                          <li key={item.id} className="badge">
+                            {item.name}
                           </li>
                         );
                       })
@@ -78,18 +78,8 @@ const AutoLoadTv = () => {
                 </ul>
               </div>
               <div className="whereToBuy">
-                <h4>Where to buy...</h4>
-                <ul className="whereToBuyList">
-                  {buy?.length > 0
-                    ? buy?.map((item) => {
-                        return (
-                          <li key={item.provider_id} className="badge">
-                            {item.provider_name}
-                          </li>
-                        );
-                      })
-                    : "No purchase options available"}
-                </ul>
+                <h4>Seasons</h4>
+                <p>{season}</p>
               </div>
             </div>
           );
