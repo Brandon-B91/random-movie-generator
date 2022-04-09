@@ -53,6 +53,14 @@ export function register(config) {
 }
 
 function registerValidSW(swUrl, config) {
+  navigator.serviceWorker.getRegistration('https://YOUR_DOMAIN_HERE.COM/')
+  .then(swReg => {
+    if (swReg) {
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        window.swUpdateReady = true;
+      });
+    }
+  });
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
