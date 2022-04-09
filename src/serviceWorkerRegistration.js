@@ -10,6 +10,9 @@
 // To learn more about the benefits of this model and instructions on how to
 // opt-in, read https://cra.link/PWA
 
+import React from 'react'
+import { toast } from 'react-toastify'
+
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
     // [::1] is the IPv6 localhost address.
@@ -56,6 +59,13 @@ function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
+        // Check for updates at start.
+        registration.update();
+        // Check for updates every 5 min.
+        setInterval(() => {
+          registration.update();
+          console.debug("Checked for update...");
+        }, (1000 * 60) * 5);
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
