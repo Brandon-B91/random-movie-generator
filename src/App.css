@@ -18,7 +18,7 @@ header img {
 .navbar {
   position: fixed;
   bottom: 0;
-  padding-bottom:25px;
+  padding-bottom: 25px;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -65,8 +65,7 @@ header img {
 .dropDownStyle button {
   color: black;
   border-radius: 16px;
-  box-shadow: 4px 4px 8px #0096FF
-  ;
+  box-shadow: 4px 4px 8px #0096ff;
   background: linear-gradient(to right, lightblue, pink, purple);
 }
 
@@ -99,7 +98,7 @@ header img {
   font-size: 1rem;
   padding: 1%;
   color: black;
-  box-shadow: 4px 4px 8px #0096FF;
+  box-shadow: 4px 4px 8px #0096ff;
   background: linear-gradient(to right, lightblue, pink, purple);
 }
 
@@ -144,10 +143,10 @@ header img {
 }
 
 .card h3 {
-    margin-top: 5%;
+  margin-top: 5%;
 }
 
-ul  {
+ul {
   list-style-type: none;
   width: 100%;
   display: flex;
@@ -155,9 +154,9 @@ ul  {
 }
 
 .top {
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
 }
 
 li {
@@ -173,36 +172,28 @@ li {
 }
 
 .whereToWatch {
-    margin: 2% 1%;
+  margin: 2% 1%;
 }
 
 .whereToWatchList {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .whereToBuy {
-    margin: 2% 1%;
+  margin: 2% 1%;
 }
 
 .whereToBuyList {
-    display: flex;
-    flex-wrap: wrap;
-   
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .badge {
-    background: white;
-    border-radius: 16px;
-    padding: 1% 2%;
-    font-size: .8rem;
-}
-
-.footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+  background: white;
+  border-radius: 16px;
+  padding: 1% 2%;
+  font-size: 0.8rem;
 }
 
 /* Home page */
@@ -212,69 +203,62 @@ li {
 }
 
 .trendingList h1 {
-    text-align: center;
-    padding-bottom: 3%;
+  text-align: center;
+  padding-bottom: 3%;
 }
 
 .trendingCard {
-    margin: 0 auto;
-    width: 70%;
-    max-width: 600px;
-    border: 1px solid black;
-    border-radius: 16px;
-    margin-top: 3%;
-    background: linear-gradient(to bottom right, lightblue, pink, purple);
-    display: flex;
-    flex-direction: column;
-    box-shadow: 4px 4px 8px black;
-    margin-bottom: 7%;
-  }
+  margin: 0 auto;
+  width: 70%;
+  max-width: 600px;
+  border: 1px solid black;
+  border-radius: 16px;
+  margin-top: 3%;
+  background: linear-gradient(to bottom right, lightblue, pink, purple);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 4px 8px black;
+  margin-bottom: 7%;
+}
 
-  /* Movie page */
+/* Movie page */
 
-  .movie h2 {
-    text-align: center;
-    margin-bottom: 5%;
-  }
-  /* Tv page */
+.movie h2 {
+  text-align: center;
+  margin-bottom: 5%;
+}
+/* Tv page */
 
-  .tv h2 {
-    text-align: center;
-    margin-bottom: 5%;
-  }
-
+.tv h2 {
+  text-align: center;
+  margin-bottom: 5%;
+}
 
 @media screen and (max-width: 500px) {
-    .dropDownStyle {
-        display: flex;
-        flex-direction: column;
-    }
+  .dropDownStyle {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .dropDownStyle button {
-        margin: 3% auto;
-        width: 80%;
-        height: 30px;
-        font-size: 1rem;
-    }
+  .dropDownStyle button {
+    margin: 3% auto;
+    width: 80%;
+    height: 30px;
+    font-size: 1rem;
+  }
 
-    .card {
-        width: 90%;
-    }
+  .card {
+    width: 90%;
+  }
 
-    .card img {
-        width: 100%;
-        margin-top: 0;
-        border-radius: 16px 16px 0 0;
-    }
+  .card img {
+    width: 100%;
+    margin-top: 0;
+    border-radius: 16px 16px 0 0;
+  }
 
-    .card hr {
-        display: none;
-    }
-}
-
-@media only screen and (orientation: portrait) {
-  body {
-    height: 100vw;
-    transform: rotate(90deg)
+  .card hr {
+    display: none;
   }
 }
+

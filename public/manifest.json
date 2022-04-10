@@ -1,7 +1,7 @@
 {
   "short_name": "Movie Night",
   "name": "Random Movie Generator",
-  "orientation": "portrait",
+  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "rmgicon192.png",
