@@ -11,7 +11,7 @@ const App = () => {
       <Header />
       <div className="App">
         <AutoLoad />
-        {/* <AutoLoadTv /> */}
+        <AutoLoadTv />
         <Nav />
       </div>
     </>
