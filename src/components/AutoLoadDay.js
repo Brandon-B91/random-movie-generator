@@ -1,85 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
-import "../App.css";
 
-const MovieSearch = () => {
-  const [inputValue, setInputValue] = useState("");
-  const [search, setSearch] = useState();
-  const [isActive, setActive] = useState();
+const AutoLoad = (props) => {
+  const [trending, setTrending] = useState();
   const [id, setId] = useState();
   const [stream, setStream] = useState();
   const [buy, setBuy] = useState();
+  const [value, setValue] = useState();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setActive(true);
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&query=${inputValue}&page=1&include_adult=false`
-    )
+  useEffect(() => {
+    const auto = fetch(`
+        https://api.themoviedb.org/3/trending/movie/day?api_key=f79df266a37e366257a09e6b64a14de9`)
       .then((response) => response.json())
       .then((response) => {
-        let search = response.results;
-        let id = search[0].id;
+        let trending = response.results;
+        let id = response.results
+          .filter((items, idx) => idx < 5)
+          .map((item) => {
+            return item.id;
+          });
         setId(id);
-        console.log(id);
-        setSearch(search);
-        console.log(search);
-        return fetch(
-          `https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=f79df266a37e366257a09e6b64a14de9&regions-us`
-        );
+        setTrending(trending);
+        console.log(trending);
+        return fetch(`
+        https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=f79df266a37e366257a09e6b64a14de9`);
       })
       .then((response) => response.json())
       .then((response) => {
+        // console.log(response)
         let stream = response.results.US.flatrate;
-        setStream(stream);
         let buy = response.results.US.buy;
+        setStream(stream);
         setBuy(buy);
-        console.log(stream);
-        console.log(buy);
+        setValue(value);
       });
-  };
+  }, []);
 
   return (
-    <div className="movieContainer">
-      <form onSubmit={handleSubmit} className="searchStyle">
-        <input
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          className="searchbar"
-          placeholder="Search by movie name..."
-        />
-        <button>Search!</button>
-      </form>
-      {search
+    <div className="trendingList">
+      <h1>Top Movie Today!</h1>
+      {trending
         ?.filter((items, idx) => idx < 1)
         .map((item) => {
           return (
             <div className="card">
               <img
-                src={
-                  `https://image.tmdb.org/t/p/original/` +
-                  search?.[0].poster_path
-                }
+                src={`https://image.tmdb.org/t/p/w500/` + item.poster_path}
                 alt="movie poster"
               />
               <hr />
-              <h2>{search?.[0].title}</h2>
+              <h2>{item.title}</h2>
               <ul className="top">
                 <li className="li1">
                   {" "}
-                  <cite>Release Date: {search?.[0].release_date}</cite>
+                  <cite>Release Date: {item.release_date}</cite>
                 </li>
                 <li className="li2">
                   {" "}
                   <cite className="rating">
-                    Rating: <FaStar /> {Math.round(search?.[0].vote_average)}
-                    /10
+                    Rating: <FaStar /> {Math.round(item.vote_average)}/10
                   </cite>
                 </li>
               </ul>
               <h3>Overview</h3>
-              <p>{search?.[0].overview}</p>
+              <p>{item.overview}</p>
               <div className="whereToWatch">
                 <h4>Where to Stream...</h4>
                 <ul className="whereToWatchList">
@@ -91,7 +75,7 @@ const MovieSearch = () => {
                           </li>
                         );
                       })
-                    : "No streaming options available"}
+                    : "No streaming options available / In theatres"}
                   <cite
                     style={{
                       marginTop: "5%",
@@ -133,4 +117,4 @@ const MovieSearch = () => {
   );
 };
 
-export default MovieSearch;
+export default AutoLoad;

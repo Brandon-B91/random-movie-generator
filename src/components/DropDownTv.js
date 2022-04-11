@@ -117,6 +117,15 @@ const DropDownTv = (props) => {
                     );
                   })
                 : "No streams available"}
+              <cite
+                style={{
+                  marginTop: "5%",
+                  marginLeft: "auto",
+                  color: "white",
+                }}
+              >
+                Powered by JustWatch
+              </cite>
             </ul>
           </div>
           <div className="whereToBuy">

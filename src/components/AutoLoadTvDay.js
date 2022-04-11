@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 
-const AutoLoad = (props) => {
+const AutoLoadTv = () => {
   const [trending, setTrending] = useState();
   const [id, setId] = useState();
-  const [stream, setStream] = useState();
-  const [buy, setBuy] = useState();
-  const [value, setValue] = useState();
+  const [season, setSeasons] = useState();
+  const [network, setNetwork] = useState();
 
   useEffect(() => {
-    const auto = fetch(`
-        https://api.themoviedb.org/3/trending/movie/week?api_key=f79df266a37e366257a09e6b64a14de9`)
+    const auto = fetch(
+      `https://api.themoviedb.org/3/trending/tv/day?api_key=f79df266a37e366257a09e6b64a14de9`
+    )
       .then((response) => response.json())
       .then((response) => {
         let trending = response.results;
@@ -22,23 +22,22 @@ const AutoLoad = (props) => {
         setId(id);
         setTrending(trending);
         console.log(trending);
-        return fetch(`
-        https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=f79df266a37e366257a09e6b64a14de9`);
+        return fetch(
+          `https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US`
+        );
       })
       .then((response) => response.json())
       .then((response) => {
-        // console.log(response)
-        let stream = response.results.US.flatrate;
-        let buy = response.results.US.buy;
-        setStream(stream);
-        setBuy(buy);
-        setValue(value);
+        let network = response.networks;
+        let season = response.seasons.length;
+        setNetwork(network);
+        setSeasons(season);
       });
   }, []);
 
   return (
     <div className="trendingList">
-      <h1>Top Movie This Week!</h1>
+      <h1>Top in TV Today</h1>
       {trending
         ?.filter((items, idx) => idx < 1)
         .map((item) => {
@@ -53,7 +52,7 @@ const AutoLoad = (props) => {
               <ul className="top">
                 <li className="li1">
                   {" "}
-                  <cite>Release Date: {item.release_date}</cite>
+                  <cite>Release Date: {item.first_air_date}</cite>
                 </li>
                 <li className="li2">
                   {" "}
@@ -67,15 +66,15 @@ const AutoLoad = (props) => {
               <div className="whereToWatch">
                 <h4>Where to Stream...</h4>
                 <ul className="whereToWatchList">
-                  {stream?.length > 0
-                    ? stream?.map((item) => {
+                  {network?.length > 0
+                    ? network?.map((item) => {
                         return (
-                          <li key={item.provider_id} className="badge">
-                            {item.provider_name}
+                          <li key={item.id} className="badge">
+                            {item.name}
                           </li>
                         );
                       })
-                    : "No streaming options available / In theatres"}
+                    : "No streaming options available"}
                   <cite
                     style={{
                       marginTop: "5%",
@@ -88,27 +87,8 @@ const AutoLoad = (props) => {
                 </ul>
               </div>
               <div className="whereToBuy">
-                <h4>Where to buy...</h4>
-                <ul className="whereToBuyList">
-                  {buy?.length > 0
-                    ? buy?.map((item) => {
-                        return (
-                          <li key={item.provider_id} className="badge">
-                            {item.provider_name}
-                          </li>
-                        );
-                      })
-                    : "No purchase options available"}
-                  <cite
-                    style={{
-                      marginTop: "5%",
-                      marginLeft: "auto",
-                      color: "white",
-                    }}
-                  >
-                    Powered by JustWatch
-                  </cite>
-                </ul>
+                <h4>Seasons</h4>
+                <p>{season}</p>
               </div>
             </div>
           );
@@ -117,4 +97,4 @@ const AutoLoad = (props) => {
   );
 };
 
-export default AutoLoad;
+export default AutoLoadTv;

@@ -112,6 +112,15 @@ const DropDown = () => {
                     );
                   })
                 : "No streams available"}
+              <cite
+                style={{
+                  marginTop: "5%",
+                  marginLeft: "auto",
+                  color: "white",
+                }}
+              >
+                Powered by JustWatch
+              </cite>
             </ul>
           </div>
           <div className="whereToBuy">
@@ -126,6 +135,15 @@ const DropDown = () => {
                     );
                   })
                 : "No purchase options available"}
+              <cite
+                style={{
+                  marginTop: "5%",
+                  marginLeft: "auto",
+                  color: "white",
+                }}
+              >
+                Powered by JustWatch
+              </cite>
             </ul>
           </div>
         </div>
