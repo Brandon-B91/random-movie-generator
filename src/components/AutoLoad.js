@@ -6,6 +6,7 @@ const AutoLoad = () => {
   const [id, setId] = useState();
   const [stream, setStream] = useState();
   const [buy, setBuy] = useState();
+  const [value, setValue] = useState();
 
   useEffect(() => {
     const auto = fetch(`
@@ -22,17 +23,17 @@ const AutoLoad = () => {
         setTrending(trending);
         console.log(trending);
         return fetch(`
-        https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=f79df266a37e366257a09e6b64a14de9`
-        )
+        https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=f79df266a37e366257a09e6b64a14de9`);
       })
       .then((response) => response.json())
       .then((response) => {
         // console.log(response)
-        let stream = response.results.US.flatrate
-        let buy = response.results.US.buy
-        setStream(stream)
-        setBuy(buy)
-      })
+        let stream = response.results.US.flatrate;
+        let buy = response.results.US.buy;
+        setStream(stream);
+        setBuy(buy);
+        setValue(value)
+      });
   }, []);
 
   return (

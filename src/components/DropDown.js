@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { FaStar, FaSearch } from "react-icons/fa";
-import MovieSearch from "./MovieSearch";
 
 const DropDown = () => {
   const [value, setValue] = useState();
@@ -10,6 +9,7 @@ const DropDown = () => {
   const [id, setId] = useState();
   const [stream, setStream] = useState();
   const [buy, setBuy] = useState();
+  const [show, setShow] = useState(false);
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -130,7 +130,6 @@ const DropDown = () => {
           </div>
         </div>
       )}
-      <MovieSearch />
     </div>
   );
 };

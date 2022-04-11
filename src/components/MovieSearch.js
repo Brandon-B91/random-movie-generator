@@ -6,9 +6,9 @@ const MovieSearch = () => {
   const [inputValue, setInputValue] = useState("");
   const [search, setSearch] = useState();
   const [isActive, setActive] = useState();
-  const [id, setId] = useState()
-  const [stream, setStream] = useState()
-  const [buy, setBuy] = useState()
+  const [id, setId] = useState();
+  const [stream, setStream] = useState();
+  const [buy, setBuy] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,28 +19,28 @@ const MovieSearch = () => {
       .then((response) => response.json())
       .then((response) => {
         let search = response.results;
-        let id = search[0].id
-        setId(id)
-        console.log(id)
+        let id = search[0].id;
+        setId(id);
+        console.log(id);
         setSearch(search);
         console.log(search);
         return fetch(
-            `https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=f79df266a37e366257a09e6b64a14de9&regions-us`
-          )
+          `https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=f79df266a37e366257a09e6b64a14de9&regions-us`
+        );
       })
       .then((response) => response.json())
       .then((response) => {
-          let stream = response.results.US.flatrate
-          setStream(stream)
-          let buy = response.results.US.buy
-          setBuy(buy)
-          console.log(stream)
-          console.log(buy)
-      })
+        let stream = response.results.US.flatrate;
+        setStream(stream);
+        let buy = response.results.US.buy;
+        setBuy(buy);
+        console.log(stream);
+        console.log(buy);
+      });
   };
 
   return (
-    <div>
+    <div className="movieContainer">
       <form onSubmit={handleSubmit} class="searchStyle">
         <input
           type="text"
@@ -51,11 +51,16 @@ const MovieSearch = () => {
         />
         <button>Search For Movie!</button>
       </form>
-        {search?.filter((items, idx) => idx < 1).map((item) => {
-           return (
+      {search
+        ?.filter((items, idx) => idx < 1)
+        .map((item) => {
+          return (
             <div className="card">
               <img
-                src={`https://image.tmdb.org/t/p/original/` + search?.[0].poster_path}
+                src={
+                  `https://image.tmdb.org/t/p/original/` +
+                  search?.[0].poster_path
+                }
                 alt="movie poster"
               />
               <hr />
@@ -104,8 +109,8 @@ const MovieSearch = () => {
                 </ul>
               </div>
             </div>
-           );
-        })} 
+          );
+        })}
     </div>
   );
 };

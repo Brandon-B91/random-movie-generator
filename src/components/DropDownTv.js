@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
-
 const DropDownTv = (props) => {
   const [value, setValue] = useState();
   const [data, setData] = useState();
@@ -20,8 +19,8 @@ const DropDownTv = (props) => {
     const discovertv = fetch(
       `https://api.themoviedb.org/3/discover/tv?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&sort_by=popularity.desc&page=${random}&with_genres=${value}&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`
     )
-    .then((response) => response.json())
-    .then((response) => {
+      .then((response) => response.json())
+      .then((response) => {
         console.log(response);
         let data = response;
         setData(data);
@@ -32,92 +31,102 @@ const DropDownTv = (props) => {
         let id = data.results[currentResult].id;
         setId(id);
         return fetch(
-            `https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US`
-            )
-        .then((response) => response.json())
-        .then((response) => {
-            console.log(response)
+          `https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US`
+        )
+          .then((response) => response.json())
+          .then((response) => {
+            console.log(response);
             let network = response.networks;
-            let season = response.seasons.length
+            let season = response.seasons.length;
             console.log(network);
             setNetwork(network);
-            setSeasons(season)
-             let imgSrc = `https://image.tmdb.org/t/p/original/` + data?.results?.[currentResult].poster_path;
-             setimgSrc(imgSrc)
-        })
-    })
+            setSeasons(season);
+            let imgSrc =
+              `https://image.tmdb.org/t/p/original/` +
+              data?.results?.[currentResult].poster_path;
+            setimgSrc(imgSrc);
+          });
+      });
   };
 
-  return(
+  return (
     <div className="container">
-    <div className="dropDownStyle">
-      <select name="selectList" id="selectList" onChange={handleChange}>
-        <option value="10759">Action / Adventure</option> 
-        <option value="16">Animation</option>
-        <option value="35">Comedy</option>
-        <option value="80">Crime</option>
-        <option value="99">Documentary</option>
-        <option value="18">Drama</option>
-        <option value="10751">Family</option>
-        <option value="10762">kids</option>
-        <option value="9648">Mystery</option>
-        <option value="10763">News</option>
-        <option value="10764">Reality</option>
-        <option value="10765">Sci fi / Fantasy</option>
-        <option value="10766">Soap</option>
-        <option value="10767">Talk</option>
-        <option value="10770">War / Politics</option>
-        <option value="37">Western</option>
-      </select>
-      <button onClick={handleClick}>Search!</button>
-    </div>
-    {currentResult && (
-      <div className="card">
-        <img
-          src={imgSrc ? imgSrc : data?.results?.[currentResult].backdrop_path } 
-          alt="movie poster"
-        />
-        <hr />
-        <h2>{data?.results?.[currentResult].name ? data?.results?.[currentResult].name : data?.results?.[currentResult].original_name }</h2>
-        <ul className="top">
-          <li className="li1">
-            {" "}
-            <cite>
-              Release Date: {data?.results?.[currentResult].first_air_date}
-            </cite>
-          </li>
-          <li className="li2">
-            {" "}
-            <cite className="rating">
-              Rating: <FaStar />{" "}
-              {Math.round(data?.results?.[currentResult].vote_average)}/10
-            </cite>
-          </li>
-        </ul>
-        <h3>Overview</h3>
-        <p>{data?.results?.[currentResult].overview ? data?.results?.[currentResult].overview : "No overview available" }</p>
-        <div className="whereToWatch">
-          <h4>Where to Stream...</h4>
-          <ul className="whereToWatchList">
-            {network?.length > 0
-              ? network?.map(item => {
-                  return (
-                    <li key={item.id} className="badge">
-                      {item.name}
-                    </li>
-                  );
-                })
-              : "No streams available"}
-          </ul>
-        </div>
-        <div className="whereToBuy">
-        <h4>Seasons</h4>
-            <p>{season}</p>
-        </div>
+      <div className="dropDownStyle">
+        <select name="selectList" id="selectList" onChange={handleChange}>
+          <option value="10759">Action / Adventure</option> 
+          <option value="16">Animation</option>
+          <option value="35">Comedy</option>
+          <option value="80">Crime</option>
+          <option value="99">Documentary</option>
+          <option value="18">Drama</option>
+          <option value="10751">Family</option>
+          <option value="10762">kids</option>
+          <option value="9648">Mystery</option>
+          <option value="10763">News</option>
+          <option value="10764">Reality</option>
+          <option value="10765">Sci fi / Fantasy</option>
+          <option value="10766">Soap</option>
+          <option value="10767">Talk</option>
+          <option value="10770">War / Politics</option>
+          <option value="37">Western</option>
+        </select>
+        <button onClick={handleClick}>Search!</button>
       </div>
-    )}
-  </div>
-  )
+      {currentResult && (
+        <div className="card">
+          <img
+            src={imgSrc ? imgSrc : data?.results?.[currentResult].backdrop_path}
+            alt="movie poster"
+          />
+          <hr />
+          <h2>
+            {data?.results?.[currentResult].name
+              ? data?.results?.[currentResult].name
+              : data?.results?.[currentResult].original_name}
+          </h2>
+          <ul className="top">
+            <li className="li1">
+              {" "}
+              <cite>
+                Release Date: {data?.results?.[currentResult].first_air_date}
+              </cite>
+            </li>
+            <li className="li2">
+              {" "}
+              <cite className="rating">
+                Rating: <FaStar />{" "}
+                {Math.round(data?.results?.[currentResult].vote_average)}/10
+              </cite>
+            </li>
+          </ul>
+          <h3>Overview</h3>
+          <p>
+            {data?.results?.[currentResult].overview
+              ? data?.results?.[currentResult].overview
+              : "No overview available"}
+          </p>
+          <div className="whereToWatch">
+            <h4>Where to Stream...</h4>
+            <ul className="whereToWatchList">
+              {network?.length > 0
+                ? network?.map((item) => {
+                    return (
+                      <li key={item.id} className="badge">
+                        {item.name}
+                      </li>
+                    );
+                  })
+                : "No streams available"}
+            </ul>
+          </div>
+          <div className="whereToBuy">
+            <h4>Seasons</h4>
+            <p>{season}</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default DropDownTv;

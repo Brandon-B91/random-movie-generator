@@ -42,61 +42,62 @@ header img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
-  height: 100%;
-}
-
-#selectList {
-  color: black;
-  margin: 0 auto;
-  width: 80%;
-  min-width: 300px;
-  height: 34px;
-  font: 1.7rem;
-  border-radius: 32px;
-  border: 2px solid black;
-  padding: 1%;
 }
 
 .dropDownStyle {
   display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+#selectList {
+  color: black;
+  width: 40%;
+  height: 34px;
+  font: 1.7rem;
+  border-radius: 16px 0 0 16px;
+  border: 2px solid black;
+  box-shadow: 4px 4px 8px #0096ff;
+  padding: 0 1%;
 }
 
 .dropDownStyle button {
+  margin-bottom: 5%;
+  margin-left: -2px;
+  border-radius: 0 16px 16px 0;
+  width: 30%;
+  height: 34px;
+  font-size: 1rem;
   color: black;
-  border-radius: 16px;
   box-shadow: 4px 4px 8px #0096ff;
   background: linear-gradient(to right, lightblue, pink, purple);
-}
-
-.searchbar {
-  margin-left: 50%;
-  margin-bottom: 3%;
-  transform: translateX(-50%);
-  width: 349.59px;
-  min-width: 300px;
-  height: 30px;
-  font: 1.4rem;
-  border-radius: 32px;
-  border: 2px solid black;
-  padding-left: 3%;
 }
 
 .searchStyle {
   margin-top: 5%;
   display: flex;
-  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.searchbar {
+  margin-bottom: 3%;
+  width: 40%;
+  height: 34px;
+  font: 1.4rem;
+  border-radius: 16px 0 0 16px;
+  border: 2px solid black;
+  box-shadow: 4px 4px 8px #0096ff;
+  padding-left: 3%;
 }
 
 .searchStyle button {
-  margin: 0 auto;
   margin-bottom: 5%;
-  border-radius: 16px;
-  width: 80%;
-  min-width: 300px;
-  height: 30px;
+  margin-left: -5px;
+  border-radius: 0 16px 16px 0;
+  width: 30%;
+  height: 38px;
   font-size: 1rem;
-  padding: 1%;
   color: black;
   box-shadow: 4px 4px 8px #0096ff;
   background: linear-gradient(to right, lightblue, pink, purple);
@@ -223,10 +224,40 @@ li {
 
 /* Movie page */
 
+.movieContainer {
+  margin-bottom: 35%;
+}
+
 .movie h2 {
   text-align: center;
   margin-bottom: 5%;
 }
+
+.showBtns {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-bottom: 5%;
+}
+.showBtns input {
+  margin: 2%;
+  padding: 2%;
+  border-radius: 24px;
+}
+
+.showBtns button {
+  background: none;
+  outline: none;
+  border: none;
+  padding: 5%;
+  font-size: 1.2rem;
+  color: gray;
+}
+
+.showBtns .right {
+  border-right: 1px solid gray;
+}
+
 /* Tv page */
 
 .tv h2 {
@@ -235,18 +266,15 @@ li {
 }
 
 @media screen and (max-width: 500px) {
-  .dropDownStyle {
-    display: flex;
-    flex-direction: column;
-  }
 
   .dropDownStyle button {
-    margin: 3% auto;
-    width: 80%;
-    height: 30px;
-    font-size: 1rem;
+    font-size: .9rem;
   }
 
+  .searchStyle button {
+    font-size: 1rem;
+  }
+   
   .card {
     width: 90%;
   }
