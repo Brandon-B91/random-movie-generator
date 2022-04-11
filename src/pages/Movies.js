@@ -10,6 +10,7 @@ const Movies = () => {
   const [show1, setShow1] = useState(false);
   const onClick = () => setShow(!show);
   const onClick1 = () => setShow1(!show1);
+
   return (
     <div className="movie">
       <Header />

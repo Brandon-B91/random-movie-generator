@@ -65,6 +65,7 @@ header img {
   margin-bottom: 5%;
   margin-left: -2px;
   border-radius: 0 16px 16px 0;
+  border: 2px solid black;
   width: 30%;
   height: 34px;
   font-size: 1rem;
@@ -95,6 +96,7 @@ header img {
   margin-bottom: 5%;
   margin-left: -5px;
   border-radius: 0 16px 16px 0;
+  border: 2px solid black;
   width: 30%;
   height: 38px;
   font-size: 1rem;
