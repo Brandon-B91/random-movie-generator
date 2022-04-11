@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import Header from "../components/Header";
 import DropDown from "../components/DropDown";
 import Nav from "../components/Nav";
@@ -16,12 +16,11 @@ const Movies = () => {
       <Header />
       <h2>Discover a new movie!</h2>
       <div className="showBtns">
-        <button onClick={onClick} className="right">Search for a movie <FaSearch /></button> 
-        <button onClick={onClick1}>Discover a movie <FaSearch /></button>
+        <button onClick={onClick} className="right">Search <FaSearch /></button> 
+        <button onClick={onClick1}>Discover <FaSearch /></button>
       </div>
-      {show ? <DropDown /> : null } 
-      {show1 ? <MovieSearch /> : null } 
-
+      {show1 ? <DropDown /> : null } 
+      {show ? <MovieSearch /> : null } 
       <Nav />
     </div>
   );

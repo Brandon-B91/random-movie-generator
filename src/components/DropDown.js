@@ -70,7 +70,7 @@ const DropDown = () => {
           <option value="10752">War</option>
           <option value="37">Western</option>
         </select>
-        <button onClick={handleClick}>Get Random Movie!</button>
+        <button onClick={handleClick}>Search</button>
       </div>
       {currentResult && (
         <div className="card">

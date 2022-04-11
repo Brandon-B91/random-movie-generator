@@ -41,7 +41,7 @@ const MovieSearch = () => {
 
   return (
     <div className="movieContainer">
-      <form onSubmit={handleSubmit} class="searchStyle">
+      <form onSubmit={handleSubmit} className="searchStyle">
         <input
           type="text"
           value={inputValue}
@@ -49,7 +49,7 @@ const MovieSearch = () => {
           className="searchbar"
           placeholder="Search by movie name..."
         />
-        <button>Search For Movie!</button>
+        <button>Search!</button>
       </form>
       {search
         ?.filter((items, idx) => idx < 1)
