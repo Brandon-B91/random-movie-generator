@@ -21,9 +21,7 @@ const MovieSearch = () => {
         let search = response.results;
         let id = search[0].id;
         setId(id);
-        console.log(id);
         setSearch(search);
-        console.log(search);
         return fetch(
           `https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=f79df266a37e366257a09e6b64a14de9&regions-us`
         );
@@ -34,8 +32,6 @@ const MovieSearch = () => {
         setStream(stream);
         let buy = response.results.US.buy;
         setBuy(buy);
-        console.log(stream);
-        console.log(buy);
       });
   };
 

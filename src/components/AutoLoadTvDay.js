@@ -21,7 +21,6 @@ const AutoLoadTv = () => {
           });
         setId(id);
         setTrending(trending);
-        console.log(trending);
         return fetch(
           `https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US`
         );
@@ -31,6 +30,7 @@ const AutoLoadTv = () => {
         let network = response.networks;
         let season = response.seasons.length;
         setNetwork(network);
+        console.log(network)
         setSeasons(season);
       });
   }, []);
@@ -70,8 +70,8 @@ const AutoLoadTv = () => {
                     ? network?.map((item) => {
                         return (
                           <li key={item.id} className="badge">
-                            {item.name}
-                          </li>
+                          {item.name}
+                        </li>
                         );
                       })
                     : "No streaming options available"}

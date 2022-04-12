@@ -75,6 +75,15 @@ const AutoLoadTv = () => {
                         );
                       })
                     : "No streaming options available"}
+                  <cite
+                    style={{
+                      marginTop: "5%",
+                      marginLeft: "auto",
+                      color: "white",
+                    }}
+                  >
+                    Powered by JustWatch
+                  </cite>
                 </ul>
               </div>
               <div className="whereToBuy">

@@ -21,7 +21,6 @@ const DropDown = () => {
     )
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         let data = response;
         setData(data);
         let random = Math.floor(Math.random() * 500);
@@ -38,9 +37,6 @@ const DropDown = () => {
       .then((response) => {
         let stream = response.results.US.flatrate;
         let buy = response.results.US.buy;
-        console.log(stream);
-        console.log(buy);
-        console.log(response.results);
         setStream(stream);
         setBuy(buy);
       });
