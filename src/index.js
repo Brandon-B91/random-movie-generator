@@ -1,5 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
 import "./index.css";
 import App from "./App";
 import Movies from './pages/Movies'
@@ -18,6 +17,16 @@ ReactDOM.render(
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root"),
-  serviceWorkerRegistration.register()
+  serviceWorkerRegistration.register({
+    onUpdate: (e) => {
+      const { waiting: { postMessage = null } = {} as any, update } = e || {};
+      if (postMessage) {
+        postMessage({ type: 'SKIP_WAITING' });
+      }
+      update().then(() => {
+        window.location.reload();
+      });
+    },
+  })
 );
 
