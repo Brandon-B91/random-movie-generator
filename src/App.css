@@ -22,7 +22,6 @@ header img {
 .navbar {
   position: fixed;
   bottom: 0;
-  padding-bottom: 25px;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -70,7 +69,8 @@ header img {
   margin-left: -2px;
   border-radius: 0 16px 16px 0;
   border: 2px solid black;
-  width: 30%;
+  width: 20%;
+  max-width: 25%;
   height: 34px;
   font-size: 1rem;
   color: black;
@@ -101,7 +101,8 @@ header img {
   margin-left: -5px;
   border-radius: 0 16px 16px 0;
   border: 2px solid black;
-  width: 30%;
+  width: 20%;
+  max-width: 25%;
   height: 38px;
   font-size: 1rem;
   color: black;
@@ -303,6 +304,10 @@ li {
 
 @media screen and (max-width: 500px) {
 
+  .navbar {
+    padding-bottom: 25px;
+  }
+
   .dropDownStyle button {
     font-size: .9rem;
   }
@@ -324,5 +329,12 @@ li {
   .card hr {
     display: none;
   }
+
+  /* Trending page */
+
+  .trendingList {
+    margin-bottom: 20%;
+  }
+  
 }
 
