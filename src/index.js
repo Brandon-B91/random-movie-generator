@@ -17,16 +17,6 @@ ReactDOM.render(
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root"),
-  serviceWorkerRegistration.register({
-    onUpdate: (e) => {
-      const { waiting: { postMessage = null } = {} as any, update } = e || {};
-      if (postMessage) {
-        postMessage({ type: 'SKIP_WAITING' });
-      }
-      update().then(() => {
-        window.location.reload();
-      });
-    },
-  })
+  serviceWorkerRegistration.register()
 );
 
