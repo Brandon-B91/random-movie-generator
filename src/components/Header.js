@@ -1,5 +1,5 @@
 import React from 'react'
-import rmg from '../images/rmg.png'
+import rmg from '../images/movienight.png'
 
 
 const Header = () => {
