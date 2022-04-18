@@ -69,6 +69,7 @@ header img {
   padding: 0 1%;
   background: white;
   color: gray;
+  -webkit-appearance: none;
 }
 
 #selectlist:focus {
@@ -111,6 +112,7 @@ header img {
   border: 2px solid black;
   box-shadow: 6px 6px 8px #0096ff, 8px 6px 12px #FF10F0;
   padding-left: 3%;
+  -webkit-appearance: none;
 }
 
 .searchbar:focus {

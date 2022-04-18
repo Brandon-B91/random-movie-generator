@@ -41,7 +41,7 @@ const MoviePage = () => {
       <Header />
       <div className="moviePage">
         <img
-          src={`https://image.tmdb.org/t/p/w300/` + res?.backdrop_path}
+          src={`https://image.tmdb.org/t/p/w500/` + res?.backdrop_path}
           alt="movie poster"
           style={{width: '100%'}}
         />
@@ -124,12 +124,13 @@ const MoviePage = () => {
                         <img
                           src={
                             `https://image.tmdb.org/t/p/w500/` +
-                            item?.poster_path
+                            item?.backdrop_path
                           }
                           alt="movie poster"
                         />
                         <h2>{item.title}</h2>
                       </Link>
+                      <p>{item.overview}</p>
                       <ul className="top">
                         <li className="li1">
                           {" "}

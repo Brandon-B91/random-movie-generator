@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import {Link} from 'react-router-dom'
-import { FaStar} from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import "swiper/css";
@@ -16,7 +16,6 @@ const TvSearch = () => {
   const [season, setSeasons] = useState();
   const [recommend, setRecommend] = useState();
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setActive(true);
@@ -30,8 +29,9 @@ const TvSearch = () => {
         setId(id);
         setSearch(search);
         console.log(search);
-        
-        return fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders%2Crecommendations`
+
+        return fetch(
+          `https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders%2Crecommendations`
         );
       })
       .then((response) => response.json())
@@ -64,15 +64,14 @@ const TvSearch = () => {
           return (
             <div className="card">
               <Link to={`/TvPage/${item.id}`} className="linkName">
-              <img
-                src={
-                  `https://image.tmdb.org/t/p/original/` +
-                  item?.poster_path
-                }
-                alt="movie poster"
-              />
-              <hr />
-              <h2>{item?.name}</h2>
+                <img
+                  src={
+                    `https://image.tmdb.org/t/p/original/` + item?.poster_path
+                  }
+                  alt="movie poster"
+                />
+                <hr />
+                <h2>{item?.name}</h2>
               </Link>
               <ul className="top">
                 <li className="li1">
@@ -82,8 +81,7 @@ const TvSearch = () => {
                 <li className="li2">
                   {" "}
                   <cite className="rating">
-                    Rating: <FaStar /> {Math.round(item?.vote_average * 10)}
-                    %
+                    Rating: <FaStar /> {Math.round(item?.vote_average * 10)}%
                   </cite>
                 </li>
               </ul>
@@ -119,7 +117,7 @@ const TvSearch = () => {
             </div>
           );
         })}
-           <div className="recommended">
+      <div className="recommended">
         <Swiper pagination={true} modules={[Pagination]}>
           {recommend
             ?.filter((items, idx) => idx < 5)
@@ -127,19 +125,32 @@ const TvSearch = () => {
               return (
                 <SwiperSlide style={{ paddingBottom: "5%" }}>
                   <h3 style={{ textAlign: "center", marginBottom: "5%" }}>
-                    If you like {search?.[0].title} then you might want to check
+                    If you like {search?.[0].name} then you might want to check
                     out this!
                   </h3>
-                  <div className="card">
-                    <img
-                      src={
-                        `https://image.tmdb.org/t/p/w300/` + item?.poster_path
-                      }
-                      alt="movie poster"
-                    />
-                    <h2>{item.title}</h2>
-                    <p>{Math.round(item.vote_average * 10)}% </p>
-                  </div>
+                  <div className="card" style={{ minHeight: "550px" }}>
+                    <Link to={`/TvPage/${item.id}`} className="linkName">
+                      <img
+                        src={
+                          `https://image.tmdb.org/t/p/w500/` + item?.poster_path
+                        }
+                        alt="movie poster"
+                      />
+                      <h2>{item.name}</h2>
+                    </Link>
+                    <ul className="top" style={{ marginTop: "auto" }}>
+                      <li className="li1">
+                        {" "}
+                        <cite>Release Date: {search?.[0].release_date}</cite>
+                      </li>
+                      <li className="li2">
+                        {" "}
+                        <cite className="rating">
+                          Rating: <FaStar />{" "}
+                          {Math.round(search?.[0].vote_average * 10)}%
+                        </cite>
+                      </li>
+                    </ul>                  </div>
                 </SwiperSlide>
               );
             })}

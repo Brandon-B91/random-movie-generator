@@ -132,7 +132,7 @@ const MoviePage = () => {
                           }
                           alt="movie poster"
                         />
-                        <h2>{item.title}</h2>
+                        <h2>{item.name}</h2>
                       </Link>
                       <ul className="top">
                         <li className="li1">

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { FaStar, FaRegHeart, FaHeart, FaVest } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
@@ -58,7 +58,7 @@ const MovieSearch = () => {
   //       );
   //       localStorage.setItem('id', search[0].id)
   //       setCounter(counter + 1)
-  //   } 
+  //   }
   //   else {
   //     localStorage.clear()
   //     setCounter(counter - 1)
@@ -84,13 +84,11 @@ const MovieSearch = () => {
             <div className="card">
               <Link to={`/MoviePage/${item.id}`} className="linkName">
                 <img
-                src={
-                  `https://image.tmdb.org/t/p/w500/` + item?.poster_path
-                }
-                alt="No Image available"
-              />
-              <hr />
-              <h2>{item?.title}</h2>
+                  src={`https://image.tmdb.org/t/p/w500/` + item?.poster_path}
+                  alt="No Image available"
+                />
+                <hr />
+                <h2>{item?.title}</h2>
               </Link>
               {/* <button onClick={favorite} className="favorite">
                 Favorite: {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
@@ -103,8 +101,7 @@ const MovieSearch = () => {
                 <li className="li2">
                   {" "}
                   <cite className="rating">
-                    Rating: <FaStar />{" "}
-                    {Math.round(item?.vote_average * 10)}%
+                    Rating: <FaStar /> {Math.round(item?.vote_average * 10)}%
                   </cite>
                 </li>
               </ul>
@@ -167,19 +164,19 @@ const MovieSearch = () => {
               return (
                 <SwiperSlide style={{ paddingBottom: "5%", paddingTop: "10%" }}>
                   <h3 style={{ textAlign: "center", marginBottom: "5%" }}>
-                    If you like {search?.[0].title} then you might like this!
+                    If you like {search?.[0].title} then you might like this.
                   </h3>
-                  <div className="card" style={{minHeight: '650px'}}>
-                  <Link to={`/MoviePage/${item.id}`} className="linkName">
-                    <img
-                      src={
-                        `https://image.tmdb.org/t/p/w500/` + item?.poster_path
-                      }
-                      alt="movie poster"
-                    />
-                    <h2>{item.title}</h2>
+                  <div className="card" style={{ minHeight: "650px" }}>
+                    <Link to={`/MoviePage/${item.id}`} className="linkName">
+                      <img
+                        src={
+                          `https://image.tmdb.org/t/p/w500/` + item?.poster_path
+                        }
+                        alt="movie poster"
+                      />
+                      <h2>{item.title}</h2>
                     </Link>
-                    <ul className="top" style={{marginTop: 'auto'}}>
+                    <ul className="top" style={{ marginTop: "auto" }}>
                       <li className="li1">
                         {" "}
                         <cite>Release Date: {search?.[0].release_date}</cite>
