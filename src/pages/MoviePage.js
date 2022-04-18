@@ -19,6 +19,7 @@ const MoviePage = () => {
   const [recommend, setRecommend] = useState();
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     fetch(
       `https://api.themoviedb.org/3/movie/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations`
     )

@@ -138,6 +138,7 @@ const TvSearch = () => {
                       />
                       <h2>{item.name}</h2>
                     </Link>
+                    <p>{item.overview}</p>
                     <ul className="top" style={{ marginTop: "auto" }}>
                       <li className="li1">
                         {" "}
@@ -150,7 +151,8 @@ const TvSearch = () => {
                           {Math.round(search?.[0].vote_average * 10)}%
                         </cite>
                       </li>
-                    </ul>                  </div>
+                    </ul>{" "}
+                  </div>
                 </SwiperSlide>
               );
             })}
