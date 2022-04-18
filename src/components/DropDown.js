@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {Link} from 'react-router-dom'
 import { FaStar, FaSearch } from "react-icons/fa";
 
 const DropDown = () => {
@@ -70,15 +71,17 @@ const DropDown = () => {
       </div>
       {currentResult && (
         <div className="card">
-          <img
-            src={
-              `https://image.tmdb.org/t/p/original/` +
-              data?.results?.[currentResult].poster_path
-            }
-            alt="movie poster"
-          />
-          <hr />
-          <h2>{data?.results?.[currentResult].title}</h2>
+          <Link to={`/MoviePage/${id}`} className="linkName">
+            <img
+              src={
+                `https://image.tmdb.org/t/p/original/` +
+                data?.results?.[currentResult].poster_path
+              }
+              alt="movie poster"
+            />
+            <hr />
+            <h2>{data?.results?.[currentResult].title}</h2>
+          </Link>
           <ul className="top">
             <li className="li1">
               {" "}
@@ -90,13 +93,13 @@ const DropDown = () => {
               {" "}
               <cite className="rating">
                 Rating: <FaStar />{" "}
-                {Math.round(data?.results?.[currentResult].vote_average)}/10
+                {Math.round(data?.results?.[currentResult].vote_average) * 10}%
               </cite>
             </li>
           </ul>
           <h3>Overview</h3>
           <p>{data?.results?.[currentResult].overview}</p>
-          <div className="whereToWatch">
+          {/* <div className="whereToWatch">
             <h4>Where to Stream...</h4>
             <ul className="whereToWatchList">
               {stream?.length > 0
@@ -141,7 +144,7 @@ const DropDown = () => {
                 Powered by JustWatch
               </cite>
             </ul>
-          </div>
+          </div> */}
         </div>
       )}
     </div>

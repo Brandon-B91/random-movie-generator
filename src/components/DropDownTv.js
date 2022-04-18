@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 
 const DropDownTv = (props) => {
@@ -74,16 +75,20 @@ const DropDownTv = (props) => {
       </div>
       {currentResult && (
         <div className="card">
-          <img
-            src={imgSrc ? imgSrc : data?.results?.[currentResult].backdrop_path}
-            alt="movie poster"
-          />
-          <hr />
-          <h2>
-            {data?.results?.[currentResult].name
-              ? data?.results?.[currentResult].name
-              : data?.results?.[currentResult].original_name}
-          </h2>
+          <Link to={`/TvPage/${id}`} className="linkName">
+            <img
+              src={
+                imgSrc ? imgSrc : data?.results?.[currentResult].backdrop_path
+              }
+              alt="movie poster"
+            />
+            <hr />
+            <h2>
+              {data?.results?.[currentResult].name
+                ? data?.results?.[currentResult].name
+                : data?.results?.[currentResult].original_name}
+            </h2>
+          </Link>
           <ul className="top">
             <li className="li1">
               {" "}
@@ -95,7 +100,7 @@ const DropDownTv = (props) => {
               {" "}
               <cite className="rating">
                 Rating: <FaStar />{" "}
-                {Math.round(data?.results?.[currentResult].vote_average)}/10
+                {Math.round(data?.results?.[currentResult].vote_average) * 10}%
               </cite>
             </li>
           </ul>
@@ -105,7 +110,7 @@ const DropDownTv = (props) => {
               ? data?.results?.[currentResult].overview
               : "No overview available"}
           </p>
-          <div className="whereToWatch">
+          {/* <div className="whereToWatch">
             <h4>Where to Stream...</h4>
             <ul className="whereToWatchList">
               {network?.length > 0
@@ -131,7 +136,7 @@ const DropDownTv = (props) => {
           <div className="whereToBuy">
             <h4>Seasons</h4>
             <p>{season}</p>
-          </div>
+          </div> */}
         </div>
       )}
     </div>

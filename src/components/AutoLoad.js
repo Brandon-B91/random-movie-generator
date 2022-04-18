@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link} from 'react-router-dom'
 import { FaStar } from "react-icons/fa";
 
 const AutoLoad = (props) => {
@@ -38,18 +39,20 @@ const AutoLoad = (props) => {
 
   return (
     <div className="trendingList">
-      <h1>Top Movie This Week!</h1>
+      <h1>Top in Movies This Week!</h1>
       {trending
-        ?.filter((items, idx) => idx < 1)
+        ?.filter((items, idx) => idx < 5)
         .map((item) => {
           return (
             <div className="card">
-              <img
-                src={`https://image.tmdb.org/t/p/w500/` + item.poster_path}
-                alt="movie poster"
-              />
-              <hr />
-              <h2>{item.title}</h2>
+              <Link to={`/MoviePage/${item.id}`} className="linkName">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/` + item.poster_path}
+                  alt="movie poster"
+                />
+                <hr />
+                <h2>{item.title}</h2>
+              </Link>
               <ul className="top">
                 <li className="li1">
                   {" "}
@@ -58,13 +61,13 @@ const AutoLoad = (props) => {
                 <li className="li2">
                   {" "}
                   <cite className="rating">
-                    Rating: <FaStar /> {Math.round(item.vote_average)}/10
+                    Rating: <FaStar /> {Math.round(item.vote_average * 10)}%
                   </cite>
                 </li>
               </ul>
               <h3>Overview</h3>
               <p>{item.overview}</p>
-              <div className="whereToWatch">
+              {/* <div className="whereToWatch">
                 <h4>Where to Stream...</h4>
                 <ul className="whereToWatchList">
                   {stream?.length > 0
@@ -109,7 +112,7 @@ const AutoLoad = (props) => {
                     Powered by JustWatch
                   </cite>
                 </ul>
-              </div>
+              </div> */}
             </div>
           );
         })}

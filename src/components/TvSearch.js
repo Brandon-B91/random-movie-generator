@@ -1,5 +1,10 @@
 import React, { useState } from "react";
+import {Link} from 'react-router-dom'
 import { FaStar} from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
 import "../App.css";
 
 const TvSearch = () => {
@@ -9,6 +14,8 @@ const TvSearch = () => {
   const [id, setId] = useState();
   const [network, setNetwork] = useState();
   const [season, setSeasons] = useState();
+  const [recommend, setRecommend] = useState();
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,12 +30,15 @@ const TvSearch = () => {
         setId(id);
         setSearch(search);
         console.log(search);
-        return fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US`
+        
+        return fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders%2Crecommendations`
         );
       })
       .then((response) => response.json())
       .then((response) => {
         console.log(response);
+        let recommend = response["recommendations"].results;
+        setRecommend(recommend);
         let network = response.networks;
         let season = response.seasons.length;
         setNetwork(network);
@@ -49,35 +59,37 @@ const TvSearch = () => {
         <button>Search!</button>
       </form>
       {search
-        ?.filter((items, idx) => idx < 1)
+        ?.filter((items, idx) => idx < 5)
         .map((item) => {
           return (
             <div className="card">
+              <Link to={`/TvPage/${item.id}`} className="linkName">
               <img
                 src={
                   `https://image.tmdb.org/t/p/original/` +
-                  search?.[0].poster_path
+                  item?.poster_path
                 }
                 alt="movie poster"
               />
               <hr />
-              <h2>{search?.[0].title}</h2>
+              <h2>{item?.name}</h2>
+              </Link>
               <ul className="top">
                 <li className="li1">
                   {" "}
-                  <cite>Release Date: {search?.[0].first_air_date}</cite>
+                  <cite>Release Date: {item?.first_air_date}</cite>
                 </li>
                 <li className="li2">
                   {" "}
                   <cite className="rating">
-                    Rating: <FaStar /> {Math.round(search?.[0].vote_average)}
-                    /10
+                    Rating: <FaStar /> {Math.round(item?.vote_average * 10)}
+                    %
                   </cite>
                 </li>
               </ul>
               <h3>Overview</h3>
-              <p>{search?.[0].overview}</p>
-              <div className="whereToWatch">
+              <p>{item?.overview}</p>
+              {/* <div className="whereToWatch">
                 <h4>Where to Stream...</h4>
                 <ul className="whereToWatchList">
                   {network?.length > 0
@@ -103,10 +115,36 @@ const TvSearch = () => {
               <div className="whereToBuy">
                 <h4>Seasons</h4>
                 <p>{season}</p>
-              </div>
+              </div> */}
             </div>
           );
         })}
+           <div className="recommended">
+        <Swiper pagination={true} modules={[Pagination]}>
+          {recommend
+            ?.filter((items, idx) => idx < 5)
+            .map((item) => {
+              return (
+                <SwiperSlide style={{ paddingBottom: "5%" }}>
+                  <h3 style={{ textAlign: "center", marginBottom: "5%" }}>
+                    If you like {search?.[0].title} then you might want to check
+                    out this!
+                  </h3>
+                  <div className="card">
+                    <img
+                      src={
+                        `https://image.tmdb.org/t/p/w300/` + item?.poster_path
+                      }
+                      alt="movie poster"
+                    />
+                    <h2>{item.title}</h2>
+                    <p>{Math.round(item.vote_average * 10)}% </p>
+                  </div>
+                </SwiperSlide>
+              );
+            })}
+        </Swiper>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 
 const AutoLoadTv = () => {
@@ -21,7 +22,6 @@ const AutoLoadTv = () => {
           });
         setId(id);
         setTrending(trending);
-        console.log(trending);
         return fetch(
           `https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US`
         );
@@ -39,16 +39,18 @@ const AutoLoadTv = () => {
     <div className="trendingList">
       <h1>Top in TV This Week!</h1>
       {trending
-        ?.filter((items, idx) => idx < 1)
+        ?.filter((items, idx) => idx < 5)
         .map((item) => {
           return (
             <div className="card">
-              <img
-                src={`https://image.tmdb.org/t/p/w500/` + item.poster_path}
-                alt="movie poster"
-              />
-              <hr />
-              <h2>{item.title}</h2>
+              <Link to={`/TvPage/${id}`} className="linkName">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/` + item.poster_path}
+                  alt="movie poster"
+                />
+                <hr />
+                <h2>{item.name}</h2>
+              </Link>
               <ul className="top">
                 <li className="li1">
                   {" "}
@@ -57,13 +59,13 @@ const AutoLoadTv = () => {
                 <li className="li2">
                   {" "}
                   <cite className="rating">
-                    Rating: <FaStar /> {Math.round(item.vote_average)}/10
+                    Rating: <FaStar /> {Math.round(item.vote_average * 10)}%
                   </cite>
                 </li>
               </ul>
               <h3>Overview</h3>
               <p>{item.overview}</p>
-              <div className="whereToWatch">
+              {/* <div className="whereToWatch">
                 <h4>Where to Stream...</h4>
                 <ul className="whereToWatchList">
                   {network?.length > 0
@@ -89,7 +91,7 @@ const AutoLoadTv = () => {
               <div className="whereToBuy">
                 <h4>Seasons</h4>
                 <p>{season}</p>
-              </div>
+              </div> */}
             </div>
           );
         })}

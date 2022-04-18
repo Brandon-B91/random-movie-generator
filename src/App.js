@@ -4,8 +4,10 @@ import AutoLoad from "./components/AutoLoad";
 import AutoLoadDay from "./components/AutoLoadDay"
 import AutoLoadTv from "./components/AutoLoadTv";
 import AutoLoadTvDay from "./components/AutoLoadTvDay"
+import WhatsNewBtn from "./components/WhatsNewBtn"
 import Nav from "./components/Nav";
 import "./App.css";
+import WhatsNew from "./pages/WhatsNew";
 
 const App = () => {
   const [day, setDay] = useState(true);
@@ -25,6 +27,7 @@ const App = () => {
   return (
     <>
       <Header />
+      <WhatsNewBtn />
       <div className="App">
         <h3>See trending by day or week</h3>
         <div className="dayWeek">
