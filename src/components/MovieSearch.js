@@ -47,23 +47,24 @@ const MovieSearch = () => {
       });
   };
 
-  // const favorite = () => {
-  //   const newFavoriteState = !isFavorite;
-  //   setIsFavorite(newFavoriteState);
-  //   if (newFavoriteState) {
-  //       localStorage.setItem("name", search[0].title);
-  //       localStorage.setItem(
-  //         "img",
-  //         search?.[0].poster_path
-  //       );
-  //       localStorage.setItem('id', search[0].id)
-  //       setCounter(counter + 1)
-  //   }
-  //   else {
-  //     localStorage.clear()
-  //     setCounter(counter - 1)
-  //   }
-  // };
+  const favorite = () => {
+    const newFavoriteState = !isFavorite;
+    setIsFavorite(newFavoriteState);
+    if (newFavoriteState) {
+        localStorage.setItem("name", JSON.stringify(search[0].title));
+        localStorage.setItem(
+          "img",
+          JSON.stringify(search?.[0].poster_path)
+        );
+        localStorage.setItem('id', JSON.stringify(search[0].id))
+        localStorage.setItem('overview', JSON.stringify(search[0].overview))
+        setCounter(counter + 1)
+    }
+    else {
+      localStorage.clear()
+      setCounter(counter - 1)
+    }
+  };
 
   return (
     <div className="movieContainer">
@@ -90,9 +91,9 @@ const MovieSearch = () => {
                 <hr />
                 <h2>{item?.title}</h2>
               </Link>
-              {/* <button onClick={favorite} className="favorite">
+              <button onClick={favorite} className="favorite">
                 Favorite: {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
-              </button> */}
+              </button>
               <ul className="top">
                 <li className="li1">
                   {" "}
@@ -163,19 +164,20 @@ const MovieSearch = () => {
             .map((item) => {
               return (
                 <SwiperSlide style={{ paddingBottom: "5%", paddingTop: "10%" }}>
-                  <h3 style={{ textAlign: "center", marginBottom: "5%" }}>
+                  <h3 style={{ textAlign: "center", marginBottom: "5%", padding: '0 2%' }}>
                     If you like {search?.[0].title} then you might like this.
                   </h3>
-                  <div className="card" style={{ minHeight: "650px" }}>
+                  <div className="card" style={{ minHeight: "450px" }}>
                     <Link to={`/MoviePage/${item.id}`} className="linkName">
                       <img
                         src={
-                          `https://image.tmdb.org/t/p/w500/` + item?.poster_path
+                          `https://image.tmdb.org/t/p/w500/` + item?.backdrop_path
                         }
                         alt="movie poster"
                       />
                       <h2>{item.title}</h2>
                     </Link>
+                    <p>{item.overview}</p>
                     <ul className="top" style={{ marginTop: "auto" }}>
                       <li className="li1">
                         {" "}

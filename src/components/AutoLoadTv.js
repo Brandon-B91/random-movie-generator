@@ -43,7 +43,7 @@ const AutoLoadTv = () => {
         .map((item) => {
           return (
             <div className="card">
-              <Link to={`/TvPage/${id}`} className="linkName">
+              <Link to={`/TvPage/${item.id}`} className="linkName">
                 <img
                   src={`https://image.tmdb.org/t/p/w500/` + item.poster_path}
                   alt="movie poster"

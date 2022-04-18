@@ -150,6 +150,7 @@ header img {
   box-shadow: 4px 4px 8px;
   margin: 0 auto;
   margin-bottom: 7%;
+  overflow-y: hidden;
 }
 
 Link img {
@@ -196,6 +197,7 @@ ul {
   display: flex;
   justify-content: space-between;
   align-content: center;
+  margin-top: auto;
 }
 
 li {
@@ -207,7 +209,9 @@ li {
 }
 
 .card p {
-  margin: 0 5% 5% 5%;
+  margin: 0 2.5% 5% 2.5%;
+  overflow-y: scroll;
+
 }
 
 .whereToWatch {
@@ -404,6 +408,37 @@ li {
   top: 5%;
   right: 1%;
   max-width: 75px;
+}
+
+/* Favorites page */
+
+.favPage {
+  min-height: 90vh;
+  background: linear-gradient(to bottom right, lightblue, skyblue, cyan)
+}
+
+.results {
+  display: flex;
+  background: linear-gradient(to right, yellow, orange, yellow);
+}
+
+.results img {
+  border-radius: 16px;
+  margin-left: 1%;
+  border: 2px solid white
+}
+
+.body h2 {
+  margin: 5% auto;
+  padding-left: 2%;
+}
+
+.body p {
+  margin: 0 auto;
+  height: 80px;
+  padding: 0 2%;
+  overflow-y: scroll;
+
 }
 
 @media screen and (max-width: 500px) {

@@ -19,7 +19,7 @@ const MoviePage = () => {
   const [recommend, setRecommend] = useState();
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
     fetch(
       `https://api.themoviedb.org/3/movie/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations`
     )
@@ -44,23 +44,22 @@ const MoviePage = () => {
         <img
           src={`https://image.tmdb.org/t/p/w500/` + res?.backdrop_path}
           alt="movie poster"
-          style={{width: '100%'}}
+          style={{ width: "100%" }}
         />
         <h2>{res?.title + ` - ` + res?.tagline}</h2>
         <ul className="top">
-                <li className="li1">
-                  {" "}
-                  <cite>Release Date: {res?.release_date}</cite>
-                </li>
-                <li className="li2">
-                  {" "}
-                  <cite className="rating">
-                    Rating: <FaStar />{" "}
-                    {Math.round(res?.vote_average * 10)}%
-                  </cite>
-                </li>
-              </ul>
-        <cite style={{marginLeft: '2%'}}>Length: {res?.runtime} Minutes</cite>
+          <li className="li1">
+            {" "}
+            <cite>Release Date: {res?.release_date}</cite>
+          </li>
+          <li className="li2">
+            {" "}
+            <cite className="rating">
+              Rating: <FaStar /> {Math.round(res?.vote_average * 10)}%
+            </cite>
+          </li>
+        </ul>
+        <cite style={{ marginLeft: "2%" }}>Length: {res?.runtime} Minutes</cite>
         <p>{res?.overview}</p>
         <div className="whereToWatch">
           <h4>Where to Stream...</h4>
@@ -108,19 +107,23 @@ const MoviePage = () => {
             </cite>
           </ul>
         </div>
-        <div className="recommended" style={{paddingBottom: '20%'}}>
+        <div className="recommended" style={{ paddingBottom: "20%" }}>
           <Swiper pagination={true} modules={[Pagination]}>
             {recommend
               ?.filter((items, idx) => idx < 5)
               .map((item) => {
                 return (
                   <SwiperSlide
-                    style={{ paddingBottom: "5%", paddingTop: "10%", marginLeft: 'auto' }}
+                    style={{
+                      paddingBottom: "5%",
+                      paddingTop: "10%",
+                      marginLeft: "auto",
+                    }}
                   >
                     <h3 style={{ textAlign: "center", marginBottom: "5%" }}>
                       If you like {res?.title} then you might like this!
                     </h3>
-                    <div className="card">
+                    <div className="card" style={{height: '450px'}}>
                       <Link to={`/MoviePage/${item.id}`} className="linkName">
                         <img
                           src={

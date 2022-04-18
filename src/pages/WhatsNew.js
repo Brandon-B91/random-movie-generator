@@ -64,6 +64,12 @@ const WhatsNew = () => {
           <cite className="red">
             We love the feedback weve gotten and wouldn't mind more!
           </cite>
+          <li>Search by actors / actress name.</li>
+          <cite>This was just a feature we like and would like to implement</cite>
+          <li>Share buttons! Find something you like and want to send it someone? Yeah, who doesn't... Were working on it!</li>
+          <cite>Just another quality of life feature!</cite>
+          <li>Add in images and videos related to the search result.</li>
+          <cite>Just another quality of life feature!</cite>
         </ul>
       </div>
       <Nav />

@@ -124,12 +124,12 @@ const MoviePage = () => {
                     <h3 style={{ textAlign: "center", marginBottom: "5%" }}>
                       If you like {res?.name} then you might like this!
                     </h3>
-                    <div className="card">
+                    <div className="card" style={{height: '450px'}}>
                       <Link to={`/TvPage/${item.id}`} className="linkName">
                         <img
                           src={
                             `https://image.tmdb.org/t/p/w500/` +
-                            item?.poster_path
+                            item?.backdrop_path
                           }
                           alt="movie poster"
                         />
