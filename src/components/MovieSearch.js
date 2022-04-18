@@ -47,24 +47,24 @@ const MovieSearch = () => {
       });
   };
 
-  const favorite = () => {
-    const newFavoriteState = !isFavorite;
-    setIsFavorite(newFavoriteState);
-    if (newFavoriteState) {
-        localStorage.setItem("name", JSON.stringify(search[0].title));
-        localStorage.setItem(
-          "img",
-          JSON.stringify(search?.[0].poster_path)
-        );
-        localStorage.setItem('id', JSON.stringify(search[0].id))
-        localStorage.setItem('overview', JSON.stringify(search[0].overview))
-        setCounter(counter + 1)
-    }
-    else {
-      localStorage.clear()
-      setCounter(counter - 1)
-    }
-  };
+  // const favorite = () => {
+  //   const newFavoriteState = !isFavorite;
+  //   setIsFavorite(newFavoriteState);
+  //   if (newFavoriteState) {
+  //       localStorage.setItem("name", JSON.stringify(search[0].title));
+  //       localStorage.setItem(
+  //         "img",
+  //         JSON.stringify(search?.[0].poster_path)
+  //       );
+  //       localStorage.setItem('id', JSON.stringify(search[0].id))
+  //       localStorage.setItem('overview', JSON.stringify(search[0].overview))
+  //       setCounter(counter + 1)
+  //   }
+  //   else {
+  //     localStorage.clear()
+  //     setCounter(counter - 1)
+  //   }
+  // };
 
   return (
     <div className="movieContainer">
@@ -91,9 +91,9 @@ const MovieSearch = () => {
                 <hr />
                 <h2>{item?.title}</h2>
               </Link>
-              <button onClick={favorite} className="favorite">
+              {/* <button onClick={favorite} className="favorite">
                 Favorite: {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
-              </button>
+              </button> */}
               <ul className="top">
                 <li className="li1">
                   {" "}
