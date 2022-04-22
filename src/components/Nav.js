@@ -9,7 +9,7 @@ const Nav = () => {
             <Link to="/" className="link"><FaHome className="icon"/> Home</Link>
             <Link to="/Movies" className="link"><GiVhs className="icon" /> Movies</Link>
             <Link to="/TvShows" className="link"><FaTv className="icon" /> Tv Shows</Link>
-            {/* <Link to="/Favorites" className="link"><FaHeart className="icon" /> Favorites</Link> */}
+            <Link to="/Favorites" className="link"><FaHeart className="icon" /> Favorites</Link>
         </div>
     )
 }

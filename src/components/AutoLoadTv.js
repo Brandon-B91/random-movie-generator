@@ -42,7 +42,7 @@ const AutoLoadTv = () => {
         ?.filter((items, idx) => idx < 5)
         .map((item) => {
           return (
-            <div className="card">
+            <div className="card" key={item.id}>
               <Link to={`/TvPage/${item.id}`} className="linkName">
                 <img
                   src={`https://image.tmdb.org/t/p/w500/` + item.poster_path}

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
 import { Link } from "react-router-dom";
-import { FaStar } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaStar, FaSms } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import "swiper/css";
@@ -17,15 +17,18 @@ const MoviePage = () => {
   const [stream, setStream] = useState();
   const [buy, setBuy] = useState();
   const [recommend, setRecommend] = useState();
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [value, setValue] = useState();
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setIsFavorite(false)
     fetch(
       `https://api.themoviedb.org/3/movie/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations`
     )
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         const res = response;
         setRes(res);
         let stream = response["watch/providers"].results.US.flatrate;
@@ -34,8 +37,43 @@ const MoviePage = () => {
         setBuy(buy);
         let recommend = response["recommendations"].results;
         setRecommend(recommend);
+        let data = JSON.parse(localStorage.getItem('arrObject'))
+        for(let i = 0; i < data.length; i++){
+        if(data[i].name === res.title) {
+          setIsFavorite(!isFavorite)
+          // alert('hello')
+        }
+      }
       });
   }, [params.id]);
+
+  const favorite = () => {
+    const newFavoriteState = !isFavorite;
+    setIsFavorite(newFavoriteState);
+    if (newFavoriteState) {
+      let arrObject = [];
+      if (
+        localStorage.getItem("arrObject") &&
+        localStorage.getItem("arrObject").length > 0
+      )
+        arrObject = JSON.parse(localStorage.getItem("arrObject"));
+      let arrObj = {
+        name: res.title,
+        id: res.id,
+        img: res.poster_path,
+        overview: res.overview,
+      };
+      arrObject.push(arrObj);
+      localStorage.setItem("arrObject", JSON.stringify(arrObject));
+    } else if(!newFavoriteState) {
+    //   let removeData = JSON.parse(localStorage.getItem('arrObject'))
+    //   for(let i = 0; i < removeData.length; i++){
+    //   if(data[i].name === res.title) {
+    //     localStorage.removeItem()
+    //   }
+    // }
+    }
+  };
 
   return (
     <>
@@ -47,6 +85,9 @@ const MoviePage = () => {
           style={{ width: "100%" }}
         />
         <h2>{res?.title + ` - ` + res?.tagline}</h2>
+        <button onClick={favorite} className="favorite">
+          Favorite: {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
+        </button>
         <ul className="top">
           <li className="li1">
             {" "}
@@ -61,6 +102,15 @@ const MoviePage = () => {
         </ul>
         <cite style={{ marginLeft: "2%" }}>Length: {res?.runtime} Minutes</cite>
         <p>{res?.overview}</p>
+        <h4 style={{ marginBottom: "3%" }}>Share this!</h4>
+        <a
+          href={"sms:?&body=You need to watch this! " + window.location.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="socialShare"
+        >
+          <FaSms />
+        </a>
         <div className="whereToWatch">
           <h4>Where to Stream...</h4>
           <ul className="whereToWatchList">
@@ -123,7 +173,7 @@ const MoviePage = () => {
                     <h3 style={{ textAlign: "center", marginBottom: "5%" }}>
                       If you like {res?.title} then you might like this!
                     </h3>
-                    <div className="card" style={{height: '450px'}}>
+                    <div className="card" style={{ height: "450px" }}>
                       <Link to={`/MoviePage/${item.id}`} className="linkName">
                         <img
                           src={

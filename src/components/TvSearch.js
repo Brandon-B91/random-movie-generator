@@ -128,11 +128,11 @@ const TvSearch = () => {
                     If you like {search?.[0].name} then you might want to check
                     out this!
                   </h3>
-                  <div className="card" style={{ minHeight: "550px" }}>
+                  <div className="card" style={{ height: "450px" }}>
                     <Link to={`/TvPage/${item.id}`} className="linkName">
                       <img
                         src={
-                          `https://image.tmdb.org/t/p/w500/` + item?.poster_path
+                          `https://image.tmdb.org/t/p/w500/` + item?.backdrop_path
                         }
                         alt="movie poster"
                       />

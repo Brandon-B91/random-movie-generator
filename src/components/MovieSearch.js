@@ -15,8 +15,6 @@ const MovieSearch = () => {
   const [stream, setStream] = useState();
   const [buy, setBuy] = useState();
   const [recommend, setRecommend] = useState();
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [counter, setCounter] = useState(0);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,25 +45,6 @@ const MovieSearch = () => {
       });
   };
 
-  // const favorite = () => {
-  //   const newFavoriteState = !isFavorite;
-  //   setIsFavorite(newFavoriteState);
-  //   if (newFavoriteState) {
-  //       localStorage.setItem("name", JSON.stringify(search[0].title));
-  //       localStorage.setItem(
-  //         "img",
-  //         JSON.stringify(search?.[0].poster_path)
-  //       );
-  //       localStorage.setItem('id', JSON.stringify(search[0].id))
-  //       localStorage.setItem('overview', JSON.stringify(search[0].overview))
-  //       setCounter(counter + 1)
-  //   }
-  //   else {
-  //     localStorage.clear()
-  //     setCounter(counter - 1)
-  //   }
-  // };
-
   return (
     <div className="movieContainer">
       <form onSubmit={handleSubmit} className="searchStyle">
@@ -91,9 +70,6 @@ const MovieSearch = () => {
                 <hr />
                 <h2>{item?.title}</h2>
               </Link>
-              {/* <button onClick={favorite} className="favorite">
-                Favorite: {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
-              </button> */}
               <ul className="top">
                 <li className="li1">
                   {" "}
@@ -164,14 +140,21 @@ const MovieSearch = () => {
             .map((item) => {
               return (
                 <SwiperSlide style={{ paddingBottom: "5%", paddingTop: "10%" }}>
-                  <h3 style={{ textAlign: "center", marginBottom: "5%", padding: '0 2%' }}>
+                  <h3
+                    style={{
+                      textAlign: "center",
+                      marginBottom: "5%",
+                      padding: "0 2%",
+                    }}
+                  >
                     If you like {search?.[0].title} then you might like this.
                   </h3>
-                  <div className="card" style={{ minHeight: "450px" }}>
+                  <div className="card" style={{ height: "450px" }}>
                     <Link to={`/MoviePage/${item.id}`} className="linkName">
                       <img
                         src={
-                          `https://image.tmdb.org/t/p/w500/` + item?.backdrop_path
+                          `https://image.tmdb.org/t/p/w500/` +
+                          item?.backdrop_path
                         }
                         alt="movie poster"
                       />

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
 import { Link } from "react-router-dom";
-import { FaStar } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaStar, FaSms } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import "swiper/css";
@@ -17,9 +17,11 @@ const MoviePage = () => {
   const [stream, setStream] = useState();
   const [buy, setBuy] = useState();
   const [recommend, setRecommend] = useState();
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+    setIsFavorite(false)
     fetch(
       `https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations`
     )
@@ -34,8 +36,40 @@ const MoviePage = () => {
         setBuy(buy);
         let recommend = response["recommendations"].results;
         setRecommend(recommend);
+        let data = JSON.parse(localStorage.getItem('arrObjectTv'))
+        for(let i = 0; i < data.length; i++){
+          setTimeout(() => {
+            if(data[i].name === res.name) {
+              setIsFavorite(!isFavorite) 
+            }
+          },200)
+        }
       });
   }, [params.id]);
+
+  const favorite = () => {
+    const newFavoriteState = !isFavorite;
+    setIsFavorite(newFavoriteState);
+    if (newFavoriteState) {
+      let arrObjectTv = [];
+      if (
+        localStorage.getItem("arrObjectTv") &&
+        localStorage.getItem("arrObjectTv").length > 0
+      )
+        arrObjectTv = JSON.parse(localStorage.getItem("arrObjectTv"));
+      let arrObj = {
+        name: res.name,
+        id: res.id,
+        img: res.poster_path,
+        overview: res.overview,
+        media: "tv",
+      };
+      arrObjectTv.push(arrObj);
+      localStorage.setItem("arrObjectTv", JSON.stringify(arrObjectTv));
+    } else {
+      // localStorage.clear()
+    }
+  };
 
   return (
     <>
@@ -44,28 +78,41 @@ const MoviePage = () => {
         <img
           src={`https://image.tmdb.org/t/p/w500/` + res?.backdrop_path}
           alt="movie poster"
-          style={{width: '100%'}}
+          style={{ width: "100%" }}
         />
         <h2>{res?.name + ` - ` + res?.tagline}</h2>
+        <button onClick={favorite} className="favorite">
+          Favorite: {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
+        </button>
         <ul className="top">
-                <li className="li1">
-                  {" "}
-                  <cite>Release Date: {res?.first_air_date}</cite>
-                </li>
-                <li className="li2">
-                  {" "}
-                  <cite className="rating">
-                    Rating: <FaStar />{" "}
-                    {Math.round(res?.vote_average * 10)}%
-                  </cite>
-                </li>
-              </ul>
-        <cite style={{marginLeft: '2%'}}>Length: {res?.episode_run_time[0]} Minute episodes</cite>
+          <li className="li1">
+            {" "}
+            <cite>Release Date: {res?.first_air_date}</cite>
+          </li>
+          <li className="li2">
+            {" "}
+            <cite className="rating">
+              Rating: <FaStar /> {Math.round(res?.vote_average * 10)}%
+            </cite>
+          </li>
+        </ul>
+        <cite style={{ marginLeft: "2%" }}>
+          Length: {res?.episode_run_time[0]} Minute episodes
+        </cite>
         <ul>
-            <li>Seasons: {res?.number_of_seasons}</li>
-            <li>Episodes: {res?.number_of_episodes}</li>
+          <li>Seasons: {res?.number_of_seasons}</li>
+          <li>Episodes: {res?.number_of_episodes}</li>
         </ul>
         <p>{res?.overview}</p>
+        <h4 style={{ marginBottom: "3%" }}>Share this!</h4>
+        <a
+          href={"sms:?&body=You need to watch this! " + window.location.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="socialShare"
+        >
+          <FaSms />
+        </a>
         <div className="whereToWatch">
           <h4>Where to Stream...</h4>
           <ul className="whereToWatchList">
@@ -112,19 +159,23 @@ const MoviePage = () => {
             </cite>
           </ul>
         </div>
-        <div className="recommended" style={{paddingBottom: '20%'}}>
+        <div className="recommended" style={{ paddingBottom: "20%" }}>
           <Swiper pagination={true} modules={[Pagination]}>
             {recommend
               ?.filter((items, idx) => idx < 5)
               .map((item) => {
                 return (
                   <SwiperSlide
-                    style={{ paddingBottom: "5%", paddingTop: "10%", marginLeft: 'auto' }}
+                    style={{
+                      paddingBottom: "5%",
+                      paddingTop: "10%",
+                      marginLeft: "auto",
+                    }}
                   >
                     <h3 style={{ textAlign: "center", marginBottom: "5%" }}>
                       If you like {res?.name} then you might like this!
                     </h3>
-                    <div className="card" style={{height: '450px'}}>
+                    <div className="card" style={{ height: "450px" }}>
                       <Link to={`/TvPage/${item.id}`} className="linkName">
                         <img
                           src={

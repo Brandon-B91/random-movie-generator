@@ -38,7 +38,7 @@ const AutoLoad = (props) => {
   }, []);
 
   return (
-    <div className="trendingList">
+    <div className="trendingList" key={id}>
       <h1>Top in Movies This Week!</h1>
       {trending
         ?.filter((items, idx) => idx < 5)

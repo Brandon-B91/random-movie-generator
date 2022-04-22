@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import AutoLoad from "./components/AutoLoad";
 import AutoLoadDay from "./components/AutoLoadDay"
@@ -12,7 +12,13 @@ import WhatsNew from "./pages/WhatsNew";
 const App = () => {
   const [day, setDay] = useState(true);
   const [week, setWeek] = useState(false)
-  const [isActive, setActive] = useState('false')
+  const [isNew, setNew] = useState(true)
+
+  useEffect(() => {
+    if(sessionStorage.getItem('seen') !== null){
+      setNew(!isNew)
+    }
+  }, [])
 
   const onClickDay = () => {
     setDay((isVisible) => !isVisible)
@@ -27,7 +33,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <WhatsNewBtn />
+      {isNew ? <WhatsNewBtn /> : null}
       <div className="App">
         <h3>See trending by day or week</h3>
         <div className="dayWeek">
