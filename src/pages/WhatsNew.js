@@ -18,26 +18,24 @@ const WhatsNew = () => {
 
         <h4>What's new?</h4>
         <ul>
-          <li>Search now returns multiple results.</li>
+          <li>Added the add to favorites feature.</li>
           <cite className="red">
-            We had received some feedback certain movies were not returning when
-            being searched.
+            There is a known issue which allow you add the same movie or show
+            mutliple times. Were working on this.
           </cite>
           <li>
-            We removed the "Where to watch" and "where to buy" from the main
-            display pages, don't worry! just click on the result you want for
-            deatailed information!
+            Added a share feature through SMS only for now. 
           </li>
           <cite className="red">
-            We had received some feedback that it just didn't look well.
+            This however does redirect to the webapge and not the app if you're using the app.
+            This is a known issue since this is techincally a PWA (progressive web app) and not native app.
+            Were looking into a work around.
           </cite>
           <li>
-            Added a recommended section when searching or viewing a movie / tv
-            show for similar results!
+            No way to remove items from the favorites list.
           </li>
           <cite className="red">
-            This actually was not a feedback tip just a quality of life
-            improvement.
+            This is still a work in progress and we will be working on a way to get this out quickly.
           </cite>
           <li>
             Some general UI changes just to make the app more user friendly and
@@ -48,11 +46,6 @@ const WhatsNew = () => {
 
         <h4>What's coming?</h4>
         <ul>
-          <li>Add to favorites!</li>
-          <cite className="red">
-            This one is highly requested but is taking some time to make it work
-            properly so be patient ;)
-          </cite>
           <li>Personalized recommendations.</li>
           <cite className="red">
             This one will take some time so don't hold your breathe!
