@@ -46,7 +46,7 @@ header img {
 .icon {
   font-size: 1.2rem;
   vertical-align: bottom;
-  margin: 0 auto
+  margin: 0 auto 1%;
 }
 
 .App {
@@ -61,11 +61,15 @@ header img {
   justify-content: center;
 }
 
+input[type="text"], input[type="dropdown"] {
+  font-size: 1rem;
+}
+
 #selectList {
   color: black;
   width: 60%;
   height: 38px;
-  font: 1.7rem;
+  font-size: 1rem;
   border-radius: 16px 0 0 16px;
   border: 2px solid black;
   box-shadow: 6px 6px 8px #0096ff, 8px 6px 12px #FF10F0;
@@ -74,6 +78,7 @@ header img {
   color: gray;
   -webkit-appearance: none;
 }
+
 
 #selectlist:focus {
   outline: none;
@@ -93,7 +98,7 @@ header img {
   width: 20%;
   max-width: 25%;
   height: 38px;
-  font-size: 1rem;
+  font-size: 1.125rem;
   color: black;
   box-shadow: 6px 6px 8px #0096ff, 8px 6px 12px #FF10F0;
   background: linear-gradient(to right, lightblue, pink, purple);
@@ -131,7 +136,7 @@ header img {
   width: 20%;
   max-width: 25%;
   height: 38px;
-  font-size: 1rem;
+  font-size: 1.125rem;
   color: black;
   box-shadow: 6px 6px 8px #0096ff, 8px 6px 12px #FF10F0;
   background: linear-gradient(to right, lightblue, pink, purple);
@@ -231,7 +236,7 @@ li {
   background: white;
   border-radius: 16px;
   padding: 2% 2%;
-  font-size: 0.8rem;
+  font-size: .85rem;
 }
 
 /* Home page */

@@ -20,7 +20,7 @@ const WhatsNew = () => {
         <ul>
           <li>Added the add to favorites feature.</li>
           <cite className="red">
-            There is a known issue which allow you add the same movie or show
+            There is a known issue which allows you to add the same movie or show
             mutliple times. Were working on this.
           </cite>
           <li>
