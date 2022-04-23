@@ -61,7 +61,7 @@ header img {
   justify-content: center;
 }
 
-input[type="text"], input[type="dropdown"] {
+input[type="text"] {
   font-size: 1rem;
 }
 
@@ -69,16 +69,16 @@ input[type="text"], input[type="dropdown"] {
   color: black;
   width: 60%;
   height: 38px;
+  padding-left: 3%;
   font-size: 1rem;
   border-radius: 16px 0 0 16px;
   border: 2px solid black;
-  box-shadow: 6px 6px 8px #0096ff, 8px 6px 12px #FF10F0;
+  box-shadow: 6px 6px 8px #0096ff, 8px 6px 12px #ff10f0;
   padding: 0 1%;
   background: white;
   color: gray;
   -webkit-appearance: none;
 }
-
 
 #selectlist:focus {
   outline: none;
@@ -100,7 +100,7 @@ input[type="text"], input[type="dropdown"] {
   height: 38px;
   font-size: 1.125rem;
   color: black;
-  box-shadow: 6px 6px 8px #0096ff, 8px 6px 12px #FF10F0;
+  box-shadow: 6px 6px 8px #0096ff, 8px 6px 12px #ff10f0;
   background: linear-gradient(to right, lightblue, pink, purple);
 }
 
@@ -118,8 +118,8 @@ input[type="text"], input[type="dropdown"] {
   font: 1.4rem;
   border-radius: 16px 0 0 16px;
   border: 2px solid black;
-  box-shadow: 6px 6px 8px #0096ff, 8px 6px 12px #FF10F0;
-  padding-left: 3%;
+  box-shadow: 6px 6px 8px #0096ff, 8px 6px 12px #ff10f0;
+  padding-left: 1%;
   -webkit-appearance: none;
 }
 
@@ -138,7 +138,7 @@ input[type="text"], input[type="dropdown"] {
   height: 38px;
   font-size: 1.125rem;
   color: black;
-  box-shadow: 6px 6px 8px #0096ff, 8px 6px 12px #FF10F0;
+  box-shadow: 6px 6px 8px #0096ff, 8px 6px 12px #ff10f0;
   background: linear-gradient(to right, lightblue, pink, purple);
 }
 
@@ -211,7 +211,6 @@ li {
 .card p {
   margin: 0 2.5% 5% 2.5%;
   overflow-y: scroll;
-
 }
 
 .whereToWatch {
@@ -236,7 +235,7 @@ li {
   background: white;
   border-radius: 16px;
   padding: 2% 2%;
-  font-size: .85rem;
+  font-size: 0.85rem;
 }
 
 /* Home page */
@@ -333,9 +332,15 @@ li {
 /* Movie page */
 
 .moviePage {
-  background: linear-gradient(to bottom right, lightblue, skyblue, cyan, skyblue, lightblue);
+  background: linear-gradient(
+    to bottom right,
+    lightblue,
+    skyblue,
+    cyan,
+    skyblue,
+    lightblue
+  );
   min-height: 90vh;
-
 }
 
 .moviePage h2 {
@@ -358,10 +363,10 @@ a {
   color: white;
 }
 
- .socialShare {
+.socialShare {
   color: white;
   font-size: 2.5rem;
-  margin-left: 2%
+  margin-left: 2%;
 }
 
 .moviePage p {
@@ -378,7 +383,7 @@ a {
 /* whats new page */
 
 .whatsNew {
- margin-bottom: 25%;
+  margin-bottom: 25%;
 }
 
 .whatsNew h3 {
@@ -444,6 +449,16 @@ a {
   background: linear-gradient(to right, yellow, orange, yellow);
 }
 
+.clear {
+  margin: 3%;
+  padding: 1%;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  background: white;
+  outline: none;
+  border: none;
+}
+
 .results img {
   border-radius: 16px;
   border: 2px solid white;
@@ -470,28 +485,26 @@ a {
   text-align: center;
   padding: 3%;
   color: gray;
-  background-color: white;;
+  background-color: white;
 }
 
 @media screen and (max-width: 500px) {
-
   .navbar {
     padding-top: 10px;
     padding-bottom: 25px;
   }
 
   .dropDownStyle button {
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
 
   .searchStyle button {
     font-size: 1rem;
   }
-   
+
   .card {
     width: 90%;
   }
-
 
   .card img {
     width: 100%;
@@ -510,8 +523,4 @@ a {
   }
 
   /* recomended seection */
-
-
 }
-
-
