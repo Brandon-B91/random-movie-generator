@@ -1,15 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import {FaHeart, FaHome, FaTv} from 'react-icons/fa'
 import {GiVhs} from 'react-icons/gi'
 
 const Nav = () => {
     return (
         <div className="navbar">
-            <Link to="/" className="link"><FaHome className="icon"/> Home</Link>
-            <Link to="/Movies" className="link"><GiVhs className="icon" /> Movies</Link>
-            <Link to="/TvShows" className="link"><FaTv className="icon" /> Tv Shows</Link>
-            <Link to="/Favorites" className="link"><FaHeart className="icon" /> Favorites</Link>
+            <NavLink to="/" className="link" activeClassName="active" ><FaHome className="icon" /> Home</NavLink>
+            <NavLink to="/Movies" className="link" activeClassName="active"><GiVhs className="icon" /> Movies</NavLink>
+            <NavLink to="/TvShows" className="link" activeClassName="active"><FaTv className="icon" /> Tv Shows</NavLink>
+            <NavLink to="/Favorites" className="link" activeClassName="active"><FaHeart className="icon" /> Favorites</NavLink>
         </div>
     )
 }

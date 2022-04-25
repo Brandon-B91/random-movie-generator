@@ -54,7 +54,7 @@ const TvSearch = () => {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           className="searchbar"
-          placeholder="Search by movie name..."
+          placeholder="Search by tv show name..."
         />
         <button>Search!</button>
       </form>

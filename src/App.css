@@ -49,6 +49,11 @@ header img {
   margin: 0 auto 1%;
 }
 
+.active {
+  color: silver;
+  border-bottom: 2px solid gray;
+}
+
 .App {
   display: flex;
   flex-direction: column;
