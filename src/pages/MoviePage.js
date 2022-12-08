@@ -22,7 +22,7 @@ const MoviePage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    setIsFavorite(false)
+    setIsFavorite(false);
     fetch(
       `https://api.themoviedb.org/3/movie/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations`
     )
@@ -37,13 +37,13 @@ const MoviePage = () => {
         setBuy(buy);
         let recommend = response["recommendations"].results;
         setRecommend(recommend);
-        let data = JSON.parse(localStorage.getItem('arrObject'))
-        for(let i = 0; i < data.length; i++){
-        if(data[i].name === res.title) {
-          setIsFavorite(!isFavorite)
-          // alert('hello')
+        let data = JSON.parse(localStorage.getItem("arrObject"));
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].name === res.title) {
+            setIsFavorite(!isFavorite);
+            // alert('hello')
+          }
         }
-      }
       });
   }, [params.id]);
 
@@ -65,13 +65,13 @@ const MoviePage = () => {
       };
       arrObject.push(arrObj);
       localStorage.setItem("arrObject", JSON.stringify(arrObject));
-    } else if(!newFavoriteState) {
-    //   let removeData = JSON.parse(localStorage.getItem('arrObject'))
-    //   for(let i = 0; i < removeData.length; i++){
-    //   if(data[i].name === res.title) {
-    //     localStorage.removeItem()
-    //   }
-    // }
+    } else if (!newFavoriteState) {
+      //   let removeData = JSON.parse(localStorage.getItem('arrObject'))
+      //   for(let i = 0; i < removeData.length; i++){
+      //   if(data[i].name === res.title) {
+      //     localStorage.removeItem()
+      //   }
+      // }
     }
   };
 
@@ -157,7 +157,7 @@ const MoviePage = () => {
             </cite>
           </ul>
         </div>
-        <div className="recommended" style={{ paddingBottom: "20%" }}>
+        <div className="recommended" style={{ paddingBottom: "30%" }}>
           <Swiper pagination={true} modules={[Pagination]}>
             {recommend
               ?.filter((items, idx) => idx < 5)

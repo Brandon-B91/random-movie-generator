@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
-import { FaStar } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
 
 const AutoLoadTv = () => {
   const [trending, setTrending] = useState();
@@ -38,63 +42,46 @@ const AutoLoadTv = () => {
   return (
     <div className="trendingList">
       <h1>Top in TV Today!</h1>
+      <Swiper
+         slidesPerView={2}
+         spaceBetween={5}
+        freeMode={true}
+        // pagination={{
+        //   clickable: true,
+        // }}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 50,
+          },
+        }}
+        modules={[FreeMode, Pagination]}
+      >
       {trending
-        ?.filter((items, idx) => idx < 5)
+        ?.filter((items, idx) => idx < 10)
         .map((item) => {
           return (
+            <SwiperSlide>
             <div className="card">
               <Link to={`/TvPage/${item.id}`} className="linkName">
                 <img
                   src={`https://image.tmdb.org/t/p/w500/` + item.poster_path}
                   alt="movie poster"
                 />
-                <hr />
-                <h2>{item.name}</h2>
               </Link>
-              <ul className="top">
-                <li className="li1">
-                  {" "}
-                  <cite>Release Date: {item.first_air_date}</cite>
-                </li>
-                <li className="li2">
-                  {" "}
-                  <cite className="rating">
-                    Rating: <FaStar /> {Math.round(item.vote_average * 10)}%
-                  </cite>
-                </li>
-              </ul>
-              <h3>Overview</h3>
-              <p>{item.overview}</p>
-              {/* <div className="whereToWatch">
-                <h4>Where to Stream...</h4>
-                <ul className="whereToWatchList">
-                  {network?.length > 0
-                    ? network?.map((item) => {
-                        return (
-                          <li key={item.id} className="badge">
-                          {item.name}
-                        </li>
-                        );
-                      })
-                    : "No streaming options available"}
-                  <cite
-                    style={{
-                      marginTop: "5%",
-                      marginLeft: "auto",
-                      color: "white",
-                    }}
-                  >
-                    Powered by JustWatch
-                  </cite>
-                </ul>
-              </div>
-              <div className="whereToBuy">
-                <h4>Seasons</h4>
-                <p>{season}</p>
-              </div> */}
             </div>
+            </SwiperSlide>
           );
         })}
+        </Swiper>
     </div>
   );
 };
