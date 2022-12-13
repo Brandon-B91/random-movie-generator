@@ -39,7 +39,7 @@ const App = () => {
         <h3>See trending by day or week</h3>
         <label>
             <input type="checkbox" defaultChecked={<AutoLoadDay />} onClick={day ? onClickWeek : onClickDay}  />
-            <span />
+            <span className="label-span"/>
         </label>
         {week ? <AutoLoad /> : null}
         {day ? <AutoLoadDay /> : null}

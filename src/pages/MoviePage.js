@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Header from "../components/Header";
+import { useNavigate, useParams } from "react-router-dom";
 import Nav from "../components/Nav";
 import { Link } from "react-router-dom";
-import { FaHeart, FaRegHeart, FaStar, FaSms } from "react-icons/fa";
+import {
+  FaLongArrowAltLeft,
+  FaHeart,
+  FaRegHeart,
+  FaRegStar,
+  FaStar,
+  FaSms,
+} from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "../App.css";
@@ -18,7 +24,7 @@ const MoviePage = () => {
   const [buy, setBuy] = useState();
   const [recommend, setRecommend] = useState();
   const [isFavorite, setIsFavorite] = useState(false);
-  const [value, setValue] = useState();
+  const [total, setTotal] = useState();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -28,7 +34,7 @@ const MoviePage = () => {
     )
       .then((response) => response.json())
       .then((response) => {
-        // console.log(response);
+        console.log(response);
         const res = response;
         setRes(res);
         let stream = response["watch/providers"].results.US.flatrate;
@@ -37,11 +43,12 @@ const MoviePage = () => {
         setBuy(buy);
         let recommend = response["recommendations"].results;
         setRecommend(recommend);
+        let total = response["recommendations"].total_results;
+        setTotal(total);
         let data = JSON.parse(localStorage.getItem("arrObject"));
         for (let i = 0; i < data.length; i++) {
           if (data[i].name === res.title) {
             setIsFavorite(!isFavorite);
-            // alert('hello')
           }
         }
       });
@@ -75,42 +82,47 @@ const MoviePage = () => {
     }
   };
 
+  const navigate = useNavigate();
+
+  const rating = () => {
+    return Math.round(res?.vote_average * 10);
+  };
+
   return (
     <>
-      <Header />
       <div className="moviePage">
+        <button onClick={() => navigate(-1)} className="back">
+          <FaLongArrowAltLeft className="back-arrow" />
+        </button>
+        <button onClick={favorite} className="favorite">
+          {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
+        </button>
         <img
           src={`https://image.tmdb.org/t/p/w500/` + res?.backdrop_path}
           alt="movie poster"
           style={{ width: "100%" }}
         />
-        <h2>{res?.title + ` - ` + res?.tagline}</h2>
+        <h2>
+          {res?.title}
+          {res?.tagline !== null ? "" : ` - ${res?.tagline}`}
+        </h2>
         <button onClick={favorite} className="favorite">
-          Favorite: {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
+          {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
         </button>
-        <ul className="top">
-          <li className="li1">
+        <ul className="details">
+          <li>
             {" "}
             <cite>Release Date: {res?.release_date}</cite>
           </li>
-          <li className="li2">
+          <li>
             {" "}
             <cite className="rating">
-              Rating: <FaStar /> {Math.round(res?.vote_average * 10)}%
+              Rating: {rating()}%{rating() > 70 ? <FaStar /> : <FaRegStar />}
             </cite>
           </li>
         </ul>
-        <cite style={{ marginLeft: "2%" }}>Length: {res?.runtime} Minutes</cite>
+        <cite className="length">Length: {res?.runtime} Minutes</cite>
         <p>{res?.overview}</p>
-        <h4 style={{ marginBottom: "3%" }}>Share this!</h4>
-        <a
-          href={"sms:?&body=You need to watch this! " + window.location.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="socialShare"
-        >
-          <FaSms />
-        </a>
         <div className="whereToWatch">
           <h4>Where to Stream...</h4>
           <ul className="whereToWatchList">
@@ -127,7 +139,7 @@ const MoviePage = () => {
               style={{
                 marginTop: "5%",
                 marginLeft: "auto",
-                color: "white",
+                color: "#121212",
               }}
             >
               Powered by JustWatch
@@ -150,56 +162,63 @@ const MoviePage = () => {
               style={{
                 marginTop: "5%",
                 marginLeft: "auto",
-                color: "white",
+                color: "#121212",
               }}
             >
               Powered by JustWatch
             </cite>
           </ul>
+          <h4>Share this!</h4>
+          <a
+            href={"sms:?&body=You need to watch this! " + window.location.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="socialShare"
+          >
+            <FaSms />
+          </a>
         </div>
-        <div className="recommended" style={{ paddingBottom: "30%" }}>
+        <div className="recommended">
+          {total > 0 ? (
+            <h3>If you like {res?.title} then you might like this!</h3>
+          ) : (
+            ""
+          )}
           <Swiper pagination={true} modules={[Pagination]}>
             {recommend
-              ?.filter((items, idx) => idx < 5)
+              ?.filter((items, idx) => idx < 10)
               .map((item) => {
                 return (
-                  <SwiperSlide
-                    style={{
-                      paddingBottom: "5%",
-                      paddingTop: "10%",
-                      marginLeft: "auto",
-                    }}
-                  >
-                    <h3 style={{ textAlign: "center", marginBottom: "5%" }}>
-                      If you like {res?.title} then you might like this!
-                    </h3>
-                    <div className="card" style={{ height: "450px" }}>
-                      <Link to={`/MoviePage/${item.id}`} className="linkName">
-                        <img
-                          src={
-                            `https://image.tmdb.org/t/p/w500/` +
-                            item?.backdrop_path
-                          }
-                          alt="movie poster"
-                        />
-                        <h2>{item.title}</h2>
-                      </Link>
-                      <p>{item.overview}</p>
-                      <ul className="top">
-                        <li className="li1">
-                          {" "}
-                          <cite>Release Date: {res?.release_date}</cite>
-                        </li>
-                        <li className="li2">
-                          {" "}
-                          <cite className="rating">
-                            Rating: <FaStar />{" "}
-                            {Math.round(res?.vote_average * 10)}%
-                          </cite>
-                        </li>
-                      </ul>
-                    </div>
-                  </SwiperSlide>
+                  <>
+                    <SwiperSlide>
+                      <div className="recommended-card" id={item.id}>
+                        <Link to={`/MoviePage/${item.id}`} className="linkName">
+                          <img
+                            src={
+                              `https://image.tmdb.org/t/p/w500/` +
+                              item?.backdrop_path
+                            }
+                            alt="movie poster"
+                          />
+                          <h2>{item.title}</h2>
+                        </Link>
+                        <p>{item.overview}</p>
+                        <div className="card-bottom">
+                          <ul>
+                            <li>
+                              <cite>Release Date: {res?.release_date}</cite>
+                            </li>
+                            <li>
+                              <cite>
+                                Rating:
+                                <FaStar /> {Math.round(res?.vote_average * 10)}%
+                              </cite>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  </>
                 );
               })}
           </Swiper>

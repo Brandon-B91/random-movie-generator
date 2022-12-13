@@ -41,10 +41,9 @@ const AutoLoad = (props) => {
         slidesPerView={2}
         spaceBetween={0}
         freeMode={true}
-        // pagination={{
-        //   clickable: true,
-        //   centered: true,
-        // }}
+        pagination={{
+          clickable: true,
+        }}
         breakpoints={{
           640: {
             slidesPerView: 2,

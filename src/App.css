@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   line-height: 1.6;
+
 }
 
 ul {
@@ -15,6 +16,12 @@ a {
 
 /* Header */
 
+header {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
 header img {
   width: 100%;
 }
@@ -24,13 +31,14 @@ header img {
 .navbar {
   position: fixed;
   bottom: 0;
-  width: 100%;
   display: flex;
   justify-content: space-around;
   align-content: center;
   background: black;
   z-index: 99;
-  height: 50px;
+  height: 70px;
+  max-width: 1400px;
+  width: 100%;
 }
 
 .link {
@@ -39,6 +47,7 @@ header img {
   align-self: center;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .linkName {
@@ -51,6 +60,7 @@ header img {
   font-size: 1.2rem;
   vertical-align: bottom;
   margin: 0 auto;
+  padding-top: 2%;
 }
 
 .active {
@@ -65,6 +75,10 @@ header img {
   background: #fafafa;
   color: #121212;
   text-align: center;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
 }
 
 label {
@@ -80,7 +94,7 @@ input {
   height: 0;
 }
 
-span {
+.label-span {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -92,7 +106,7 @@ span {
   border-radius: 30px;
 }
 
-span:before {
+.label-span:before {
   position: absolute;
   content: "";
   height: 25px;
@@ -104,7 +118,7 @@ span:before {
   transition: 0.3s;
 }
 
-span:after {
+.label-span:after {
   content: "Week";
   color: #fafafa;
   margin-top: 5px;
@@ -122,18 +136,24 @@ input:checked + span:after {
 }
 
 .trendingList {
-  margin-left: .5%;
+  margin-left: 0.5%;
 }
 
 .card {
   border-radius: 16px;
   width: 225px;
   font-size: 1rem;
-  margin: 1% 1% 10% 1%;
+  margin: 1% 1% 20% 1%;
   display: inline-block;
   background: #121212;
   color: #fafafa;
   box-shadow: 4px 4px 8px gray;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 6px 6px 10px gray;
 }
 
 .card img {
@@ -142,3 +162,152 @@ input:checked + span:after {
   object-fit: cover;
 }
 
+/* Movie / TV Page  */
+
+.back {
+  position: fixed;
+  top: 1%;
+  left: 2%;
+  border: none;
+  background: none;
+  display: inline-block;
+}
+
+.back-arrow {
+  background: #fafafa;
+  font-size: 24px;
+  border-radius: 50%;
+  padding: 2%;
+}
+
+.back:hover {
+  cursor: pointer;
+}
+
+.moviePage {
+  max-width: 1400px;
+  margin: 0 auto;
+  margin-bottom: 75px;
+}
+
+.favorite {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  margin: 1%;
+  position: absolute;
+  top: .5%;
+  right: 2%;
+  background: #fafafa;
+  border-radius: 50%;
+  padding: 1%;
+  font-size: 16px;
+}
+
+.favorite:hover {
+  cursor: pointer;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.details li {
+  display: inline;
+  margin: 1%;
+}
+
+.socialShare {
+  color: #121212;
+  font-size: 32px;
+  margin-left: 2%;
+}
+
+p, h3, h4 {
+  margin: 0 1%;
+}
+
+.length {
+  margin: 0 1%;
+}
+
+.whereToBuyList, .whereToWatchList {
+  margin-left: 2%;
+  font-size: .7rem;
+}
+
+.whereToWatchList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.whereToBuyList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.badge {
+  background: lightgray;
+  display: inline-block;
+  padding: .5% 1%;
+  border-radius: 16px;
+  color: #121212;
+  font-size: .7rem;
+  margin: 1%;
+}
+
+/* Recommended section */
+
+.recommended-card {
+  width: 80%;
+  margin: 3% auto 0;
+  height: 400px;
+  margin-bottom: 50px;
+  border: 1px solid black;
+  border-radius: 16px;
+  background: #121212;
+  color: #fafafa;
+  position: relative;
+}
+
+.recommended-card h2 {
+  color: #fafafa;
+}
+
+.recommended-card img {
+  width: 100%;
+  border-radius: 16px 16px 0 0;
+}
+
+.recommended-card p {
+  height: 100px;
+  overflow: hidden;
+}
+
+.card-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.card-bottom ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-bottom li {
+  display: inline;
+  margin: 0 1%;
+}
+
+@media screen and (max-width: 500px) {
+  .card {
+    width: 90%;
+  }
+}
