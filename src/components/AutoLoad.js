@@ -42,7 +42,7 @@ const AutoLoad = (props) => {
       <h1>Top in Movies This Week!</h1>
       <Swiper
         slidesPerView={2}
-        spaceBetween={5}
+        spaceBetween={10}
         freeMode={true}
         pagination={{
           clickable: true,
@@ -50,15 +50,15 @@ const AutoLoad = (props) => {
         breakpoints={{
           640: {
             slidesPerView: 2,
-            spaceBetween: 20,
+            spaceBetween: 10,
           },
           768: {
             slidesPerView: 3,
             spaceBetween: 30,
           },
           1024: {
-            slidesPerView: 5,
-            spaceBetween: 50,
+            slidesPerView: 4,
+            spaceBetween: 40,
           },
         }}
         modules={[FreeMode, Pagination]}

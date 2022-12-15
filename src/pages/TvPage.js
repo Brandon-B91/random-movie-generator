@@ -25,7 +25,6 @@ const MoviePage = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [total, setTotal] = useState();
 
-
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsFavorite(false);
@@ -100,11 +99,11 @@ const MoviePage = () => {
         />
         <h2>
           {res?.name}
-          {res?.tagline !== null ? "" : ` - ${res?.tagline}`}
+          {res?.tagline == "" ? "" : ` - ${res?.tagline}`}
         </h2>
         <ul className="details">
           <li>
-            <cite>Release Date: {res?.first_air_date}</cite>
+            <cite>First air date: {res?.first_air_date}</cite>
           </li>
           <li>
             <cite className="rating">
@@ -112,13 +111,14 @@ const MoviePage = () => {
             </cite>
           </li>
         </ul>
-        <cite style={{ marginLeft: "2%" }}>
+        <cite>
           Length: {res?.episode_run_time[0]} Minutes per episode
         </cite>
         <ul>
           <li>Seasons: {res?.number_of_seasons}</li>
           <li>Episodes: {res?.number_of_episodes}</li>
         </ul>
+        <h3>Overview</h3>
         <p>{res?.overview}</p>
         <div className="whereToWatch">
           <h4>Where to Stream...</h4>
@@ -199,19 +199,19 @@ const MoviePage = () => {
                         <h2>{item.name}</h2>
                       </Link>
                       <p>{item.overview}</p>
-                      <ul>
-                        <li>
-                          {" "}
-                          <cite>Release Date: {res?.release_date}</cite>
-                        </li>
-                        <li className="li2">
-                          {" "}
-                          <cite className="rating">
-                            Rating: <FaStar />{" "}
-                            {Math.round(res?.vote_average * 10)}%
-                          </cite>
-                        </li>
-                      </ul>
+                      <div className="card-bottom">
+                        <ul>
+                          <li>
+                            <cite>First air date: {res?.first_air_date}</cite>
+                          </li>
+                          <li>
+                            <cite>
+                              Rating: <FaStar />
+                              {Math.round(res?.vote_average * 10)}%
+                            </cite>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </SwiperSlide>
                 );

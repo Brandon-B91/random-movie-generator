@@ -60,8 +60,8 @@ const AutoLoadTv = () => {
             spaceBetween: 30,
           },
           1024: {
-            slidesPerView: 5,
-            spaceBetween: 50,
+            slidesPerView: 4,
+            spaceBetween: 40,
           },
         }}
         modules={[FreeMode, Pagination]}
