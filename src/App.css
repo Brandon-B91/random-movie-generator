@@ -13,6 +13,10 @@ a {
   text-decoration: none;
 }
 
+button:active {
+  transform: translateY(4px);
+}
+
 /* Header */
 
 header {
@@ -179,6 +183,7 @@ input:checked + span:after {
   font-size: 24px;
   border-radius: 50%;
   padding: 2%;
+  box-shadow: 2px 2px 4px gray;
 }
 
 .back:hover {
@@ -201,11 +206,10 @@ input:checked + span:after {
 
 .main-img {
   position: absolute;
-  filter: opacity(60%) grayscale(80%);
+  filter: opacity(90%) grayscale(70%) blur(1px) brightness(70%);
   max-width: 1600px;
   width: 100%;
   z-index: 0;
-  height: 100%;
   max-height: 500px;
 }
 
@@ -223,8 +227,8 @@ input:checked + span:after {
 }
 
 .right {
-  margin-top: 10%;
-  color: black;
+  margin-top: 5%;
+  color: #fafafa;
   min-height: 350px;
 }
 
@@ -235,12 +239,12 @@ input:checked + span:after {
   align-items: center;
   margin: 1%;
   position: absolute;
-  top: 0.5%;
-  right: 2%;
+  top: 0;
+  right: 1%;
   background: #fafafa;
   border-radius: 50%;
-  padding: 1%;
-  font-size: 16px;
+  padding: .5%;
+  font-size: 20px;
 }
 
 .favorite:hover {
@@ -267,10 +271,27 @@ input:checked + span:after {
   margin: 1%;
 }
 
+.social-ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.social-ul li {
+  display: inline;
+}
+
+.social-ul li:nth-child(1) {
+  width: 100%;
+}
+
+.social-ul li:nth-child(2) {
+  margin-right: 1%;
+}
+
 .socialShare {
-  color: #121212;
+  color: #fafafa;
   font-size: 32px;
-  margin-left: 2%;
+  display: inline;
 }
 
 p,
@@ -286,6 +307,7 @@ h4 {
 
 .length {
   margin: 0 1%;
+  display: inline;
 }
 
 .whereToBuyList,
@@ -325,7 +347,7 @@ h4 {
 }
 
 .recommended-card {
-  width: 80%;
+  width: 90%;
   margin: 3% auto;
   height: 400px;
   border: 1px solid black;
@@ -335,9 +357,10 @@ h4 {
   position: relative;
   margin-bottom: 40px;
   box-shadow: 4px 4px 8px gray;
+  font-size: 100%;
 }
 
-.recommended-card h2 {
+.recommended-card h3 {
   color: #fafafa;
 }
 
@@ -349,6 +372,10 @@ h4 {
 .recommended-card p {
   height: 100px;
   overflow: hidden;
+}
+
+.recommended cite {
+  font-size: .8rem;
 }
 
 .card-bottom {
@@ -366,6 +393,53 @@ h4 {
   display: inline;
   margin: 0 1%;
 }
+
+/* Movie / TV Search  */
+
+.movie {
+  min-height: 100vh;
+}
+
+.movieContainer {
+  margin-bottom: 10%; 
+}
+
+.searchStyle {
+  margin-top: 5%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.searchStyle button {
+  outline: none;
+  border-radius: 16px;
+  padding: .5%;
+  background: none;
+}
+
+.searchBar {
+ width: 50px;
+ height: 35px;
+ outline: none;
+ opacity: 100%;
+ padding: .5%;
+ border-radius: 16px;
+ transition: width .4s ease-in-out;
+}
+
+.searchBar:hover {
+  width: 200px;
+}
+
+.searchBar:active {
+  width: 200px;
+}
+
+.searchBar:focus-visible {
+  width: 200px;
+}
+
 
 @media screen and (max-width: 600px) {
 

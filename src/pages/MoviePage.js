@@ -130,7 +130,25 @@ const MoviePage = () => {
                 </cite>
               </li>
             </ul>
-            <cite className="length">Length: {res?.runtime} Minutes</cite>
+            <ul className="social-ul">
+              <li>
+                {" "}
+                <cite className="length">Length: {res?.runtime} Minutes</cite>
+              </li>
+              <li>
+                <a
+                  href={
+                    "sms:?&body=You need to watch this! " + window.location.href
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="socialShare"
+                >
+                  <FaSms />
+                </a>
+              </li>
+            </ul>
+
             <h3>Overview</h3>
             <p>{res?.overview}</p>
           </div>
@@ -180,15 +198,6 @@ const MoviePage = () => {
               Powered by JustWatch
             </cite>
           </ul>
-          <h4>Share this!</h4>
-          <a
-            href={"sms:?&body=You need to watch this! " + window.location.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="socialShare"
-          >
-            <FaSms />
-          </a>
         </div>
         <div className="recommended">
           {total > 0 ? (
@@ -197,26 +206,26 @@ const MoviePage = () => {
             ""
           )}
           <Swiper
-             slidesPerView={1}
-             freeMode={true}
-             pagination={{
-               clickable: true,
-             }}
-             breakpoints={{
-               640: {
-                 slidesPerView: 2,
-                 spaceBetween: 10,
-               },
-               768: {
-                 slidesPerView: 2,
-                 spaceBetween: 20,
-               },
-               1024: {
-                 slidesPerView: 3,
-                 spaceBetween: 30,
-               },
-             }}
-             modules={[FreeMode, Pagination]}
+            slidesPerView={1}
+            freeMode={true}
+            pagination={{
+              clickable: true,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 30,
+              },
+            }}
+            modules={[FreeMode, Pagination]}
           >
             {recommend
               ?.filter((items, idx) => idx < 10)
@@ -233,7 +242,7 @@ const MoviePage = () => {
                             }
                             alt="movie poster"
                           />
-                          <h2>{item.title}</h2>
+                          <h3>{item.title}</h3>
                         </Link>
                         <p>{item.overview}</p>
                         <div className="card-bottom">

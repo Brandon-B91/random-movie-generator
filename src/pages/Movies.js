@@ -24,7 +24,7 @@ const Movies = () => {
       <Header />
       <h2>Discover a new movie!</h2>
       <div className="showBtns">
-        <button onClick={showSearchDiv} className="right">
+        <button onClick={showSearchDiv}>
           Search <FaSearch />
         </button>
         <button onClick={showRandomDiv}>

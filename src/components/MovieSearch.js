@@ -52,7 +52,7 @@ const MovieSearch = () => {
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className="searchbar"
+          className="searchBar"
           placeholder="Search by movie name..."
         />
         <button>Search!</button>

@@ -54,8 +54,8 @@ const AutoLoad = (props) => {
             spaceBetween: 30,
           },
           1024: {
-            slidesPerView: 4,
-            spaceBetween: 40,
+            slidesPerView: 5,
+            spaceBetween: 20,
           },
         }}
         modules={[FreeMode, Pagination]}

@@ -10,10 +10,10 @@ import {
   FaSms,
 } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { FreeMode, Pagination } from "swiper";
 import "swiper/css";
+import "swiper/css/free-mode";
 import "swiper/css/pagination";
-import "../App.css";
 
 const MoviePage = () => {
   const [res, setRes] = useState();
@@ -86,40 +86,69 @@ const MoviePage = () => {
   return (
     <>
       <div className="moviePage">
-        <button onClick={() => navigate(-1)} className="back">
-          <FaLongArrowAltLeft className="back-arrow" />
-        </button>
-        <button onClick={favorite} className="favorite">
-          {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
-        </button>
-        <img
-          src={`https://image.tmdb.org/t/p/w500/` + res?.backdrop_path}
-          alt="movie poster"
-          style={{ width: "100%" }}
-        />
-        <h2>
-          {res?.name}
-          {res?.tagline == "" ? "" : ` - ${res?.tagline}`}
-        </h2>
-        <ul className="details">
-          <li>
-            <cite>First air date: {res?.first_air_date}</cite>
-          </li>
-          <li>
-            <cite className="rating">
-              Rating: <FaStar /> {Math.round(res?.vote_average * 10)}%
-            </cite>
-          </li>
-        </ul>
-        <cite>
-          Length: {res?.episode_run_time[0]} Minutes per episode
-        </cite>
-        <ul>
-          <li>Seasons: {res?.number_of_seasons}</li>
-          <li>Episodes: {res?.number_of_episodes}</li>
-        </ul>
-        <h3>Overview</h3>
-        <p>{res?.overview}</p>
+        <div className="main">
+          <img
+            src={`https://image.tmdb.org/t/p/w500/` + res?.backdrop_path}
+            alt="movie poster"
+            className="main-img"
+          />
+          <div className="left">
+            <button onClick={() => navigate(-1)} className="back">
+              <FaLongArrowAltLeft className="back-arrow" />
+            </button>
+            <button onClick={favorite} className="favorite">
+              {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
+            </button>
+            <img
+              src={`https://image.tmdb.org/t/p/w780/` + res?.poster_path}
+              alt="movie poster"
+            />
+          </div>
+          <div className="right">
+            <h2>
+              {res?.name}
+              {res?.tagline == "" ? "" : ` - ${res?.tagline}`}
+            </h2>
+            <ul className="details">
+              <li>
+                <cite>First air date: {res?.first_air_date}</cite>
+              </li>
+              <li>
+                <cite className="rating">
+                  Rating: <FaStar /> {Math.round(res?.vote_average * 10)}%
+                </cite>
+              </li>
+            </ul>
+            <ul className="social-ul">
+              <li>
+                {" "}
+                <cite>
+                  Length: {res?.episode_run_time[0]} Minutes per episode
+                </cite>
+              </li>
+              <li>
+                {" "}
+                <a
+                  href={
+                    "sms:?&body=You need to watch this! " + window.location.href
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="socialShare"
+                >
+                  <FaSms />
+                </a>
+              </li>
+            </ul>
+
+            <ul>
+              <li>Seasons: {res?.number_of_seasons}</li>
+              <li>Episodes: {res?.number_of_episodes}</li>
+            </ul>
+            <h3>Overview</h3>
+            <p>{res?.overview}</p>
+          </div>
+        </div>
         <div className="whereToWatch">
           <h4>Where to Stream...</h4>
           <ul className="whereToWatchList">
@@ -165,15 +194,6 @@ const MoviePage = () => {
               Powered by JustWatch
             </cite>
           </ul>
-          <h4>Share this!</h4>
-          <a
-            href={"sms:?&body=You need to watch this! " + window.location.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="socialShare"
-          >
-            <FaSms />
-          </a>
         </div>
         <div className="recommended">
           {total > 0 ? (
@@ -181,7 +201,28 @@ const MoviePage = () => {
           ) : (
             ""
           )}
-          <Swiper pagination={true} modules={[Pagination]}>
+          <Swiper
+            slidesPerView={1}
+            freeMode={true}
+            pagination={{
+              clickable: true,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 30,
+              },
+            }}
+            modules={[FreeMode, Pagination]}
+          >
             {recommend
               ?.filter((items, idx) => idx < 10)
               .map((item) => {
@@ -196,7 +237,7 @@ const MoviePage = () => {
                           }
                           alt="movie poster"
                         />
-                        <h2>{item.name}</h2>
+                        <h3>{item.name}</h3>
                       </Link>
                       <p>{item.overview}</p>
                       <div className="card-bottom">
