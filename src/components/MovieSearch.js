@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaStar, FaRegHeart, FaHeart, FaVest } from "react-icons/fa";
+import { FaStar, FaRegHeart, FaHeart, FaSearch, FaVest } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import "swiper/css";
@@ -47,16 +47,20 @@ const MovieSearch = () => {
 
   return (
     <div className="movieContainer">
-      <form onSubmit={handleSubmit} className="searchStyle">
-        <input
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          className="searchBar"
-          placeholder="Search by movie name..."
-        />
-        <button>Search!</button>
-      </form>
+      <div className="searchStyle">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            className="searchBar"
+            placeholder="Search by movie name..."
+          />
+          <button>
+            <FaSearch />
+          </button>
+        </form>
+      </div>
       {search
         ?.filter((items, idx) => idx < 5)
         .map((item) => {
