@@ -3,7 +3,6 @@
   padding: 0;
   box-sizing: border-box;
   line-height: 1.6;
-  -webkit-appearance: none !important;
 }
 
 ul {
@@ -12,6 +11,12 @@ ul {
 
 a {
   text-decoration: none;
+}
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 button:active {
