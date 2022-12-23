@@ -57,7 +57,6 @@ header img {
   align-self: center;
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
 }
 
 .linkName {
@@ -171,6 +170,10 @@ input:checked + span:after {
   max-width: 1400px;
   border-radius: 16px;
   object-fit: cover;
+}
+
+.card h2 {
+  color: #fafafa;
 }
 
 /* Movie / TV Page  */
@@ -402,10 +405,6 @@ h4 {
 
 /* Movie / TV Search  */
 
-.movie {
-  min-height: 100vh;
-}
-
 .movieContainer {
   margin-bottom: 10%;
   position: relative;
@@ -415,14 +414,14 @@ h4 {
   position: relative;
   width: 80px;
   height: 50px;
+  margin-top: 5%;
   margin-left: 30%;
+  margin-bottom: 10%;
   display: flex;
   align-content: center;
   justify-content: center;
   transition: width 0.4s ease-in-out;
 }
-
-
 
 .searchBar {
   width: 100%;
@@ -453,10 +452,18 @@ h4 {
   font-size: 24px;
   outline: none;
   border-radius: 50%;
-  background: none;
+  background: #121212;
+  color: #fafafa;
   transition: all 0.4s ease-in-out;
   position: absolute;
   top: 10%;
+}
+
+.movie-page {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 600px) {
@@ -491,4 +498,24 @@ h4 {
   .card {
     width: 90%;
   }
+
+  /* Movie / TV Search page */
+  .searchStyle {
+    margin-left: 10%;
+  }
+
+  .searchBar:hover {
+    width: 200px;
+  }
+  
+  .searchBar:focus,
+  .searchBar:not(:placeholder-shown) {
+    width: 200px;
+    padding: 0 0 0 60%;
+  }
+
+  .right {
+    color: #121212;
+  }
+
 }
