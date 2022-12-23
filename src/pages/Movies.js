@@ -23,6 +23,7 @@ const Movies = () => {
     <div className="movie">
       <Header />
       <h2>Discover a new movie!</h2>
+      <p>You can search for a movie or discover a new one!</p>
       <div className="showBtns">
         <button onClick={showSearchDiv}>
           Search <FaSearch />

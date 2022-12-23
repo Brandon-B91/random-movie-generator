@@ -13,10 +13,10 @@ a {
   text-decoration: none;
 }
 
-button {
+input[type="text"],
+input[type="button"] {
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  -webkit-border-radius: none;
 }
 
 button:active {
@@ -40,6 +40,8 @@ header img {
 .navbar {
   position: fixed;
   bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
   display: flex;
   justify-content: space-around;
   align-content: center;
@@ -48,7 +50,6 @@ header img {
   height: 70px;
   max-width: 1600px;
   width: 100%;
-  margin: 0 auto;
 }
 
 .link {
@@ -178,9 +179,17 @@ input:checked + span:after {
 
 /* Movie / TV Page  */
 
+.moviePage {
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto 75px;
+  position: relative;
+  /* min-height: 100vh; */
+}
+
 .back {
-  position: fixed;
-  top: 1%;
+  position: absolute;
+  top: 2%;
   left: 2%;
   border: none;
   background: none;
@@ -197,15 +206,6 @@ input:checked + span:after {
 
 .back:hover {
   cursor: pointer;
-}
-
-.moviePage {
-  max-width: 1600px;
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
-  min-height: 100vh;
-  margin-bottom: 75px;
 }
 
 .main {
@@ -406,49 +406,37 @@ h4 {
 /* Movie / TV Search  */
 
 .movieContainer {
-  margin-bottom: 10%;
-  position: relative;
+  margin: 10% 0 10% 0;
+}
+
+.movieContainer .card {
+  margin-left: 12%;
 }
 
 .searchStyle {
   position: relative;
-  width: 80px;
-  height: 50px;
-  margin-top: 5%;
-  margin-left: 30%;
-  margin-bottom: 10%;
-  display: flex;
-  align-content: center;
-  justify-content: center;
+  width: 40%;
+  height: 40px;
+  margin: 0 auto 10%;
   transition: width 0.4s ease-in-out;
 }
 
 .searchBar {
   width: 100%;
   height: 100%;
+  font-size: 18px;
   outline: none;
   opacity: 100%;
   border: 1px solid #121212;
   border-radius: 16px;
-  padding: 0 0 0 50%;
+  padding: 0 0 0 5%;
   transition: width 0.4s ease-in-out;
   border: 1px solid black;
   position: absolute;
 }
 
-.searchBar:hover {
-  width: 300px;
-}
-
-.searchBar:focus,
-.searchBar:not(:placeholder-shown) {
-  width: 300px;
-  padding: 0 0 0 60%;
-}
-
 .searchStyle button {
   width: 40px;
-  height: 40px;
   font-size: 24px;
   outline: none;
   border-radius: 50%;
@@ -456,14 +444,8 @@ h4 {
   color: #fafafa;
   transition: all 0.4s ease-in-out;
   position: absolute;
-  top: 10%;
-}
-
-.movie-page {
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: -3%;
+  right: -1%;
 }
 
 @media screen and (max-width: 600px) {
@@ -500,22 +482,8 @@ h4 {
   }
 
   /* Movie / TV Search page */
-  .searchStyle {
-    margin-left: 10%;
-  }
-
-  .searchBar:hover {
-    width: 200px;
-  }
-  
-  .searchBar:focus,
-  .searchBar:not(:placeholder-shown) {
-    width: 200px;
-    padding: 0 0 0 60%;
-  }
 
   .right {
     color: #121212;
   }
-
 }

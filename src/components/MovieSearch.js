@@ -64,6 +64,7 @@ const MovieSearch = () => {
         slidesPerView={2}
         spaceBetween={10}
         freeMode={true}
+        centeredSlides={true}
         pagination={{
           clickable: true,
         }}
@@ -87,7 +88,7 @@ const MovieSearch = () => {
         ?.filter((items, idx) => idx < 10)
         .map((item) => {
           return (
-            <div className="movie-page">
+            // <div className="movie-page">
               <SwiperSlide>
                 <div className="card">
                   <Link to={`/MoviePage/${item.id}`} className="linkName">
@@ -100,7 +101,7 @@ const MovieSearch = () => {
                   </Link>
                 </div>
               </SwiperSlide>
-            </div>
+            // </div>
           );
         })}
       {/* <div className="recommended">
@@ -135,7 +136,7 @@ const MovieSearch = () => {
                         <cite className="rating">
                           Rating: <FaStar />{" "}
                           {Math.round(search?.[0].vote_average * 10)}%
-                        </cite>
+                        </cite>``
                       </li>
                     </ul>
                   </div>
