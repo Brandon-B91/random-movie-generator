@@ -189,7 +189,7 @@ input:checked + span:after {
 
 .back {
   position: absolute;
-  top: 2%;
+  top: 1%;
   left: 2%;
   border: none;
   background: none;
@@ -413,6 +413,21 @@ h4 {
   margin-left: 12%;
 }
 
+.showBtns {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+.showBtns button {
+  border: none;
+  background: #121212;
+  color: #fafafa;
+  border-radius: 16px;
+  padding: 1% 4%;
+  margin: 5%;
+}
+
 .searchStyle {
   position: relative;
   width: 40%;
@@ -485,5 +500,9 @@ h4 {
 
   .right {
     color: #121212;
+  }
+
+  .searchStyle {
+    width: 70%;
   }
 }
