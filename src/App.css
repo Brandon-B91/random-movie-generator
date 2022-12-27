@@ -15,7 +15,8 @@ a {
 
 input[type="text"],
 input[type="button"],
-button {
+button,
+select {
   -webkit-appearance: none !important;
   -webkit-border-radius: none !important;
   -moz-appearance: none !important;
@@ -503,7 +504,7 @@ h4 {
   justify-content: center;
   align-items: center;
   width: 50%;
-  margin: 7% auto;
+  margin: 7% auto 7%;
   position: relative;
 }
 
