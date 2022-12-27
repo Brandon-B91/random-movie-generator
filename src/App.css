@@ -14,9 +14,10 @@ a {
 }
 
 input[type="text"],
-input[type="button"] {
-  -webkit-appearance: none;
-  -webkit-border-radius: none;
+input[type="button"],
+button {
+  -webkit-appearance: none !important;
+  -webkit-border-radius: none !important;
 }
 
 button:active {
@@ -403,10 +404,10 @@ h4 {
   margin: 0 1%;
 }
 
-/* Movie / TV Search  */
+/* Movie Search  */
 
 .movieContainer {
-  margin: 10% 0 10% 0;
+  margin: 5% 0 5% 0;
 }
 
 .movieContainer .card {
@@ -414,9 +415,8 @@ h4 {
 }
 
 .showBtns {
- display: flex;
- align-items: center;
- justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .showBtns button {
@@ -425,14 +425,14 @@ h4 {
   color: #fafafa;
   border-radius: 16px;
   padding: 1% 4%;
-  margin: 5%;
+  margin: 5% 2.5% 0 2.5%;
 }
 
 .searchStyle {
   position: relative;
   width: 40%;
   height: 40px;
-  margin: 0 auto 10%;
+  margin: 0 auto 3%;
   transition: width 0.4s ease-in-out;
 }
 
@@ -461,6 +461,60 @@ h4 {
   position: absolute;
   top: -3%;
   right: -1%;
+}
+
+.searchStyle button:hover {
+  cursor: pointer;
+}
+
+/* Movie discover */
+
+.container {
+  margin-bottom: 75px;
+}
+
+.discover-card {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.discover-card .card {
+  position: relative;
+  width: 50%;
+}
+
+.discover-card .card img {
+  height: 500px;
+  width: 100%;
+}
+
+.discover-card .card p {
+  margin-bottom: 10%;
+}
+
+.dropDownStyle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5%;
+}
+
+#selectList {
+  width: 60%;
+  height: 40px;
+  border-radius: 16px;
+  padding: 0 0 0 1%;
+  font-size: 18px;
+}
+
+.dropDownStyle button {
+  border-radius: 16px;
+  padding: 1%;
+  outline: none;
+  background: none;
+  color: #121212;
 }
 
 @media screen and (max-width: 600px) {
@@ -496,7 +550,7 @@ h4 {
     width: 90%;
   }
 
-  /* Movie / TV Search page */
+  /* Movie Search page */
 
   .right {
     color: #121212;
@@ -504,5 +558,17 @@ h4 {
 
   .searchStyle {
     width: 70%;
+  }
+
+  .movieContainer {
+    margin: 3% 0 20% 0;
+  }
+
+
+  /* Movie Discover */
+
+  .discover-card .card {
+    width: 90%;
+    margin-top: 5%;
   }
 }

@@ -252,8 +252,8 @@ const MoviePage = () => {
                             </li>
                             <li>
                               <cite>
-                                Rating:
-                                <FaStar /> {Math.round(res?.vote_average * 10)}%
+                                Rating:{" "}
+                                {Math.round(item?.vote_average * 10)}%
                               </cite>
                             </li>
                           </ul>
@@ -270,5 +270,7 @@ const MoviePage = () => {
     </>
   );
 };
+
+
 
 export default MoviePage;

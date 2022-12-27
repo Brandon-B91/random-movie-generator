@@ -61,7 +61,7 @@ const MovieSearch = () => {
         </form>
       </div>
       <Swiper
-        slidesPerView={2}
+        slidesPerView={"auto"}
         spaceBetween={10}
         freeMode={true}
         centeredSlides={true}
