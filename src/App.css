@@ -18,6 +18,9 @@ input[type="button"],
 button {
   -webkit-appearance: none !important;
   -webkit-border-radius: none !important;
+  -moz-appearance: none !important;
+  -moz-border-radius: none !important;
+  color: #121212;
 }
 
 button:active {
