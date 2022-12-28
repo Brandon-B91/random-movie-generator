@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Nav from "../components/Nav";
-import { Link } from "react-router-dom";
 import {
   FaLongArrowAltLeft,
   FaHeart,
@@ -22,21 +21,31 @@ const MoviePage = () => {
   const params = useParams();
   const [stream, setStream] = useState();
   const [buy, setBuy] = useState();
+  const [name, setName] = useState();
+  const [actorId, setActorId] = useState();
   const [recommend, setRecommend] = useState();
   const [isFavorite, setIsFavorite] = useState(false);
   const [total, setTotal] = useState();
+  const [bounce, setBounce] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsFavorite(false);
     fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations`
+      `https://api.themoviedb.org/3/movie/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations,credits`
     )
       .then((response) => response.json())
       .then((response) => {
         console.log(response);
         const res = response;
         setRes(res);
+        let name = response.credits.cast;
+        setName(name);
+        let actorId = response.credits.cast.filter((items, idx) => idx < 3)
+        .map((item) => {
+          return item.id;
+        });
+        setActorId(actorId)
         let stream = response["watch/providers"].results.US.flatrate;
         setStream(stream);
         let buy = response["watch/providers"].results.US.buy;
@@ -72,38 +81,47 @@ const MoviePage = () => {
       };
       arrObject.push(arrObj);
       localStorage.setItem("arrObject", JSON.stringify(arrObject));
-    } else if (!newFavoriteState) {
-      //   let removeData = JSON.parse(localStorage.getItem('arrObject'))
-      //   for(let i = 0; i < removeData.length; i++){
-      //   if(data[i].name === res.title) {
-      //     localStorage.removeItem()
-      //   }
-      // }
-    }
+    } 
+    //  else if (!newFavoriteState) {
+    //     let removeData = JSON.parse(localStorage.getItem('arrObject'))
+    //     for(let i = 0; i < removeData.length; i++){
+    //     if(data[i].name === res.title) {
+    //       localStorage.removeItem()
+    //     }
+    //   }
+    // }
   };
-
-  const navigate = useNavigate();
 
   const rating = () => {
     return Math.round(res?.vote_average * 10);
   };
 
+  const navigate = useNavigate();
+
+  const animate = () => {
+    setBounce(true)
+    
+    setTimeout(() => setBounce(false), 1000)
+  }
+
   return (
     <>
       <div className="moviePage">
         <div className="main">
+          <div className="top-nav">
+            <button onClick={() => navigate(-1)} className="back">
+              <FaLongArrowAltLeft className="back-arrow" />
+            </button>
+            <button onClick={() => {favorite(); animate()}} className={ bounce ? 'bounce' : 'favorite'}>
+              {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
+            </button>
+          </div>
           <img
             src={`https://image.tmdb.org/t/p/w780/` + res?.backdrop_path}
             alt="movie poster"
             className="main-img"
           />
           <div className="left">
-            <button onClick={() => navigate(-1)} className="back">
-              <FaLongArrowAltLeft className="back-arrow" />
-            </button>
-            <button onClick={favorite} className="favorite">
-              {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
-            </button>
             <img
               src={`https://image.tmdb.org/t/p/w780/` + res?.poster_path}
               alt="movie poster"
@@ -114,9 +132,6 @@ const MoviePage = () => {
               {res?.title}
               {res?.tagline !== null ? "" : ` - ${res?.tagline}`}
             </h2>
-            <button onClick={favorite} className="favorite">
-              {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
-            </button>
             <ul className="details">
               <li>
                 {" "}
@@ -148,9 +163,19 @@ const MoviePage = () => {
                 </a>
               </li>
             </ul>
-
             <h3>Overview</h3>
             <p>{res?.overview}</p>
+            <ul>
+              {name
+                ?.filter((items, idx) => idx < 3)
+                .map((item) => {
+                  return (
+                    <Link to={`/ActorPage/${item.id}`} className="linkName">
+                      <li className="name-badge">{item.name}</li>
+                    </Link>
+                  );
+                })}
+            </ul>
           </div>
         </div>
         <div className="whereToWatch">
@@ -252,8 +277,7 @@ const MoviePage = () => {
                             </li>
                             <li>
                               <cite>
-                                Rating:{" "}
-                                {Math.round(item?.vote_average * 10)}%
+                                Rating: {Math.round(item?.vote_average * 10)}%
                               </cite>
                             </li>
                           </ul>
@@ -270,7 +294,5 @@ const MoviePage = () => {
     </>
   );
 };
-
-
 
 export default MoviePage;

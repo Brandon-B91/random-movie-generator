@@ -87,18 +87,20 @@ const MoviePage = () => {
     <>
       <div className="moviePage">
         <div className="main">
-          <img
-            src={`https://image.tmdb.org/t/p/w500/` + res?.backdrop_path}
-            alt="movie poster"
-            className="main-img"
-          />
-          <div className="left">
+        <div className="top-nav">
             <button onClick={() => navigate(-1)} className="back">
               <FaLongArrowAltLeft className="back-arrow" />
             </button>
             <button onClick={favorite} className="favorite">
               {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
             </button>
+          </div>
+          <img
+            src={`https://image.tmdb.org/t/p/w500/` + res?.backdrop_path}
+            alt="movie poster"
+            className="main-img"
+          />
+          <div className="left">
             <img
               src={`https://image.tmdb.org/t/p/w780/` + res?.poster_path}
               alt="movie poster"

@@ -11,8 +11,8 @@ const MovieSearch = () => {
   const [search, setSearch] = useState();
   const [isActive, setActive] = useState();
   const [id, setId] = useState();
-  const [stream, setStream] = useState();
-  const [buy, setBuy] = useState();
+  const [name, setName] = useState();
+  const [actorId, setActorId] = useState();
   const [recommend, setRecommend] = useState();
 
   const handleSubmit = (e) => {
@@ -23,6 +23,7 @@ const MovieSearch = () => {
     )
       .then((response) => response.json())
       .then((response) => {
+        console.log(response)
         let search = response.results;
         let id = search[0].id;
         setId(id);
@@ -37,10 +38,7 @@ const MovieSearch = () => {
         let recommend = response["recommendations"].results;
         setRecommend(recommend);
         console.log(recommend);
-        let stream = response["watch/providers"].results.US.flatrate;
-        setStream(stream);
-        let buy = response["watch/providers"].results.US.buy;
-        setBuy(buy);
+
       });
   };
 
@@ -88,7 +86,6 @@ const MovieSearch = () => {
         ?.filter((items, idx) => idx < 10)
         .map((item) => {
           return (
-            // <div className="movie-page">
               <SwiperSlide>
                 <div className="card">
                   <Link to={`/MoviePage/${item.id}`} className="linkName">
@@ -101,50 +98,8 @@ const MovieSearch = () => {
                   </Link>
                 </div>
               </SwiperSlide>
-            // </div>
           );
         })}
-      {/* <div className="recommended">
-        <Swiper>
-          {recommend
-            ?.filter((items, idx) => idx < 5)
-            .map((item) => {
-              return (
-                <SwiperSlide>
-                  <h3>
-                    If you like {search?.[0].title} then you might like this.
-                  </h3>
-                  <div className="card">
-                    <Link to={`/MoviePage/${item.id}`} className="linkName">
-                      <img
-                        src={
-                          `https://image.tmdb.org/t/p/w500/` +
-                          item?.backdrop_path
-                        }
-                        alt="movie poster"
-                      />
-                      <h2>{item.title}</h2>
-                    </Link>
-                    <p>{item.overview}</p>
-                    <ul className="top" style={{ marginTop: "auto" }}>
-                      <li className="li1">
-                        {" "}
-                        <cite>Release Date: {search?.[0].release_date}</cite>
-                      </li>
-                      <li className="li2">
-                        {" "}
-                        <cite className="rating">
-                          Rating: <FaStar />{" "}
-                          {Math.round(search?.[0].vote_average * 10)}%
-                        </cite>``
-                      </li>
-                    </ul>
-                  </div>
-                </SwiperSlide>
-              );
-            })}
-        </Swiper>
-      </div> */}
       </Swiper>
     </div>
   );

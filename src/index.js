@@ -7,6 +7,7 @@ import TvShows from './pages/TvShows'
 import Favorites from './pages/Favorites'
 import MoviePage from './pages/MoviePage'
 import TvPage from './pages/TvPage'
+import ActorPage from './pages/ActorPage'
 import WhatsNew from './pages/WhatsNew'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
@@ -22,6 +23,7 @@ ReactDOM.render(
       <Route path="/WhatsNew" element={<WhatsNew />} /> 
       <Route path="/MoviePage/:id" element={<MoviePage />} /> 
       <Route path="/TvPage/:id" element={<TvPage />} /> 
+      <Route path="/ActorPage/:id" element={<ActorPage />} /> 
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
