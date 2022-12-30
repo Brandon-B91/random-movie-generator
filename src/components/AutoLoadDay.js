@@ -65,7 +65,7 @@ const AutoLoad = (props) => {
           .map((item) => {
             return (
               <SwiperSlide>
-                <div className="card">
+                <div className="card" key={item.id}>
                   <Link to={`/MoviePage/${item.id}`} className="linkName">
                     <img
                       src={

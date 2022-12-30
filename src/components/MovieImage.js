@@ -1,20 +1,23 @@
 import React from "react";
 import photo from "../images/photo.png";
 
+const baseUrl = ``
 
 const MovieImage = (props) => {
   return (
-    <div className={props.className}>
+    <div className={""}>
       <img
         src={
           props.item?.poster_path == null
             ? photo
-            : `https://image.tmdb.org/t/p/w500/` + props.item?.poster_path
+            : props.baseUrl + props.item?.poster_path
         }
         alt="movie poster"
+        className={props.className}
       />
     </div>
   );
 };
 
 export default MovieImage;
+

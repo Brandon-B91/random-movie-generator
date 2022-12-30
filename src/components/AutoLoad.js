@@ -63,24 +63,20 @@ const AutoLoad = (props) => {
         }}
         modules={[FreeMode, Pagination]}
       >
-        {trending
-          ?.filter((items, idx) => idx < 10)
-          .map((item) => {
-            return (
-              <SwiperSlide>
-                <div className="card">
-                  <Link to={`/MoviePage/${item.id}`} className="linkName">
-                    <img
-                      src={
-                        `https://image.tmdb.org/t/p/w500/` + item.poster_path
-                      }
-                      alt="movie poster"
-                    />
-                  </Link>
-                </div>
-              </SwiperSlide>
-            );
-          })}
+        {trending?.slice(0, 10).map((item) => {
+          return (
+            <SwiperSlide>
+              <div className="card" key={item.id}>
+                <Link to={`/MoviePage/${item.id}`} className="linkName">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/` + item.poster_path}
+                    alt="movie poster"
+                  />
+                </Link>
+              </div>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper";
 import "swiper/css";
@@ -43,8 +43,8 @@ const AutoLoadTv = () => {
     <div className="trendingList">
       <h1>Top in TV Today!</h1>
       <Swiper
-         slidesPerView={2}
-         spaceBetween={5}
+        slidesPerView={2}
+        spaceBetween={5}
         freeMode={true}
         pagination={{
           clickable: true,
@@ -65,23 +65,21 @@ const AutoLoadTv = () => {
         }}
         modules={[FreeMode, Pagination]}
       >
-      {trending
-        ?.filter((items, idx) => idx < 10)
-        .map((item) => {
+        {trending?.slice(0, 10).map((item) => {
           return (
             <SwiperSlide>
-            <div className="card">
-              <Link to={`/TvPage/${item.id}`} className="linkName">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/` + item.poster_path}
-                  alt="movie poster"
-                />
-              </Link>
-            </div>
+              <div className="card" key={item.id}>
+                <Link to={`/TvPage/${item.id}`} className="linkName">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/` + item.poster_path}
+                    alt="movie poster"
+                  />
+                </Link>
+              </div>
             </SwiperSlide>
           );
         })}
-        </Swiper>
+      </Swiper>
     </div>
   );
 };

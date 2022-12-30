@@ -15,7 +15,8 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import photo from "../images/photo.png";
-import MovieImage from "../components/ MovieImage";
+import MovieImage from "../components/MovieImage";
+import MovieBackdrop from "../components/MovieBackdrop";
 
 const MoviePage = () => {
   const [res, setRes] = useState();
@@ -125,23 +126,15 @@ const MoviePage = () => {
               {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
             </button>
           </div>
-          <img
-            src={
-              res?.backdrop_path == null
-                ? photo
-                : `https://image.tmdb.org/t/p/w780/` + res?.backdrop_path
-            }
-            alt="movie poster"
-            className="main-img"
+          <MovieBackdrop
+            item={res}
+            baseUrl={"https://image.tmdb.org/t/p/w780/"}
+            className={"main-img"}
           />
           <div className="left">
-            <img
-              src={
-                res?.poster_path == null
-                  ? photo
-                  : `https://image.tmdb.org/t/p/w780/` + res?.poster_path
-              }
-              alt="movie poster"
+            <MovieImage
+              item={res}
+              baseUrl={"https://image.tmdb.org/t/p/w780/"}
             />
           </div>
           <div className="right">
@@ -272,14 +265,18 @@ const MoviePage = () => {
             modules={[FreeMode, Pagination]}
           >
             {recommend
-              ?.filter((items, idx) => idx < 10)
+              ?.slice(0, 10)
               .map((item) => {
                 return (
                   <>
                     <SwiperSlide>
                       <div className="recommended-card" id={item.id}>
                         <Link to={`/MoviePage/${item.id}`} className="linkName">
-                          <MovieImage item={item} className={""} />
+                          <MovieImage
+                            item={item}
+                            className={""}
+                            baseUrl={"https://image.tmdb.org/t/p/w780/"}
+                          />
                         </Link>
                         <p>{item.overview}</p>
                         <div className="card-bottom">

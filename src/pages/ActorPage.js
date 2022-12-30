@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Nav from "../components/Nav";
-import MovieImage from "../components/ MovieImage";
+import MovieImage from "../components/MovieImage";
+import ActorImg from "../components/ActorImg";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper";
@@ -48,10 +49,10 @@ const ActorPage = () => {
             className="actor-main-img"
           />
           <div className="actor-left">
-            <img
-              src={ res?.profile_path == null ? photo :`https://image.tmdb.org/t/p/w500/` + res?.profile_path}
-              alt="movie poster"
-              className="actor-img"
+            <ActorImg
+              item={res}
+              baseUrl={"https://image.tmdb.org/t/p/w500/"}
+              className={"actor-img"}
             />
             <h2>{res?.name}</h2>
             <h4>Personal Info</h4>
@@ -102,7 +103,7 @@ const ActorPage = () => {
                 <SwiperSlide>
                   <div key={item.id}>
                     <Link to={`/MoviePage/${item.id}`} className="linkName">
-                      <MovieImage item={item} className="card" />
+                      <MovieImage item={item} baseUrl={"https://image.tmdb.org/t/p/w780/"}className="card" />
                     </Link>
                   </div>
                 </SwiperSlide>
@@ -139,7 +140,7 @@ const ActorPage = () => {
                 <SwiperSlide>
                   <div key={item.id}>
                     <Link to={`/TvPage/${item.id}`} className="linkName">
-                      <MovieImage item={item} className='card'/>
+                      <MovieImage item={item} baseUrl={"https://image.tmdb.org/t/p/w780/"} className="card" />
                     </Link>
                   </div>
                 </SwiperSlide>

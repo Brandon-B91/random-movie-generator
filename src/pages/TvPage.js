@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Nav from "../components/Nav";
 import { Link } from "react-router-dom";
+import MovieBackdrop from "../components/MovieBackdrop";
+import MovieImage from "../components/MovieImage";
 import {
   FaLongArrowAltLeft,
   FaHeart,
   FaRegHeart,
   FaStar,
+  FaRegStar,
   FaSms,
 } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -25,7 +28,7 @@ const MoviePage = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [total, setTotal] = useState();
   const [name, setName] = useState();
-
+  const [bounce, setBounce] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -87,27 +90,39 @@ const MoviePage = () => {
     return Math.round(res?.vote_average * 10);
   };
 
+  const animate = () => {
+    setBounce(true);
+
+    setTimeout(() => setBounce(false), 1000);
+  };
+
   return (
     <>
       <div className="moviePage">
         <div className="main">
-        <div className="top-nav">
+          <div className="top-nav">
             <button onClick={() => navigate(-1)} className="back">
               <FaLongArrowAltLeft className="back-arrow" />
             </button>
-            <button onClick={favorite} className="favorite">
+            <button
+              onClick={() => {
+                favorite();
+                animate();
+              }}
+              className={bounce ? "bounce" : "favorite"}
+            >
               {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
             </button>
           </div>
-          <img
-            src={`https://image.tmdb.org/t/p/w500/` + res?.backdrop_path}
-            alt="movie poster"
+          <MovieBackdrop
+            item={res}
+            baseUrl={"https://image.tmdb.org/t/p/w500/"}
             className="main-img"
           />
           <div className="left">
-            <img
-              src={`https://image.tmdb.org/t/p/w780/` + res?.poster_path}
-              alt="movie poster"
+            <MovieImage
+              item={res}
+              baseUrl={"https://image.tmdb.org/t/p/w780/"}
             />
           </div>
           <div className="right">
@@ -117,11 +132,12 @@ const MoviePage = () => {
             </h2>
             <ul className="details">
               <li>
-                <cite>First air date: {res?.first_air_date}</cite>
+                <cite>First air date: {res?.first_air_date == "" ? "TBD:" : res?.first_air_date }</cite>
               </li>
               <li>
-                <cite className="rating">
-                  Rating: <FaStar /> {Math.round(res?.vote_average * 10)}%
+              <cite className="rating">
+                  Rating: {rating()}%
+                  {rating() > 70 ? <FaStar /> : <FaRegStar />}
                 </cite>
               </li>
             </ul>
@@ -243,19 +259,13 @@ const MoviePage = () => {
             modules={[FreeMode, Pagination]}
           >
             {recommend
-              ?.filter((items, idx) => idx < 10)
+              ?.slice(0, 10)
               .map((item) => {
                 return (
                   <SwiperSlide>
                     <div className="recommended-card">
                       <Link to={`/TvPage/${item.id}`} className="linkName">
-                        <img
-                          src={
-                            `https://image.tmdb.org/t/p/w500/` +
-                            item?.backdrop_path
-                          }
-                          alt="movie poster"
-                        />
+                        <MovieImage item={item} baseUrl={"https://image.tmdb.org/t/p/w780/"} />
                         <h3>{item.name}</h3>
                       </Link>
                       <p>{item.overview}</p>
