@@ -19,7 +19,7 @@ const AutoLoadTv = () => {
       .then((response) => {
         let trending = response.results;
         let id = response.results
-          .filter((items, idx) => idx < 5)
+          .slice(0, 5)
           .map((item) => {
             return item.id;
           });

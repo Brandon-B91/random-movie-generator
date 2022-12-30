@@ -678,6 +678,34 @@ h4 {
   margin: 1% 3%;
 }
 
+/* Favorites page */
+
+.clear {
+  border-radius: 500px;
+  background: #121212;
+  color: #fafafa;
+  padding: 1%;
+  width:  100px;
+}
+
+.results {
+  display: flex;
+  justify-content: center;
+  margin: 5% 0;
+}
+
+.results img {
+  box-shadow: 4px 4px 8px gray;
+  border-radius: 0 16px 16px 0;
+  width: 110px;
+  height: 165px;
+}
+
+.results p {
+  height: 100px;
+  margin: 0 3%;
+}
+
 @media screen and (max-width: 600px) {
   /* Home page */
 

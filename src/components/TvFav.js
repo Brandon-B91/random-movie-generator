@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 const TvFav = () => {
   const allItems = JSON.parse(localStorage.getItem("arrObjectTv"));
 
-  const clearTv = () => {
+  const clearTv = (e) => {
+    e.preventDefault()
     localStorage.removeItem("arrObjectTv");
     window.location.reload(false);
   };
@@ -31,7 +32,7 @@ const TvFav = () => {
                   </Link>
                   <div className="body">
                     <h3>{item.name}</h3>
-                    <p>{item.overview}</p>
+                    <p>{item.overview.slice(0, 200)}...</p>
                   </div>
                 </div>
               </>

@@ -41,12 +41,12 @@ const MoviePage = () => {
         console.log(response);
         const res = response;
         setRes(res);
+        let name = response.credits.cast;
+        setName(name);
         let stream = response["watch/providers"].results.US.flatrate;
         setStream(stream);
         let buy = response["watch/providers"].results.US.buy;
         setBuy(buy);
-        let name = response.credits.cast;
-        setName(name);
         let recommend = response["recommendations"].results;
         setRecommend(recommend);
         let data = JSON.parse(localStorage.getItem("arrObjectTv"));

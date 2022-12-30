@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 const Moviefav = () => {
   const allItems = JSON.parse(localStorage.getItem("arrObject"));
 
-  const clearMovies = () => {
+  const clearMovies = (e) => {
+    e.preventDefault()
     localStorage.removeItem("arrObject");
     window.location.reload(false);
   };
@@ -31,7 +32,7 @@ const Moviefav = () => {
                   </Link>
                   <div className="body">
                     <h3>{item.name}</h3>
-                    <p>{item.overview}</p>
+                    <p>{item.overview.slice(0, 200)}...</p>
                   </div>
                 </div>
               </>

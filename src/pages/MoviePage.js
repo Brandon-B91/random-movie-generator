@@ -14,7 +14,6 @@ import { FreeMode, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-import photo from "../images/photo.png";
 import MovieImage from "../components/MovieImage";
 import MovieBackdrop from "../components/MovieBackdrop";
 
