@@ -24,12 +24,14 @@ const MoviePage = () => {
   const [recommend, setRecommend] = useState();
   const [isFavorite, setIsFavorite] = useState(false);
   const [total, setTotal] = useState();
+  const [name, setName] = useState();
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsFavorite(false);
     fetch(
-      `https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations`
+      `https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations,credits`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -40,6 +42,8 @@ const MoviePage = () => {
         setStream(stream);
         let buy = response["watch/providers"].results.US.buy;
         setBuy(buy);
+        let name = response.credits.cast;
+        setName(name);
         let recommend = response["recommendations"].results;
         setRecommend(recommend);
         let data = JSON.parse(localStorage.getItem("arrObjectTv"));
@@ -149,6 +153,19 @@ const MoviePage = () => {
             </ul>
             <h3>Overview</h3>
             <p>{res?.overview}</p>
+            <ul className="name-badge-list">
+              {name?.slice(0, 3).map((item) => {
+                return (
+                  <Link
+                    to={`/ActorPage/${item.id}`}
+                    className="linkName"
+                    key={item.id}
+                  >
+                    <li className="name-badge">{item.name}</li>
+                  </Link>
+                );
+              })}
+            </ul>
           </div>
         </div>
         <div className="whereToWatch">

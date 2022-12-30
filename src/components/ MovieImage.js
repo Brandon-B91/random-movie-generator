@@ -4,7 +4,7 @@ import photo from "../images/photo.png";
 
 const MovieImage = (props) => {
   return (
-    <div className="card">
+    <div className={props.className}>
       <img
         src={
           props.item?.poster_path == null
@@ -13,8 +13,6 @@ const MovieImage = (props) => {
         }
         alt="movie poster"
       />
-
-      {/* <img src={`https://image.tmdb.org/t/p/w500/` + props.item?.poster_path} alt="hi" /> */}
     </div>
   );
 };

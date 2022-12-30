@@ -257,15 +257,16 @@ button.bounce {
 .main {
   display: flex;
   margin: 0 auto;
+  position: relative;
 }
 
 .main-img {
   position: absolute;
   filter: opacity(90%) grayscale(70%) blur(1px) brightness(70%);
   max-width: 1600px;
-  width: 100%;
+  width: 100vw;
+  height: 460px;
   z-index: 0;
-  max-height: 500px;
 }
 
 .left,
@@ -346,19 +347,19 @@ h4 {
 
 .name-badge-list {
   padding: 5% 0;
- display: flex;
- align-items: center;
- justify-content: space-evenly;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-evenly;
 }
 
 .name-badge {
   background: #121212;
   color: #fafafa;
-  width: 120%;
+  width: 110%;
   padding: 3%;
   text-align: center;
   border-radius: 500px;
-  font-size: .8rem;
+  font-size: 0.8rem;
   transition: all 0.4s;
 }
 
@@ -407,7 +408,7 @@ h4 {
 .recommended-card {
   width: 90%;
   margin: 3% auto;
-  height: 400px;
+  min-height: 500px;
   border: 1px solid black;
   border-radius: 16px;
   background: #121212;
@@ -415,7 +416,6 @@ h4 {
   position: relative;
   margin-bottom: 40px;
   box-shadow: 4px 4px 8px gray;
-  font-size: 100%;
 }
 
 .recommended-card h3 {
@@ -425,11 +425,13 @@ h4 {
 .recommended-card img {
   width: 100%;
   border-radius: 16px 16px 0 0;
+  object-fit: contain;
 }
 
 .recommended-card p {
   height: 100px;
   overflow: hidden;
+  margin-bottom: 10%;
 }
 
 .recommended cite {
@@ -641,7 +643,6 @@ h4 {
   text-align: center;
 }
 
-
 .actor-body .card {
   margin-left: 5%;
   height: 400px;
@@ -655,11 +656,11 @@ h4 {
   display: flex;
 }
 
-.actor-bottom-right, .actor-bottom-left {
+.actor-bottom-right,
+.actor-bottom-left {
   width: 50%;
   border-left: 1px solid black;
 }
-
 
 .movie-list {
   border-bottom: 1px solid #121212;
@@ -678,7 +679,6 @@ h4 {
 }
 
 @media screen and (max-width: 600px) {
-
   /* Home page */
 
   .main {
@@ -776,7 +776,8 @@ h4 {
     margin: 5% auto;
   }
 
-  .actor-left ul, .actor-left h4 {
+  .actor-left ul,
+  .actor-left h4 {
     margin-right: auto;
     margin-top: 2%;
   }
@@ -791,16 +792,16 @@ h4 {
     height: auto;
   }
 
-  .actor-bottom  {
+  .actor-bottom {
     display: flex;
     flex-direction: column;
   }
 
-  .actor-bottom-left, .actor-bottom-right{
+  .actor-bottom-left,
+  .actor-bottom-right {
     width: 100%;
     margin-bottom: 5%;
   }
-
 }
 
 /* key frames */

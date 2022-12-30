@@ -102,7 +102,7 @@ const ActorPage = () => {
                 <SwiperSlide>
                   <div key={item.id}>
                     <Link to={`/MoviePage/${item.id}`} className="linkName">
-                      <MovieImage item={item} />
+                      <MovieImage item={item} className="card" />
                     </Link>
                   </div>
                 </SwiperSlide>
@@ -139,7 +139,7 @@ const ActorPage = () => {
                 <SwiperSlide>
                   <div key={item.id}>
                     <Link to={`/TvPage/${item.id}`} className="linkName">
-                      <MovieImage item={item} />
+                      <MovieImage item={item} className='card'/>
                     </Link>
                   </div>
                 </SwiperSlide>

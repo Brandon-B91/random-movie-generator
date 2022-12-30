@@ -15,6 +15,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import photo from "../images/photo.png";
+import MovieImage from "../components/ MovieImage";
 
 const MoviePage = () => {
   const [res, setRes] = useState();
@@ -184,7 +185,11 @@ const MoviePage = () => {
             <ul className="name-badge-list">
               {name?.slice(0, 3).map((item) => {
                 return (
-                  <Link to={`/ActorPage/${item.id}`} className="linkName" key={item.id}>
+                  <Link
+                    to={`/ActorPage/${item.id}`}
+                    className="linkName"
+                    key={item.id}
+                  >
                     <li className="name-badge">{item.name}</li>
                   </Link>
                 );
@@ -274,16 +279,7 @@ const MoviePage = () => {
                     <SwiperSlide>
                       <div className="recommended-card" id={item.id}>
                         <Link to={`/MoviePage/${item.id}`} className="linkName">
-                          <img
-                            src={
-                              item.poster_path == null
-                                ? photo
-                                : `https://image.tmdb.org/t/p/w500/` +
-                                  item.poster_path
-                            }
-                            alt="movie poster"
-                          />
-                          <h3>{item.title}</h3>
+                          <MovieImage item={item} className={""} />
                         </Link>
                         <p>{item.overview}</p>
                         <div className="card-bottom">
