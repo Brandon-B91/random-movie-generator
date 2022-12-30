@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import MovieImage from "./MovieImage";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper";
 import "swiper/css";
@@ -19,7 +20,7 @@ const AutoLoad = (props) => {
       .then((response) => {
         let trending = response.results;
         let id = response.results
-          .filter((items, idx) => idx < 5)
+          .slice(0, 5)
           .map((item) => {
             return item.id;
           });
@@ -30,11 +31,7 @@ const AutoLoad = (props) => {
         https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=f79df266a37e366257a09e6b64a14de9`);
       })
       .then((response) => response.json())
-      .then((response) => {
-        let stream = response.results.US.flatrate;
-        let buy = response.results.US.buy;
-        setValue(value);
-      });
+      .then((response) => {});
   }, []);
 
   return (
@@ -68,9 +65,9 @@ const AutoLoad = (props) => {
             <SwiperSlide>
               <div className="card" key={item.id}>
                 <Link to={`/MoviePage/${item.id}`} className="linkName">
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/` + item.poster_path}
-                    alt="movie poster"
+                  <MovieImage
+                    item={item}
+                    baseUrl={"https://image.tmdb.org/t/p/w500/"}
                   />
                 </Link>
               </div>

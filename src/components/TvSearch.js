@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+import MovieImage from "./MovieImage";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper";
 import "swiper/css";
@@ -12,9 +13,6 @@ const TvSearch = () => {
   const [search, setSearch] = useState();
   const [isActive, setActive] = useState();
   const [id, setId] = useState();
-  const [network, setNetwork] = useState();
-  const [season, setSeasons] = useState();
-  const [recommend, setRecommend] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,12 +35,6 @@ const TvSearch = () => {
       .then((response) => response.json())
       .then((response) => {
         console.log(response);
-        let recommend = response["recommendations"].results;
-        setRecommend(recommend);
-        let network = response.networks;
-        let season = response.seasons.length;
-        setNetwork(network);
-        setSeasons(season);
       });
   };
 
@@ -89,13 +81,12 @@ const TvSearch = () => {
         {search?.slice(0, 10).map((item) => {
           return (
             <SwiperSlide>
-              <div className="card">
+              <div>
                 <Link to={`/TvPage/${item.id}`} className="linkName">
-                  <img
-                    src={
-                      `https://image.tmdb.org/t/p/original/` + item?.poster_path
-                    }
-                    alt="movie poster"
+                  <MovieImage
+                    item={item}
+                    baseUrl={"https://image.tmdb.org/t/p/w500/"}
+                    className={"card"}
                   />
                 </Link>
               </div>

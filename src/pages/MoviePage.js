@@ -45,7 +45,7 @@ const MoviePage = () => {
         let name = response.credits.cast;
         setName(name);
         let actorId = response.credits.cast
-          .filter((items, idx) => idx < 3)
+          .slice(0, 3)
           .map((item) => {
             return item.id;
           });

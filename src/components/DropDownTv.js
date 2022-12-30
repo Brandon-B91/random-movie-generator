@@ -90,55 +90,32 @@ const DropDownTv = (props) => {
                   : data?.results?.[currentResult].original_name}
               </h2>
             </Link>
-            <ul className="top">
-              <li className="li1">
-                {" "}
-                <cite>
-                  Release Date: {data?.results?.[currentResult].first_air_date}
-                </cite>
-              </li>
-              <li className="li2">
-                {" "}
-                <cite className="rating">
-                  Rating: <FaStar />{" "}
-                  {Math.round(data?.results?.[currentResult].vote_average) * 10}
-                  %
-                </cite>
-              </li>
-            </ul>
             <h3>Overview</h3>
             <p>
               {data?.results?.[currentResult].overview
                 ? data?.results?.[currentResult].overview
                 : "No overview available"}
             </p>
-            {/* <div className="whereToWatch">
-            <h4>Where to Stream...</h4>
-            <ul className="whereToWatchList">
-              {network?.length > 0
-                ? network?.map((item) => {
-                    return (
-                      <li key={item.id} className="badge">
-                        {item.name}
-                      </li>
-                    );
-                  })
-                : "No streams available"}
-              <cite
-                style={{
-                  marginTop: "5%",
-                  marginLeft: "auto",
-                  color: "white",
-                }}
-              >
-                Powered by JustWatch
-              </cite>
-            </ul>
-          </div>
-          <div className="whereToBuy">
-            <h4>Seasons</h4>
-            <p>{season}</p>
-          </div> */}
+            <div className="card-bottom">
+              <ul>
+                <li>
+                  {" "}
+                  <cite>
+                    Release Date:{" "}
+                    {data?.results?.[currentResult].first_air_date}
+                  </cite>
+                </li>
+                <li>
+                  {" "}
+                  <cite className="rating">
+                    Rating: <FaStar />{" "}
+                    {Math.round(data?.results?.[currentResult].vote_average) *
+                      10}
+                    %
+                  </cite>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       )}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import MovieImage from "./MovieImage";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper";
 import "swiper/css";
@@ -9,8 +10,6 @@ import "swiper/css/pagination";
 const AutoLoadTv = () => {
   const [trending, setTrending] = useState();
   const [id, setId] = useState();
-  const [season, setSeasons] = useState();
-  const [network, setNetwork] = useState();
 
   useEffect(() => {
     const auto = fetch(
@@ -20,7 +19,7 @@ const AutoLoadTv = () => {
       .then((response) => {
         let trending = response.results;
         let id = response.results
-          .filter((items, idx) => idx < 5)
+          .slice(0, 5)
           .map((item) => {
             return item.id;
           });
@@ -32,10 +31,6 @@ const AutoLoadTv = () => {
       })
       .then((response) => response.json())
       .then((response) => {
-        let network = response.networks;
-        let season = response.seasons.length;
-        setNetwork(network);
-        setSeasons(season);
       });
   }, []);
 
@@ -70,10 +65,7 @@ const AutoLoadTv = () => {
             <SwiperSlide>
               <div className="card" key={item.id}>
                 <Link to={`/TvPage/${item.id}`} className="linkName">
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/` + item.poster_path}
-                    alt="movie poster"
-                  />
+                <MovieImage item={item} baseUrl={"https://image.tmdb.org/t/p/w500/"} />
                 </Link>
               </div>
             </SwiperSlide>

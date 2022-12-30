@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import MovieImage from "./MovieImage";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper";
 import "swiper/css";
@@ -9,7 +10,6 @@ import "swiper/css/pagination";
 const AutoLoad = (props) => {
   const [trending, setTrending] = useState();
   const [id, setId] = useState();
-  const [value, setValue] = useState();
 
   useEffect(() => {
     const auto = fetch(`
@@ -29,9 +29,7 @@ const AutoLoad = (props) => {
         );
       })
       .then((response) => response.json())
-      .then((response) => {
-        setValue(value);
-      });
+      .then((response) => {});
   }, []);
 
   return (
@@ -61,17 +59,15 @@ const AutoLoad = (props) => {
         modules={[FreeMode, Pagination]}
       >
         {trending
-          ?.filter((items, idx) => idx < 10)
+          ?.slice(0, 10)
           .map((item) => {
             return (
               <SwiperSlide>
                 <div className="card" key={item.id}>
                   <Link to={`/MoviePage/${item.id}`} className="linkName">
-                    <img
-                      src={
-                        `https://image.tmdb.org/t/p/w500/` + item?.poster_path
-                      }
-                      alt="movie poster"
+                    <MovieImage
+                      item={item}
+                      baseUrl={"https://image.tmdb.org/t/p/w500/"}
                     />
                   </Link>
                 </div>

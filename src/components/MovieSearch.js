@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {  FaSearch } from "react-icons/fa";
+import MovieImage from "./MovieImage";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper";
 import "swiper/css";
@@ -13,8 +14,6 @@ const MovieSearch = () => {
   const [isActive, setActive] = useState();
   const [id, setId] = useState();
   const [name, setName] = useState();
-  const [actorId, setActorId] = useState();
-  const [recommend, setRecommend] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,10 +35,6 @@ const MovieSearch = () => {
       .then((response) => response.json())
       .then((response) => {
         console.log(response);
-        let recommend = response["recommendations"].results;
-        setRecommend(recommend);
-        console.log(recommend);
-
       });
   };
 
@@ -88,14 +83,9 @@ const MovieSearch = () => {
         .map((item) => {
           return (
               <SwiperSlide>
-                <div className="card">
+                <div>
                   <Link to={`/MoviePage/${item.id}`} className="linkName">
-                    <img
-                      src={
-                        `https://image.tmdb.org/t/p/w500/` + item?.poster_path
-                      }
-                      alt="No Image available"
-                    />
+                    <MovieImage item={item} baseUrl={"https://image.tmdb.org/t/p/w500/"} className={"card"} />
                   </Link>
                 </div>
               </SwiperSlide>
