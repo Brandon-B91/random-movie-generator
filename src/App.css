@@ -168,7 +168,7 @@ input:checked + span:after {
 .card:hover {
   cursor: pointer;
   transform: scale(1.05);
-  box-shadow: 6px 6px 10px gray;
+  box-shadow: 8px 8px 10px gray;
 }
 
 .card img {
@@ -176,7 +176,7 @@ input:checked + span:after {
   height: 100%;
   max-width: 1400px;
   border-radius: 16px;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .card h2 {
@@ -231,6 +231,11 @@ input:checked + span:after {
   border-radius: 50%;
   font-size: 20px;
   transform: all 0.4s;
+}
+
+.favorite:hover {
+  transform: translateY(-1px);
+  box-shadow: 4px 4px 8px gray;
 }
 
 button.bounce {
@@ -339,6 +344,30 @@ h4 {
   display: inline;
 }
 
+.name-badge-list {
+  padding: 5% 0;
+ display: flex;
+ align-items: center;
+ justify-content: space-evenly;
+}
+
+.name-badge {
+  background: #121212;
+  color: #fafafa;
+  width: 120%;
+  padding: 3%;
+  text-align: center;
+  border-radius: 500px;
+  font-size: .8rem;
+  transition: all 0.4s;
+}
+
+.name-badge:hover {
+  background: #fafafa;
+  color: #121212;
+  transform: translateY(-5px);
+}
+
 .whereToBuyList,
 .whereToWatchList {
   margin-left: 2%;
@@ -367,23 +396,6 @@ h4 {
   color: #121212;
   font-size: 0.7rem;
   margin: 0.5%;
-}
-
-.name-badge {
-  background: #121212;
-  display: inline-block;
-  padding: 0.5% 2%;
-  border-radius: 16px;
-  color: #fafafa;
-  font-size: 0.8rem;
-  margin: 0 4% 1% 4%;
-  transition: all 0.4s;
-}
-
-.name-badge:hover {
-  background: #fafafa;
-  color: #121212;
-  transform: translateY(-5px);
 }
 
 /* Recommended section */
@@ -575,7 +587,7 @@ h4 {
 
 .actor-main-img {
   position: absolute;
-  filter: opacity(90%) grayscale(70%) blur(1px) brightness(70%);
+  filter: opacity(100%) grayscale(70%) blur(7px) brightness(60%);
   max-width: 1600px;
   width: 100%;
   z-index: 1;
@@ -620,19 +632,19 @@ h4 {
 
 .actor-body {
   width: 100vw;
-  margin-top: 5%;
+  margin-top: 10%;
   color: #121212;
+  margin-bottom: 25px;
 }
 
 .actor-body h4 {
   text-align: center;
 }
 
-.actor-body {
-  margin-bottom: 25px;
-}
 
 .actor-body .card {
+  margin-left: 5%;
+  height: 400px;
   margin-bottom: 50px;
 }
 
@@ -666,6 +678,9 @@ h4 {
 }
 
 @media screen and (max-width: 600px) {
+
+  /* Home page */
+
   .main {
     display: flex;
     flex-direction: column;
@@ -702,6 +717,7 @@ h4 {
 
   .right {
     color: #121212;
+    height: auto;
   }
 
   .right a {
@@ -712,6 +728,10 @@ h4 {
     padding-top: 1%;
     width: 70%;
     margin-bottom: 5%;
+  }
+
+  .searchStyle button {
+    top: 10%;
   }
 
   .movieContainer {
@@ -730,8 +750,57 @@ h4 {
   }
 
   .dropDownStyle {
+    padding-top: 5%;
     width: 70%;
+    margin-bottom: 5%;
   }
+
+  .dropDownStyle button {
+    top: 0;
+    height: 40px;
+  }
+
+  /* Actor page */
+
+  .actor-main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .actor-left {
+    width: 100%;
+  }
+
+  .actor-left img {
+    margin-bottom: 5%;
+    margin: 5% auto;
+  }
+
+  .actor-left ul, .actor-left h4 {
+    margin-right: auto;
+    margin-top: 2%;
+  }
+
+  .actor-right {
+    width: 100%;
+    color: #121212;
+    margin-top: 15%;
+  }
+
+  .actor-right p {
+    height: auto;
+  }
+
+  .actor-bottom  {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .actor-bottom-left, .actor-bottom-right{
+    width: 100%;
+    margin-bottom: 5%;
+  }
+
 }
 
 /* key frames */

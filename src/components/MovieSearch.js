@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaStar, FaRegHeart, FaHeart, FaSearch, FaVest } from "react-icons/fa";
+import {  FaSearch } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
+
 const MovieSearch = () => {
   const [inputValue, setInputValue] = useState("");
   const [search, setSearch] = useState();
@@ -83,7 +84,7 @@ const MovieSearch = () => {
         modules={[FreeMode, Pagination]}
       >
       {search
-        ?.filter((items, idx) => idx < 10)
+        ?.slice(0, 10)
         .map((item) => {
           return (
               <SwiperSlide>

@@ -66,7 +66,7 @@ const DropDown = () => {
               <img
                 src={
                   `https://image.tmdb.org/t/p/original/` +
-                  data?.results?.[currentResult].poster_path
+                  data?.results?.[currentResult].poster_path  
                 }
                 alt="movie poster"
               />

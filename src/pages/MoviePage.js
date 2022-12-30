@@ -14,6 +14,7 @@ import { FreeMode, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
+import photo from "../images/photo.png";
 
 const MoviePage = () => {
   const [res, setRes] = useState();
@@ -26,7 +27,7 @@ const MoviePage = () => {
   const [recommend, setRecommend] = useState();
   const [isFavorite, setIsFavorite] = useState(false);
   const [total, setTotal] = useState();
-  const [bounce, setBounce] = useState(false)
+  const [bounce, setBounce] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -41,11 +42,12 @@ const MoviePage = () => {
         setRes(res);
         let name = response.credits.cast;
         setName(name);
-        let actorId = response.credits.cast.filter((items, idx) => idx < 3)
-        .map((item) => {
-          return item.id;
-        });
-        setActorId(actorId)
+        let actorId = response.credits.cast
+          .filter((items, idx) => idx < 3)
+          .map((item) => {
+            return item.id;
+          });
+        setActorId(actorId);
         let stream = response["watch/providers"].results.US.flatrate;
         setStream(stream);
         let buy = response["watch/providers"].results.US.buy;
@@ -81,7 +83,7 @@ const MoviePage = () => {
       };
       arrObject.push(arrObj);
       localStorage.setItem("arrObject", JSON.stringify(arrObject));
-    } 
+    }
     //  else if (!newFavoriteState) {
     //     let removeData = JSON.parse(localStorage.getItem('arrObject'))
     //     for(let i = 0; i < removeData.length; i++){
@@ -99,10 +101,10 @@ const MoviePage = () => {
   const navigate = useNavigate();
 
   const animate = () => {
-    setBounce(true)
-    
-    setTimeout(() => setBounce(false), 1000)
-  }
+    setBounce(true);
+
+    setTimeout(() => setBounce(false), 1000);
+  };
 
   return (
     <>
@@ -112,18 +114,32 @@ const MoviePage = () => {
             <button onClick={() => navigate(-1)} className="back">
               <FaLongArrowAltLeft className="back-arrow" />
             </button>
-            <button onClick={() => {favorite(); animate()}} className={ bounce ? 'bounce' : 'favorite'}>
+            <button
+              onClick={() => {
+                favorite();
+                animate();
+              }}
+              className={bounce ? "bounce" : "favorite"}
+            >
               {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
             </button>
           </div>
           <img
-            src={`https://image.tmdb.org/t/p/w780/` + res?.backdrop_path}
+            src={
+              res?.backdrop_path == null
+                ? photo
+                : `https://image.tmdb.org/t/p/w780/` + res?.backdrop_path
+            }
             alt="movie poster"
             className="main-img"
           />
           <div className="left">
             <img
-              src={`https://image.tmdb.org/t/p/w780/` + res?.poster_path}
+              src={
+                res?.poster_path == null
+                  ? photo
+                  : `https://image.tmdb.org/t/p/w780/` + res?.poster_path
+              }
               alt="movie poster"
             />
           </div>
@@ -165,16 +181,14 @@ const MoviePage = () => {
             </ul>
             <h3>Overview</h3>
             <p>{res?.overview}</p>
-            <ul>
-              {name
-                ?.filter((items, idx) => idx < 3)
-                .map((item) => {
-                  return (
-                    <Link to={`/ActorPage/${item.id}`} className="linkName">
-                      <li className="name-badge">{item.name}</li>
-                    </Link>
-                  );
-                })}
+            <ul className="name-badge-list">
+              {name?.slice(0, 3).map((item) => {
+                return (
+                  <Link to={`/ActorPage/${item.id}`} className="linkName" key={item.id}>
+                    <li className="name-badge">{item.name}</li>
+                  </Link>
+                );
+              })}
             </ul>
           </div>
         </div>
@@ -262,8 +276,10 @@ const MoviePage = () => {
                         <Link to={`/MoviePage/${item.id}`} className="linkName">
                           <img
                             src={
-                              `https://image.tmdb.org/t/p/w500/` +
-                              item?.backdrop_path
+                              item.poster_path == null
+                                ? photo
+                                : `https://image.tmdb.org/t/p/w500/` +
+                                  item.poster_path
                             }
                             alt="movie poster"
                           />
