@@ -46,14 +46,14 @@ const MoviePage = (props) => {
         setRecommend(recommend);
         let title = response.name
         setTitle(title)
-        let data = JSON.parse(localStorage.getItem("arrObjectTv"));
-        for (let i = 0; i < data.length; i++) {
-          setTimeout(() => {
-            if (data[i].name === res.name) {
-              setIsFavorite(!isFavorite);
-            }
-          }, 200);
-        }
+        // let data = JSON.parse(localStorage.getItem("arrObjectTv"));
+        // for (let i = 0; i < data.length; i++) {
+        //   setTimeout(() => {
+        //     if (data[i].name === res.name) {
+        //       setIsFavorite(!isFavorite);
+        //     }
+        //   }, 200);
+        // }
       });
   }, [params.id]);
 
@@ -73,7 +73,7 @@ const MoviePage = (props) => {
     <>
       <div className="moviePage">
         <div className="main">
-          <TopNavTv res={res} id={id} />
+          <TopNavTv res={res} id={id} name={title} />
           <MovieBackdrop
             item={res}
             baseUrl={"https://image.tmdb.org/t/p/w500/"}

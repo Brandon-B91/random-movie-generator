@@ -724,10 +724,14 @@ h4 {
   width:  100px;
 }
 
+.tv-results {
+  margin-bottom: 20%;
+}
+
 .results {
   display: flex;
   justify-content: center;
-  margin: 5% 0;
+  margin: 2% 0;
 }
 
 .results img {
