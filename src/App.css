@@ -726,6 +726,7 @@ h4 {
 
 .tv-results {
   margin-bottom: 20%;
+  position: relative;
 }
 
 .results {
@@ -744,6 +745,20 @@ h4 {
 .results p {
   height: 100px;
   margin: 0 3%;
+}
+
+.results button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 25px;
+  width: 25px;
+  outline: none;
+  border: none;
+  background: #ff2a04;
+  color: #fafafa;
+  border-radius: 50%;
+  padding: 1%;
 }
 
 @media screen and (max-width: 600px) {
