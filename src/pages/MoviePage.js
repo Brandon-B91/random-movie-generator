@@ -55,12 +55,12 @@ const MoviePage = () => {
         setReview(review);
         let title = response.title
         setTitle(title)
-        let data = JSON.parse(localStorage.getItem("arrObject"));
-        for (let i = 0; i < data.length; i++) {
-          if (data[i].name === res.title) {
-            setIsFavorite(!isFavorite);
-          }
-        }
+        // let data = JSON.parse(localStorage.getItem("arrObject"));
+        // for (let i = 0; i < data.length; i++) {
+        //   if (data[i].name === res.title) {
+        //     setIsFavorite(!isFavorite);
+        //   }
+        // }
       });
   }, [params.id]);
 

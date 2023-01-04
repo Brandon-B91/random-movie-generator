@@ -17,7 +17,6 @@ const TvFav = (props) => {
     <div className="movieTvFav">
       <h2>Tv Favorites!</h2>
       <div className="tv-results">
-
         {keys !== null ? (
           keys.map((item) => {
             let id = item[1];
