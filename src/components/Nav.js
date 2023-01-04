@@ -10,7 +10,6 @@ const Nav = () => {
             <NavLink to="/Movies" className="link" activeClassName="active"><GiVhs className="icon" /> Movies</NavLink>
             <NavLink to="/TvShows" className="link" activeClassName="active"><FaTv className="icon" /> Tv Shows</NavLink>
             <NavLink to="/Favorites" className="link" activeClassName="active">{localStorage.getItem("arrObject") == null && localStorage.getItem('arrObjectTv') == null ? <FaRegHeart className='icon' /> : <FaHeart className='icon' /> } Favorites </NavLink>
-            
         </div>
     )
 }

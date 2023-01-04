@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Nav from "../components/Nav";
-import {
-  FaLongArrowAltLeft,
-  FaHeart,
-  FaRegHeart,
-  FaRegStar,
-  FaStar,
-  FaSms,
-} from "react-icons/fa";
+import { FaPlus, FaRegStar, FaStar, FaSms } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper";
 import "swiper/css";
@@ -16,6 +9,7 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import MovieImage from "../components/MovieImage";
 import MovieBackdrop from "../components/MovieBackdrop";
+import TopNav from "../components/TopNav";
 
 const MoviePage = () => {
   const [res, setRes] = useState();
@@ -29,12 +23,14 @@ const MoviePage = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [total, setTotal] = useState();
   const [bounce, setBounce] = useState(false);
+  const [review, setReview] = useState();
+  const [title, setTitle] = useState();
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsFavorite(false);
     fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations,credits`
+      `https://api.themoviedb.org/3/movie/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations,credits,reviews,videos,now_playing`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -43,11 +39,9 @@ const MoviePage = () => {
         setRes(res);
         let name = response.credits.cast;
         setName(name);
-        let actorId = response.credits.cast
-          .slice(0, 3)
-          .map((item) => {
-            return item.id;
-          });
+        let actorId = response.credits.cast.slice(0, 3).map((item) => {
+          return item.id;
+        });
         setActorId(actorId);
         let stream = response["watch/providers"].results.US.flatrate;
         setStream(stream);
@@ -57,6 +51,10 @@ const MoviePage = () => {
         setRecommend(recommend);
         let total = response["recommendations"].total_results;
         setTotal(total);
+        let review = response.reviews.results;
+        setReview(review);
+        let title = response.title
+        setTitle(title)
         let data = JSON.parse(localStorage.getItem("arrObject"));
         for (let i = 0; i < data.length; i++) {
           if (data[i].name === res.title) {
@@ -66,65 +64,15 @@ const MoviePage = () => {
       });
   }, [params.id]);
 
-  const favorite = () => {
-    const newFavoriteState = !isFavorite;
-    setIsFavorite(newFavoriteState);
-    if (newFavoriteState) {
-      let arrObject = [];
-      if (
-        localStorage.getItem("arrObject") &&
-        localStorage.getItem("arrObject").length > 0
-      )
-        arrObject = JSON.parse(localStorage.getItem("arrObject"));
-      let arrObj = {
-        name: res.title,
-        id: res.id,
-        img: res.poster_path,
-        overview: res.overview,
-      };
-      arrObject.push(arrObj);
-      localStorage.setItem("arrObject", JSON.stringify(arrObject));
-    }
-    //  else if (!newFavoriteState) {
-    //     let removeData = JSON.parse(localStorage.getItem('arrObject'))
-    //     for(let i = 0; i < removeData.length; i++){
-    //     if(data[i].name === res.title) {
-    //       localStorage.removeItem()
-    //     }
-    //   }
-    // }
-  };
-
   const rating = () => {
     return Math.round(res?.vote_average * 10);
-  };
-
-  const navigate = useNavigate();
-
-  const animate = () => {
-    setBounce(true);
-
-    setTimeout(() => setBounce(false), 1000);
   };
 
   return (
     <>
       <div className="moviePage">
         <div className="main">
-          <div className="top-nav">
-            <button onClick={() => navigate(-1)} className="back">
-              <FaLongArrowAltLeft className="back-arrow" />
-            </button>
-            <button
-              onClick={() => {
-                favorite();
-                animate();
-              }}
-              className={bounce ? "bounce" : "favorite"}
-            >
-              {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
-            </button>
-          </div>
+          <TopNav res={res} />
           <MovieBackdrop
             item={res}
             baseUrl={"https://image.tmdb.org/t/p/w780/"}
@@ -150,7 +98,7 @@ const MoviePage = () => {
                 {" "}
                 <cite className="rating">
                   Rating: {rating()}%
-                  {rating() > 70 ? <FaStar /> : <FaRegStar />}
+                  {rating() >= 70 ? <FaStar /> : <FaRegStar />}
                 </cite>
               </li>
             </ul>
@@ -174,6 +122,7 @@ const MoviePage = () => {
             </ul>
             <h3>Overview</h3>
             <p>{res?.overview}</p>
+            <h3>Cast</h3>
             <ul className="name-badge-list">
               {name?.slice(0, 3).map((item) => {
                 return (
@@ -189,6 +138,22 @@ const MoviePage = () => {
             </ul>
           </div>
         </div>
+        <h4>Reviews!</h4>
+        {review?.slice(0, 3).map((item) => {
+          return (
+            <div className="review" key={item.id}>
+              <div className="review-head">
+                <div className="review-head-left">
+                  <span>+</span>
+                </div>
+                <div className="review-head-right">
+                  {item.author} <br />
+                </div>
+              </div>
+              <div className="review-body">{item.content}</div>
+            </div>
+          );
+        })}
         <div className="whereToWatch">
           <h4>Where to Stream...</h4>
           <ul className="whereToWatchList">
@@ -263,38 +228,41 @@ const MoviePage = () => {
             }}
             modules={[FreeMode, Pagination]}
           >
-            {recommend
-              ?.slice(0, 10)
-              .map((item) => {
-                return (
-                  <>
-                    <SwiperSlide>
-                      <div className="recommended-card" id={item.id}>
-                        <Link to={`/MoviePage/${item.id}`} className="linkName">
-                          <MovieImage
-                            item={item}
-                            className={""}
-                            baseUrl={"https://image.tmdb.org/t/p/w780/"}
-                          />
-                        </Link>
-                        <p>{item.overview}</p>
-                        <div className="card-bottom">
-                          <ul>
-                            <li>
-                              <cite>Release Date: {res?.release_date}</cite>
-                            </li>
-                            <li>
-                              <cite>
-                                Rating: {Math.round(item?.vote_average * 10)}%
-                              </cite>
-                            </li>
-                          </ul>
-                        </div>
+            {recommend?.slice(0, 10).map((item) => {
+              return (
+                <>
+                  <SwiperSlide>
+                    <div className="recommended-card" id={item.id}>
+                      <Link to={`/MoviePage/${item.id}`} className="linkName">
+                        <MovieImage
+                          item={item}
+                          className={""}
+                          baseUrl={"https://image.tmdb.org/t/p/w780/"}
+                        />
+                      </Link>
+                      <p>{item.overview}</p>
+                      <div className="card-bottom">
+                        <ul>
+                          <li>
+                            <cite>Release Date: {res?.release_date}</cite>
+                          </li>
+                          <li>
+                            <cite>
+                              Rating: {Math.round(item?.vote_average * 10)}%{" "}
+                              {Math.round(item?.vote_average * 10) > 70 ? (
+                                <FaStar />
+                              ) : (
+                                <FaRegStar />
+                              )}
+                            </cite>
+                          </li>
+                        </ul>
                       </div>
-                    </SwiperSlide>
-                  </>
-                );
-              })}
+                    </div>
+                  </SwiperSlide>
+                </>
+              );
+            })}
           </Swiper>
         </div>
       </div>

@@ -4,21 +4,15 @@ import Nav from "../components/Nav";
 import { Link } from "react-router-dom";
 import MovieBackdrop from "../components/MovieBackdrop";
 import MovieImage from "../components/MovieImage";
-import {
-  FaLongArrowAltLeft,
-  FaHeart,
-  FaRegHeart,
-  FaStar,
-  FaRegStar,
-  FaSms,
-} from "react-icons/fa";
+import TopNavTv from "../components/TopNavTv";
+import { FaStar, FaRegStar, FaSms } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 
-const MoviePage = () => {
+const MoviePage = (props) => {
   const [res, setRes] = useState();
   const { id } = useParams();
   const params = useParams();
@@ -28,7 +22,8 @@ const MoviePage = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [total, setTotal] = useState();
   const [name, setName] = useState();
-  const [bounce, setBounce] = useState(false);
+  const [bounce, setBounce] = useState(false);  
+  const [title, setTitle] = useState();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -49,6 +44,8 @@ const MoviePage = () => {
         setBuy(buy);
         let recommend = response["recommendations"].results;
         setRecommend(recommend);
+        let title = response.name
+        setTitle(title)
         let data = JSON.parse(localStorage.getItem("arrObjectTv"));
         for (let i = 0; i < data.length; i++) {
           setTimeout(() => {
@@ -59,30 +56,6 @@ const MoviePage = () => {
         }
       });
   }, [params.id]);
-
-  const favorite = () => {
-    const newFavoriteState = !isFavorite;
-    setIsFavorite(newFavoriteState);
-    if (newFavoriteState) {
-      let arrObjectTv = [];
-      if (
-        localStorage.getItem("arrObjectTv") &&
-        localStorage.getItem("arrObjectTv").length > 0
-      )
-        arrObjectTv = JSON.parse(localStorage.getItem("arrObjectTv"));
-      let arrObj = {
-        name: res.name,
-        id: res.id,
-        img: res.poster_path,
-        overview: res.overview,
-        media: "tv",
-      };
-      arrObjectTv.push(arrObj);
-      localStorage.setItem("arrObjectTv", JSON.stringify(arrObjectTv));
-    } else {
-      // localStorage.clear()
-    }
-  };
 
   const navigate = useNavigate();
 
@@ -100,20 +73,7 @@ const MoviePage = () => {
     <>
       <div className="moviePage">
         <div className="main">
-          <div className="top-nav">
-            <button onClick={() => navigate(-1)} className="back">
-              <FaLongArrowAltLeft className="back-arrow" />
-            </button>
-            <button
-              onClick={() => {
-                favorite();
-                animate();
-              }}
-              className={bounce ? "bounce" : "favorite"}
-            >
-              {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
-            </button>
-          </div>
+          <TopNavTv res={res} id={id} />
           <MovieBackdrop
             item={res}
             baseUrl={"https://image.tmdb.org/t/p/w500/"}
@@ -132,12 +92,15 @@ const MoviePage = () => {
             </h2>
             <ul className="details">
               <li>
-                <cite>First air date: {res?.first_air_date == "" ? "TBD:" : res?.first_air_date }</cite>
+                <cite>
+                  First air date:{" "}
+                  {res?.first_air_date == "" ? "TBD:" : res?.first_air_date}
+                </cite>
               </li>
               <li>
-              <cite className="rating">
+                <cite className="rating">
                   Rating: {rating()}%
-                  {rating() > 70 ? <FaStar /> : <FaRegStar />}
+                  {rating() >= 70 ? <FaStar /> : <FaRegStar />}
                 </cite>
               </li>
             </ul>
@@ -258,34 +221,35 @@ const MoviePage = () => {
             }}
             modules={[FreeMode, Pagination]}
           >
-            {recommend
-              ?.slice(0, 10)
-              .map((item) => {
-                return (
-                  <SwiperSlide>
-                    <div className="recommended-card">
-                      <Link to={`/TvPage/${item.id}`} className="linkName">
-                        <MovieImage item={item} baseUrl={"https://image.tmdb.org/t/p/w780/"} />
-                        <h3>{item.name}</h3>
-                      </Link>
-                      <p>{item.overview}</p>
-                      <div className="card-bottom">
-                        <ul>
-                          <li>
-                            <cite>First air date: {res?.first_air_date}</cite>
-                          </li>
-                          <li>
-                            <cite>
-                              Rating: <FaStar />
-                              {Math.round(res?.vote_average * 10)}%
-                            </cite>
-                          </li>
-                        </ul>
-                      </div>
+            {recommend?.slice(0, 10).map((item) => {
+              return (
+                <SwiperSlide>
+                  <div className="recommended-card">
+                    <Link to={`/TvPage/${item.id}`} className="linkName">
+                      <MovieImage
+                        item={item}
+                        baseUrl={"https://image.tmdb.org/t/p/w780/"}
+                      />
+                      <h3>{item.name}</h3>
+                    </Link>
+                    <p>{item.overview}</p>
+                    <div className="card-bottom">
+                      <ul>
+                        <li>
+                          <cite>First air date: {res?.first_air_date}</cite>
+                        </li>
+                        <li>
+                          <cite>
+                            Rating: <FaStar />
+                            {Math.round(res?.vote_average * 10)}%
+                          </cite>
+                        </li>
+                      </ul>
                     </div>
-                  </SwiperSlide>
-                );
-              })}
+                  </div>
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaStar, FaSearch } from "react-icons/fa";
+import { FaStar, FaRegStar, FaSearch } from "react-icons/fa";
 
 const DropDown = () => {
   const [value, setValue] = useState();
@@ -66,7 +66,7 @@ const DropDown = () => {
               <img
                 src={
                   `https://image.tmdb.org/t/p/original/` +
-                  data?.results?.[currentResult].poster_path
+                  data.results?.[currentResult].poster_path
                 }
                 alt="movie poster"
               />
@@ -85,10 +85,8 @@ const DropDown = () => {
                 <li>
                   {" "}
                   <cite className="rating">
-                    Rating: <FaStar />{" "}
-                    {Math.round(data?.results?.[currentResult].vote_average) *
-                      10}
-                    %
+                    Rating: {Math.round(data?.results?.[currentResult].vote_average * 10)}%
+                    {Math.round(data?.results?.[currentResult].vote_average) * 10 >= 70 ? <FaStar /> : <FaRegStar /> }
                   </cite>
                 </li>
               </ul>

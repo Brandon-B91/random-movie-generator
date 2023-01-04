@@ -94,6 +94,7 @@ header img {
   margin: 0 auto 10%;
   min-height: 100vh;
   overflow-x: hidden;
+  margin-bottom: 10%;
 }
 
 label {
@@ -194,7 +195,7 @@ input:checked + span:after {
 
 .top-nav {
   position: absolute;
-  top: 0;
+  top: 1%;
   left: 0;
   width: 100%;
   display: flex;
@@ -398,6 +399,41 @@ h4 {
   font-size: 0.7rem;
   margin: 0.5%;
 }
+
+.review {
+ font-size: 18px;
+ padding: 1%;
+ border-bottom: 1px solid lightgray;
+}
+
+.review-head {
+  display: flex;
+  align-items: center;
+}
+
+.review-head-left {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ width: 10%;
+ border-right: 2px solid lightgray;
+}
+
+.review-head-left span {
+  margin-left: 10%;
+  font-size: 36px;
+}
+
+.review-head-right {
+  width: 90%;
+  text-align: center;
+}
+
+.review-body {
+  height: 0;
+  overflow: hidden;
+}
+
 
 /* Recommended section */
 

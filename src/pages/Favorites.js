@@ -6,8 +6,6 @@ import MovieFav from "../components/Moviefav";
 import { Link } from "react-router-dom";
 
 const Favorites = () => {
-  const allItems = JSON.parse(localStorage.getItem("arrObject"));
-
   return (
     <>
       <Header />

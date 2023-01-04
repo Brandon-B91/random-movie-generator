@@ -5,8 +5,8 @@ const Moviefav = () => {
   const allItems = JSON.parse(localStorage.getItem("arrObject"));
 
   const clearMovies = (e) => {
-    e.preventDefault()
-    localStorage.removeItem("arrObject");
+    e.preventDefault();
+    localStorage.clear();
     window.location.reload(false);
   };
 
@@ -31,7 +31,7 @@ const Moviefav = () => {
                     />
                   </Link>
                   <div className="body">
-                    <h3>{item.name}</h3>
+                    <h3>{item.title}</h3>
                     <p>{item.overview.slice(0, 200)}...</p>
                   </div>
                 </div>

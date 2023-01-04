@@ -4,7 +4,6 @@ import AutoLoad from "./components/AutoLoad";
 import AutoLoadDay from "./components/AutoLoadDay";
 import AutoLoadTv from "./components/AutoLoadTv";
 import AutoLoadTvDay from "./components/AutoLoadTvDay";
-import WhatsNewBtn from "./components/WhatsNewBtn";
 import Nav from "./components/Nav";
 import "./App.css";
 import WhatsNew from "./pages/WhatsNew";
@@ -12,14 +11,7 @@ import WhatsNew from "./pages/WhatsNew";
 const App = () => {
   const [day, setDay] = useState(true);
   const [week, setWeek] = useState(false);
-  const [isNew, setNew] = useState(true);
   const [isToggled, setToggled] = useState(false);
-
-  useEffect(() => {
-    if (sessionStorage.getItem("seen") !== null) {
-      setNew(!isNew);
-    }
-  }, []);
 
   const onClickDay = () => {
     setDay((isVisible) => !isVisible);
@@ -34,7 +26,6 @@ const App = () => {
   return (
     <>
       <Header />
-      {/* {isNew ? <WhatsNewBtn /> : null} */}
       <div className="App">
         <h3>See trending by day or week</h3>
         <label>

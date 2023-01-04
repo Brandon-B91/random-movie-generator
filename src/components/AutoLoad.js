@@ -19,11 +19,9 @@ const AutoLoad = (props) => {
       .then((response) => response.json())
       .then((response) => {
         let trending = response.results;
-        let id = response.results
-          .slice(0, 5)
-          .map((item) => {
-            return item.id;
-          });
+        let id = response.results.slice(0, 5).map((item) => {
+          return item.id;
+        });
         setId(id);
         setTrending(trending);
         console.log(trending);

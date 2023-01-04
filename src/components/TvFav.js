@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const TvFav = () => {
+const TvFav = (props) => {
   const allItems = JSON.parse(localStorage.getItem("arrObjectTv"));
 
+  // const allItems = Object.entries(localStorage);
+  // console.log(allItems)
+
   const clearTv = (e) => {
-    e.preventDefault()
-    localStorage.removeItem("arrObjectTv");
+    e.preventDefault();
+    localStorage.clear();
     window.location.reload(false);
   };
 
@@ -19,6 +22,19 @@ const TvFav = () => {
             Clear Tv
           </button>
         ) : null}
+        {/* {allItems.map((item) => {
+          return (
+            <div className="results" key={item[1]}>
+              <Link to={`/TvPage/${item[1]}`} className="linkName">
+                Title: <h3>{item[0]}</h3>
+                <img
+                  src={`https://image.tmdb.org/t/p/w92/` + item.img}
+                  alt={item.id}
+                />
+              </Link>
+            </div>
+          );
+        })} */}
         {allItems !== null ? (
           allItems.map((item) => {
             return (

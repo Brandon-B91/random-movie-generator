@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaRegStar } from "react-icons/fa";
 
 const DropDownTv = (props) => {
   const [value, setValue] = useState();
@@ -108,10 +108,8 @@ const DropDownTv = (props) => {
                 <li>
                   {" "}
                   <cite className="rating">
-                    Rating: <FaStar />{" "}
-                    {Math.round(data?.results?.[currentResult].vote_average) *
-                      10}
-                    %
+                    Rating: {Math.round(data?.results?.[currentResult].vote_average * 10)}%
+                    {Math.round(data?.results?.[currentResult].vote_average) * 10 >= 70 ? <FaStar /> : <FaRegStar /> }
                   </cite>
                 </li>
               </ul>
