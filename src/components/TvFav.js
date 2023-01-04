@@ -35,36 +35,6 @@ const TvFav = (props) => {
             Nothing added yet. Go browse in our Tv section to add something!
           </p>
         )}
-
-        {/* {allItems !== null ? (
-          <button className="clear" onClick={clearTv}>
-            Clear Tv
-          </button>
-        ) : null}
-        {allItems !== null ? (
-          allItems.map((item) => {
-            return (
-              <>
-                <div className="results" key={item.id}>
-                  <Link to={`/TvPage/${item.id}`} className="linkName">
-                    <img
-                      src={`https://image.tmdb.org/t/p/w92/` + item.img}
-                      alt={item.id}
-                    />
-                  </Link>
-                  <div className="body">
-                    <h3>{item.name}</h3>
-                    <p>{item.overview.slice(0, 200)}...</p>
-                  </div>
-                </div>
-              </>
-            );
-          })
-        ) : (
-          <p style={{ padding: "2%" }}>
-            Nothing added yet. Go browse in our Tv section to add something!
-          </p>
-        )} */}
       </div>
     </div>
   );

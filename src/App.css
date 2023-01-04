@@ -726,13 +726,13 @@ h4 {
 
 .tv-results {
   margin-bottom: 20%;
-  position: relative;
 }
 
 .results {
   display: flex;
   justify-content: center;
   margin: 2% 0;
+  position: relative;
 }
 
 .results img {
