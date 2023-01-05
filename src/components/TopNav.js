@@ -7,22 +7,22 @@ const TopNav = (props) => {
   const favorite = () => {
     const newFavoriteState = !isFavorite;
     setIsFavorite(newFavoriteState);
-    if (newFavoriteState) {
-      let arrObject = [];
-      if (
-        localStorage.getItem("arrObject") &&
-        localStorage.getItem("arrObject").length > 0
-      )
-        arrObject = JSON.parse(localStorage.getItem("arrObject"));
-      let arrObj = {
-        name: props.res.title,
-        id: props.res.id,
-        img: props.res.poster_path,
-        overview: props.res.overview,
-      };
-      arrObject.push(arrObj);
-      localStorage.setItem("arrObject", JSON.stringify(arrObject));
-    }
+    // if (newFavoriteState) {
+    //   let arrObject = [];
+    //   if (
+    //     localStorage.getItem("arrObject") &&
+    //     localStorage.getItem("arrObject").length > 0
+    //   )
+    //     arrObject = JSON.parse(localStorage.getItem("arrObject"));
+    //   let arrObj = {
+    //     name: props.res.title,
+    //     id: props.res.id,
+    //     img: props.res.poster_path,
+    //     overview: props.res.overview,
+    //   };
+    //   arrObject.push(arrObj);
+    //   localStorage.setItem("arrObject", JSON.stringify(arrObject));
+    // }
     //  else if (!newFavoriteState) {
     //     let removeData = JSON.parse(localStorage.getItem('arrObject'))
     //     for(let i = 0; i < removeData.length; i++){
@@ -31,7 +31,8 @@ const TopNav = (props) => {
     //     }
     //   }
     // }
-    // localStorage.getItem(props.res.title) === null ? localStorage.setItem(props.res.title, props.res.id) : localStorage.removeItem(props.res.title);
+
+    localStorage.getItem(props.res.title) === null ? localStorage.setItem(props.res.title, props.res.title) : localStorage.removeItem(props.res.title);
   };
   const animate = () => {
     setBounce(true);
@@ -55,7 +56,8 @@ const TopNav = (props) => {
         }}
         className={bounce ? "bounce" : "favorite"}
       >
-        {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "}
+        {/* {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "} */}
+        {localStorage.getItem(props.res?.title) == null ?  <FaRegHeart /> : <FaHeart /> }
       </button>
     </div>
   );

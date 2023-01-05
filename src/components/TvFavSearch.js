@@ -6,10 +6,10 @@ const TvFavSearch = (props) => {
 
   useEffect(() => {
     const auto = fetch(`
-        https://api.themoviedb.org/3/trending/movie/week?api_key=f79df266a37e366257a09e6b64a14de9`)
+        https://api.themoviedb.org/3//search/multi?api_key=f79df266a37e366257a09e6b64a14de9`)
       .then((response) => response.json())
       .then((response) => {
-        // console.log(response);
+        console.log(response);
         return fetch(`
         https://api.themoviedb.org/3/tv/${props.id}?api_key=f79df266a37e366257a09e6b64a14de9`);
       })
@@ -21,11 +21,8 @@ const TvFavSearch = (props) => {
       });
   }, []);
 
-  console.log(props.id);
-
   function removeItem() {
-    localStorage.removeItem(res?.name)
-    console.log(res?.name)
+    localStorage.removeItem(JSON.stringify(res?.name))
     window.location.reload()
   }
 

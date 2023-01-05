@@ -11,7 +11,7 @@ const Favorites = () => {
       <Header />
       <div className="favPage">
         <MovieFav />
-        <TvFav />
+        {/* <TvFav /> */}
       </div>
       <Nav />
     </>
