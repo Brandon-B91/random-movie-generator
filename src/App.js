@@ -6,7 +6,8 @@ import AutoLoadTv from "./components/AutoLoadTv";
 import AutoLoadTvDay from "./components/AutoLoadTvDay";
 import Nav from "./components/Nav";
 import "./App.css";
-import WhatsNew from "./pages/WhatsNew";
+import ServiceWorkerWrapper from "./components/ServiceWorkerWrapper";
+
 
 const App = () => {
   const [day, setDay] = useState(true);
@@ -27,6 +28,7 @@ const App = () => {
     <>
       <Header />
       <div className="App">
+      <ServiceWorkerWrapper />
         <h3>See trending by day or week</h3>
         <label>
             <input type="checkbox" defaultChecked={<AutoLoadDay />} onClick={day ? onClickWeek : onClickDay}  />

@@ -12,6 +12,19 @@ import WhatsNew from './pages/WhatsNew'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
+serviceWorkerRegistration.register({
+  onUpdate: (e) => {
+    const { waiting: { postMessage = null } = {} as any, update } = e || {};
+    if (postMessage) {
+      postMessage({ type: 'SKIP_WAITING' });
+    }
+    update().then(() => {
+      window.location.reload();
+    });
+  },
+});
+
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
