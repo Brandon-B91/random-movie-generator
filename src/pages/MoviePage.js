@@ -53,7 +53,7 @@ const MoviePage = () => {
         setRecommend(recommend);
         let total = response["recommendations"].total_results;
         setTotal(total);
-        let review = response.reviews.results;
+        let review = response.reviews;
         setReview(review);
         let title = response.title;
         setTitle(title);
@@ -143,8 +143,8 @@ const MoviePage = () => {
           </div>
         </div>
         <h4>Reviews!</h4>
-        {review > 0
-          ? review?.slice(0, 3).map((item) => {
+        {review?.total_results > 0
+          ? review?.results.slice(0, 3).map((item) => {
               return (
                 <div className="review" key={item.id} onClick={(e) => handleClick(e, item.id)} >
                   <div className="review-head">
@@ -163,7 +163,7 @@ const MoviePage = () => {
         <div className="whereToWatch">
           <h4>Where to Stream...</h4>
           <ul className="whereToWatchList">
-            {stream?.length > 0
+            {stream > 0
               ? stream?.map((item) => {
                   return (
                     <li key={item.provider_id} className="badge">

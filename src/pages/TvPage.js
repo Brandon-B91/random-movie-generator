@@ -44,6 +44,8 @@ const MoviePage = (props) => {
         setStream(stream);
         let buy = response["watch/providers"].results.US.buy;
         setBuy(buy);
+        let review = response.reviews;
+        setReview(review);
         let recommend = response["recommendations"].results;
         setRecommend(recommend);
         let title = response.name
@@ -150,7 +152,7 @@ const MoviePage = (props) => {
           </div>
         </div>
         <h4>Reviews!</h4>
-        {review > 0
+        {review?.total_results > 0
           ? review?.slice(0, 3).map((item) => {
               return (
                 <div className="review" key={item.id} onClick={(e) => handleClick(e, item.id)} >
@@ -166,7 +168,7 @@ const MoviePage = (props) => {
                 </div>
               );
             })
-          : "Looks like there aren't any reviews yet!"}
+          : "Looks like there aren't any reviews!"}
         <div className="whereToWatch">
           <h4>Where to Stream...</h4>
           <ul className="whereToWatchList">

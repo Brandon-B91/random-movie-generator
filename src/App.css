@@ -406,13 +406,11 @@ h4 {
  }
 
  .review-body-open {
-  height: 400px;
+  height: 200px;
   overflow: scroll;
-  transition: 0.6s all;
+  transition: 1s all;
   font-size: 16px;
  }
-
-
 
  .badge {
   background: lightgray;
