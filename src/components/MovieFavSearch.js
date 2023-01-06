@@ -40,7 +40,7 @@ const MovieFavSearch = (props) => {
         <Link to={`/${page}/${response?.results[0].id}`} className="linkName">
           <img
             src={
-              `https://image.tmdb.org/t/p/w92/` +
+              `https://image.tmdb.org/t/p/w145/` +
               response?.results[0].poster_path
             }
             alt={response?.results[0].id}
