@@ -94,7 +94,7 @@ header img {
   margin: 0 auto 10%;
   min-height: 100vh;
   overflow-x: hidden;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
 }
 
 label {
@@ -370,6 +370,60 @@ h4 {
   transform: translateY(-5px);
 }
 
+.review {
+  font-size: 18px;
+  padding: 1%;
+  border-bottom: 1px solid lightgray;
+ }
+ 
+ .review-head {
+   display: flex;
+   align-items: center;
+ }
+ 
+ .review-head-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  border-right: 2px solid lightgray;
+ }
+ 
+ .review-head-left span {
+   margin-left: 10%;
+   font-size: 36px;
+ }
+ 
+ .review-head-right {
+   width: 90%;
+   text-align: center;
+ }
+ 
+ .review-body {
+   height: 0;
+   overflow: hidden;
+   transition: 0.6s all;
+ }
+
+ .review-body-open {
+  height: 400px;
+  overflow: scroll;
+  transition: 0.6s all;
+  font-size: 16px;
+ }
+
+
+
+ .badge {
+  background: lightgray;
+  display: inline-block;
+  padding: 0.5% 1%;
+  border-radius: 16px;
+  color: #121212;
+  font-size: 0.7rem;
+  margin: 0.5%;
+}
+
 .whereToBuyList,
 .whereToWatchList {
   margin-left: 2%;
@@ -389,51 +443,6 @@ h4 {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-
-.badge {
-  background: lightgray;
-  display: inline-block;
-  padding: 0.5% 1%;
-  border-radius: 16px;
-  color: #121212;
-  font-size: 0.7rem;
-  margin: 0.5%;
-}
-
-.review {
- font-size: 18px;
- padding: 1%;
- border-bottom: 1px solid lightgray;
-}
-
-.review-head {
-  display: flex;
-  align-items: center;
-}
-
-.review-head-left {
- display: flex;
- align-items: center;
- justify-content: center;
- width: 10%;
- border-right: 2px solid lightgray;
-}
-
-.review-head-left span {
-  margin-left: 10%;
-  font-size: 36px;
-}
-
-.review-head-right {
-  width: 90%;
-  text-align: center;
-}
-
-.review-body {
-  height: 0;
-  overflow: hidden;
-}
-
 
 /* Recommended section */
 
@@ -497,7 +506,6 @@ h4 {
 }
 
 .movieContainer .card {
-  /* margin-left: 12%; */
   height: 400px;
 }
 
@@ -613,7 +621,7 @@ h4 {
   background: #121212;
   color: #fafafa;
   position: absolute;
-  right: 0.5%;
+  right: 0;
 }
 
 /* Actor Page */
@@ -716,16 +724,8 @@ h4 {
 
 /* Favorites page */
 
-.clear {
-  border-radius: 500px;
-  background: #121212;
-  color: #fafafa;
-  padding: 1%;
-  width:  100px;
-}
-
-.tv-results {
-  margin-bottom: 20%;
+.favPage {
+  margin-bottom: 5%;
 }
 
 .results {
@@ -742,27 +742,42 @@ h4 {
   height: 165px;
 }
 
+.results-body {
+  margin-top: 5%;
+}
+
 .results p {
   height: 100px;
   margin: 0 3%;
 }
 
 .results button {
-  position: absolute;
-  top: 0;
+  position: absolute; 
   right: 0;
-  height: 25px;
-  width: 25px;
+  font-size: 20px;
+  height: 173px;
+  width: 35px;
   outline: none;
   border: none;
   background: #ff2a04;
-  color: #fafafa;
-  border-radius: 50%;
-  padding: 1%;
+  color: #121212;
+  /* border-radius: 50%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.results button:hover {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {
   /* Home page */
+
+
+  .App {
+    margin-bottom: 15%;
+  }
 
   .main {
     display: flex;
@@ -884,6 +899,15 @@ h4 {
   .actor-bottom-right {
     width: 100%;
     margin-bottom: 5%;
+  }
+
+  /* Favorites */
+
+  .results button {
+    height: 25px;
+    width: 25px;
+    top: 0;
+    border-radius: 50%;
   }
 }
 

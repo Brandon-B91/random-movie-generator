@@ -24,12 +24,14 @@ const MoviePage = (props) => {
   const [name, setName] = useState();
   const [bounce, setBounce] = useState(false);  
   const [title, setTitle] = useState();
+  const [review, setReview] = useState();
+  const [isActive, setIsActive] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsFavorite(false);
     fetch(
-      `https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations,credits`
+      `https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations,credits,reviews`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -46,14 +48,6 @@ const MoviePage = (props) => {
         setRecommend(recommend);
         let title = response.name
         setTitle(title)
-        // let data = JSON.parse(localStorage.getItem("arrObjectTv"));
-        // for (let i = 0; i < data.length; i++) {
-        //   setTimeout(() => {
-        //     if (data[i].name === res.name) {
-        //       setIsFavorite(!isFavorite);
-        //     }
-        //   }, 200);
-        // }
       });
   }, [params.id]);
 
@@ -68,6 +62,14 @@ const MoviePage = (props) => {
 
     setTimeout(() => setBounce(false), 1000);
   };
+
+  const handleClick = (e, ids) => {
+    if (isActive === ids) {
+      setIsActive(null)
+    } else {
+      setIsActive(ids)
+    }
+  }
 
   return (
     <>
@@ -147,6 +149,24 @@ const MoviePage = (props) => {
             </ul>
           </div>
         </div>
+        <h4>Reviews!</h4>
+        {review > 0
+          ? review?.slice(0, 3).map((item) => {
+              return (
+                <div className="review" key={item.id} onClick={(e) => handleClick(e, item.id)} >
+                  <div className="review-head">
+                    <div className="review-head-left">
+                      {isActive === item.id? <span>-</span> : <span>+</span>}
+                    </div>
+                    <div className="review-head-right">
+                      {item.author} <br />
+                    </div>
+                  </div>
+                  <div className={isActive === item.id ? 'review-body-open' : 'review-body'}>{item.content}</div>
+                </div>
+              );
+            })
+          : "Looks like there aren't any reviews yet!"}
         <div className="whereToWatch">
           <h4>Where to Stream...</h4>
           <ul className="whereToWatchList">

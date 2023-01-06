@@ -25,6 +25,8 @@ const MoviePage = () => {
   const [bounce, setBounce] = useState(false);
   const [review, setReview] = useState();
   const [title, setTitle] = useState();
+  const [isActive, setIsActive] = useState(null);
+  const [ids, setIds] = useState();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -53,16 +55,18 @@ const MoviePage = () => {
         setTotal(total);
         let review = response.reviews.results;
         setReview(review);
-        let title = response.title
-        setTitle(title)
-        // let data = JSON.parse(localStorage.getItem("arrObject"));
-        // for (let i = 0; i < data.length; i++) {
-        //   if (data[i].name === res.title) {
-        //     setIsFavorite(!isFavorite);
-        //   }
-        // }
+        let title = response.title;
+        setTitle(title);
       });
   }, [params.id]);
+
+  const handleClick = (e, ids) => {
+    if (isActive === ids) {
+      setIsActive(null)
+    } else {
+      setIsActive(ids)
+    }
+  }
 
   const rating = () => {
     return Math.round(res?.vote_average * 10);
@@ -139,21 +143,23 @@ const MoviePage = () => {
           </div>
         </div>
         <h4>Reviews!</h4>
-        {review?.slice(0, 3).map((item) => {
-          return (
-            <div className="review" key={item.id}>
-              <div className="review-head">
-                <div className="review-head-left">
-                  <span>+</span>
+        {review > 0
+          ? review?.slice(0, 3).map((item) => {
+              return (
+                <div className="review" key={item.id} onClick={(e) => handleClick(e, item.id)} >
+                  <div className="review-head">
+                    <div className="review-head-left">
+                      {isActive === item.id? <span>-</span> : <span>+</span>}
+                    </div>
+                    <div className="review-head-right">
+                      {item.author} <br />
+                    </div>
+                  </div>
+                  <div className={isActive === item.id ? 'review-body-open' : 'review-body'}>{item.content}</div>
                 </div>
-                <div className="review-head-right">
-                  {item.author} <br />
-                </div>
-              </div>
-              <div className="review-body">{item.content}</div>
-            </div>
-          );
-        })}
+              );
+            })
+          : "Looks like there aren't any reviews yet!"}
         <div className="whereToWatch">
           <h4>Where to Stream...</h4>
           <ul className="whereToWatchList">
