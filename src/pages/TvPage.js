@@ -135,7 +135,8 @@ const MoviePage = (props) => {
               <li>Episodes: {res?.number_of_episodes}</li>
             </ul>
             <h3>Overview</h3>
-            <p>{res?.overview}</p>
+            <p>{res?.overview == "" ? "No overview available..." : res?.overview}</p>
+            <h3>Cast</h3>
             <ul className="name-badge-list">
               {name?.slice(0, 3).map((item) => {
                 return (
@@ -185,7 +186,7 @@ const MoviePage = (props) => {
               style={{
                 marginTop: "5%",
                 marginLeft: "auto",
-                color: "white",
+                color: "#121212",
               }}
             >
               Powered by JustWatch
@@ -208,7 +209,7 @@ const MoviePage = (props) => {
               style={{
                 marginTop: "5%",
                 marginLeft: "auto",
-                color: "white",
+                color: "#121212",
               }}
             >
               Powered by JustWatch

@@ -125,7 +125,7 @@ const MoviePage = () => {
               </li>
             </ul>
             <h3>Overview</h3>
-            <p>{res?.overview}</p>
+            <p>{res?.overview == "" ? "No overview available..." : res?.overview}</p>
             <h3>Cast</h3>
             <ul className="name-badge-list">
               {name?.slice(0, 3).map((item) => {
@@ -176,7 +176,7 @@ const MoviePage = () => {
               style={{
                 marginTop: "5%",
                 marginLeft: "auto",
-                color: "#121212",
+                color: "black",
               }}
             >
               Powered by JustWatch
@@ -199,7 +199,7 @@ const MoviePage = () => {
               style={{
                 marginTop: "5%",
                 marginLeft: "auto",
-                color: "#121212",
+                color: "black",
               }}
             >
               Powered by JustWatch
