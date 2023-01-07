@@ -61,6 +61,7 @@ function registerValidSW(swUrl, config) {
     then((registration) => {
 
       registration.update();
+
       setInterval(() => {
         // Check for updates every 5 minutes
         registration.update();
@@ -86,6 +87,12 @@ function registerValidSW(swUrl, config) {
               toast.info('Update available! To update, refresh this tab.', {
                 toastId: 'appUpdateAvailable',
                 autoClose: false
+              });
+
+              toast.info(`Update available! To update, close all windows and reopen.`, {
+                toastId: "appUpdateAvailable", // Prevent duplicate toasts
+                onClick: () => window.close(), // Closes windows on click
+                autoClose: false // Prevents toast from auto closing
               });
 
               // Execute callback

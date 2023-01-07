@@ -28,7 +28,7 @@ ReactDOM.render(
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root"),
-  serviceWorkerRegistration.register()
 );
 
+serviceWorkerRegistration.register()
 

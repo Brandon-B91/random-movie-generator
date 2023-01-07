@@ -1,7 +1,11 @@
 import React from "react";
 import photo from "../images/photo.png";
 
-const baseUrl = ``
+const baseUrl = ``;
+
+const timer = setTimeout(() => {
+  return photo
+}, 100)
 
 const MovieImage = (props) => {
   return (
@@ -9,7 +13,7 @@ const MovieImage = (props) => {
       <img
         src={
           props.item?.poster_path == null
-            ? photo
+            ? timer
             : props.baseUrl + props.item?.poster_path
         }
         alt="movie poster"
@@ -20,4 +24,3 @@ const MovieImage = (props) => {
 };
 
 export default MovieImage;
-
