@@ -164,7 +164,7 @@ const MoviePage = (props) => {
         </div>
         <h4>Reviews!</h4>
         {review?.total_results > 0
-          ? review?.slice(0, 3).map((item) => {
+          ? review?.results.slice(0, 3).map((item) => {
               return (
                 <div className="review" key={item.id} onClick={(e) => handleClick(e, item.id)} >
                   <div className="review-head">
