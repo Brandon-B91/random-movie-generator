@@ -27,12 +27,13 @@ const MoviePage = () => {
   const [title, setTitle] = useState();
   const [isActive, setIsActive] = useState(null);
   const [ids, setIds] = useState();
+  const [genre, setGenre] = useState()
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsFavorite(false);
     fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations,credits,reviews,videos,now_playing`
+      `https://api.themoviedb.org/3/movie/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations,credits,reviews,videos`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -57,16 +58,18 @@ const MoviePage = () => {
         setReview(review);
         let title = response.title;
         setTitle(title);
+        let genre = response.genres
+        setGenre(genre)
       });
   }, [params.id]);
 
   const handleClick = (e, ids) => {
     if (isActive === ids) {
-      setIsActive(null)
+      setIsActive(null);
     } else {
-      setIsActive(ids)
+      setIsActive(ids);
     }
-  }
+  };
 
   const rating = () => {
     return Math.round(res?.vote_average * 10);
@@ -124,8 +127,17 @@ const MoviePage = () => {
                 </a>
               </li>
             </ul>
+            <ul>
+              {genre?.slice(0 ,3).map((item) => {
+                return(
+                <li className="badge">{item.name}</li>
+                )
+              })}
+            </ul>
             <h3>Overview</h3>
-            <p>{res?.overview == "" ? "No overview available..." : res?.overview}</p>
+            <p>
+              {res?.overview == "" ? "No overview available..." : res?.overview}
+            </p>
             <h3>Cast</h3>
             <ul className="name-badge-list">
               {name?.slice(0, 3).map((item) => {
@@ -146,16 +158,26 @@ const MoviePage = () => {
         {review?.total_results > 0
           ? review?.results.slice(0, 3).map((item) => {
               return (
-                <div className="review" key={item.id} onClick={(e) => handleClick(e, item.id)} >
+                <div
+                  className="review"
+                  key={item.id}
+                  onClick={(e) => handleClick(e, item.id)}
+                >
                   <div className="review-head">
                     <div className="review-head-left">
-                      {isActive === item.id? <span>-</span> : <span>+</span>}
+                      {isActive === item.id ? <span>-</span> : <span>+</span>}
                     </div>
                     <div className="review-head-right">
                       {item.author} <br />
                     </div>
                   </div>
-                  <div className={isActive === item.id ? 'review-body-open' : 'review-body'}>{item.content}</div>
+                  <div
+                    className={
+                      isActive === item.id ? "review-body-open" : "review-body"
+                    }
+                  >
+                    {item.content}
+                  </div>
                 </div>
               );
             })

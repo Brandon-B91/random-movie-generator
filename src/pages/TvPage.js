@@ -26,6 +26,7 @@ const MoviePage = (props) => {
   const [title, setTitle] = useState();
   const [review, setReview] = useState();
   const [isActive, setIsActive] = useState(null);
+  const [genre, setGenre] = useState()
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -50,6 +51,8 @@ const MoviePage = (props) => {
         setRecommend(recommend);
         let title = response.name
         setTitle(title)
+        let genre = response.genres
+        setGenre(genre)
       });
   }, [params.id]);
 
@@ -135,6 +138,13 @@ const MoviePage = (props) => {
               <li>Episodes: {res?.number_of_episodes}</li>
             </ul>
             <h3>Overview</h3>
+            <ul>
+              {genre?.slice(0 ,3).map((item) => {
+                return(
+                <li className="badge">{item.name}</li>
+                )
+              })}
+            </ul>
             <p>{res?.overview == "" ? "No overview available..." : res?.overview}</p>
             <h3>Cast</h3>
             <ul className="name-badge-list">

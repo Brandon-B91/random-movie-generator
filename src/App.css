@@ -310,10 +310,13 @@ button.bounce {
 .social-ul {
   display: flex;
   justify-content: space-between;
+  /* align-items: center; */
+  height: 25px;
 }
 
 .social-ul li {
   display: inline;
+
 }
 
 .social-ul li:nth-child(1) {
@@ -322,6 +325,7 @@ button.bounce {
 
 .social-ul li:nth-child(2) {
   margin-right: 1%;
+  display: inline;
 }
 
 .socialShare {
@@ -347,7 +351,7 @@ h4 {
 }
 
 .name-badge-list {
-  padding: 5% 0;
+  padding: 2.5% 0;
   display: flex;
   align-items: flex-end;
   justify-content: space-evenly;
@@ -371,7 +375,7 @@ h4 {
 }
 
 .review {
-  font-size: 18px;
+  font-size: 16px;
   padding: 1%;
   border-bottom: 1px solid lightgray;
  }
@@ -391,7 +395,7 @@ h4 {
  
  .review-head-left span {
    margin-left: 10%;
-   font-size: 36px;
+   font-size: 24px;
  }
  
  .review-head-right {
@@ -728,7 +732,6 @@ h4 {
 
 .results {
   display: flex;
-  justify-content: center;
   margin: 2% 0;
   position: relative;
 }
