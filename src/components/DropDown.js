@@ -37,7 +37,7 @@ const DropDown = () => {
     <div className="container">
       <div className="dropDownStyle">
         <select name="selectList" id="selectList" onChange={handleChange}>
-          <option value="28">Action</option> 
+          <option value="28">Action</option>
           <option value="12">Adventure</option>
           <option value="16">Animation</option>
           <option value="35">Comedy</option>

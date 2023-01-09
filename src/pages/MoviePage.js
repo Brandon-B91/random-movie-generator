@@ -130,7 +130,7 @@ const MoviePage = () => {
             <ul>
               {genre?.slice(0 ,3).map((item) => {
                 return(
-                <li className="badge">{item.name}</li>
+                <li className="badge" key={item.id}>{item.name}</li>
                 )
               })}
             </ul>
@@ -147,7 +147,7 @@ const MoviePage = () => {
                     className="linkName"
                     key={item.id}
                   >
-                    <li className="name-badge">{item.name}</li>
+                    <li className="name-badge" key={item.id}>{item.name}</li>
                   </Link>
                 );
               })}
@@ -167,7 +167,7 @@ const MoviePage = () => {
                     <div className="review-head-left">
                       {isActive === item.id ? <span>-</span> : <span>+</span>}
                     </div>
-                    <div className="review-head-right">
+                    <div className="review-head-right" key={item.id}>
                       {item.author} <br />
                     </div>
                   </div>

@@ -26,8 +26,6 @@ const TvSearch = () => {
         let id = search[0].id;
         setId(id);
         setSearch(search);
-        console.log(search);
-
         return fetch(
           `https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders%2Crecommendations`
         );

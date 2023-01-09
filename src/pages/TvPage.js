@@ -22,11 +22,12 @@ const MoviePage = (props) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [total, setTotal] = useState();
   const [name, setName] = useState();
-  const [bounce, setBounce] = useState(false);  
+  const [bounce, setBounce] = useState(false);
   const [title, setTitle] = useState();
   const [review, setReview] = useState();
   const [isActive, setIsActive] = useState(null);
-  const [genre, setGenre] = useState()
+  const [genre, setGenre] = useState();
+  const [num, setNum] = useState(0);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -49,10 +50,12 @@ const MoviePage = (props) => {
         setReview(review);
         let recommend = response["recommendations"].results;
         setRecommend(recommend);
-        let title = response.name
-        setTitle(title)
-        let genre = response.genres
-        setGenre(genre)
+        let title = response.name;
+        setTitle(title);
+        let genre = response.genres;
+        setGenre(genre);
+        let total = response["recommendations"].total_results;
+        setTotal(total);
       });
   }, [params.id]);
 
@@ -68,13 +71,17 @@ const MoviePage = (props) => {
     setTimeout(() => setBounce(false), 1000);
   };
 
+  const handleChange = (e) => {
+    setNum(e.target.value);
+  };
+
   const handleClick = (e, ids) => {
     if (isActive === ids) {
-      setIsActive(null)
+      setIsActive(null);
     } else {
-      setIsActive(ids)
+      setIsActive(ids);
     }
-  }
+  };
 
   return (
     <>
@@ -132,20 +139,36 @@ const MoviePage = (props) => {
                 </a>
               </li>
             </ul>
-
+            <div className="seasons">
+              <h3>Season:</h3>
+              <select
+                className="select"
+                onChange={handleChange}
+              >
+                {res?.seasons.map((item) => {
+                  return (
+                    <option value={item.season_number} key={item.season_number}>
+                      {item.season_number }
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <p>Episodes: {res?.seasons[num].episode_count ? res?.seasons[num].episode_count : "TBA" }</p>
+            <p>Season overview: {res?.seasons[num].overview == "" ? "No overview available." : res?.seasons[num].overview}</p>
+            <div className="genres">
+            <h3>Genre</h3>
             <ul>
-              <li>Seasons: {res?.number_of_seasons}</li>
-              <li>Episodes: {res?.number_of_episodes}</li>
-            </ul>
-            <h3>Overview</h3>
-            <ul>
-              {genre?.slice(0 ,3).map((item) => {
-                return(
-                <li className="badge">{item.name}</li>
-                )
+              {genre?.slice(0, 3).map((item) => {
+                return <li className="badge">{item.name}</li>;
               })}
             </ul>
-            <p>{res?.overview == "" ? "No overview available..." : res?.overview}</p>
+            </div>
+
+            <h3>Overview</h3>
+            <p className="overview-p">
+              {res?.overview == "" ? "No overview available..." : res?.overview}
+            </p>
             <h3>Cast</h3>
             <ul className="name-badge-list">
               {name?.slice(0, 3).map((item) => {
@@ -166,16 +189,26 @@ const MoviePage = (props) => {
         {review?.total_results > 0
           ? review?.results.slice(0, 3).map((item) => {
               return (
-                <div className="review" key={item.id} onClick={(e) => handleClick(e, item.id)} >
+                <div
+                  className="review"
+                  key={item.id}
+                  onClick={(e) => handleClick(e, item.id)}
+                >
                   <div className="review-head">
                     <div className="review-head-left">
-                      {isActive === item.id? <span>-</span> : <span>+</span>}
+                      {isActive === item.id ? <span>-</span> : <span>+</span>}
                     </div>
                     <div className="review-head-right">
                       {item.author} <br />
                     </div>
                   </div>
-                  <div className={isActive === item.id ? 'review-body-open' : 'review-body'}>{item.content}</div>
+                  <div
+                    className={
+                      isActive === item.id ? "review-body-open" : "review-body"
+                    }
+                  >
+                    {item.content}
+                  </div>
                 </div>
               );
             })
@@ -228,7 +261,7 @@ const MoviePage = (props) => {
         </div>
         <div className="recommended">
           {total > 0 ? (
-            <h3>If you like {res?.title} then you might like this!</h3>
+            <h3>If you like {res?.name} then you might like this!</h3>
           ) : (
             ""
           )}

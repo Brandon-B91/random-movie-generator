@@ -9,7 +9,6 @@ import { FreeMode, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-import photo from "../images/photo.png";
 
 const ActorPage = () => {
   const { id } = useParams();
@@ -154,7 +153,7 @@ const ActorPage = () => {
             {res?.movie_credits.cast.map((item) => {
               return (
                 <Link to={`/MoviePage/${item.id}`}>
-                  <div className="movie-list">
+                  <div className="movie-list" key={item.id}>
                     <ul>
                       <li>{item.release_date}</li>
                       <li>{item.title}</li>
@@ -170,7 +169,7 @@ const ActorPage = () => {
             {res?.tv_credits.cast.map((item) => {
               return (
                 <Link to={`/TvPage/${item.id}`} key={item.id}>
-                  <div className="movie-list">
+                  <div className="movie-list" key={item.id}>
                     <ul>
                       <li>{item.first_air_date}</li>
                       <li>{item.name}</li>

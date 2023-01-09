@@ -9,6 +9,10 @@ ul {
   list-style-type: none;
 }
 
+li {
+  list-style-type: none;
+}
+
 a {
   text-decoration: none;
 }
@@ -294,7 +298,7 @@ button.bounce {
   position: relative;
   margin-top: 5%;
   color: #fafafa;
-  height: 450px;
+  height: 460px;
 }
 
 .details {
@@ -340,8 +344,8 @@ h4 {
   margin: 0 1%;
 }
 
-.right p {
-  height: 250px;
+.overview-p {
+  height: 100px;
   overflow-y: scroll;
 }
 
@@ -350,22 +354,43 @@ h4 {
   display: inline;
 }
 
+.seasons {
+  display: flex;
+  align-items: center;
+}
+
+.seasons select {
+  width: 5%;
+  margin: 1%;
+  text-align: center;
+  background: #fafafa;
+  color: #121212;
+}
+
+.genres {
+  display: flex;
+  width: 100%;
+}
+
+.genres ul {
+  width: 100%;
+}
+
 .name-badge-list {
   padding: 2.5% 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-evenly;
 }
 
 .name-badge {
   background: #121212;
   color: #fafafa;
   width: 110%;
-  padding: 3%;
+  padding: 2%;
+  margin: 0 3%;
   text-align: center;
   border-radius: 500px;
   font-size: 0.8rem;
   transition: all 0.4s;
+  display: inline;
 }
 
 .name-badge:hover {
@@ -378,6 +403,10 @@ h4 {
   font-size: 16px;
   padding: 1%;
   border-bottom: 1px solid lightgray;
+ }
+
+ .review:hover {
+  cursor: pointer;
  }
 
  .review-head {

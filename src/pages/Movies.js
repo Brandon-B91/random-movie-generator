@@ -25,11 +25,10 @@ const Movies = () => {
   useEffect(() => {
     const id = localStorage.getItem("searchItem");
     const auto = fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations`
+      `https://api.themoviedb.org/3/movie/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations,now_playing`
     )
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         let res = response;
         setRes(res);
       }); 
