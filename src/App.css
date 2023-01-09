@@ -19,12 +19,12 @@ a {
 
 input[type="text"],
 input[type="button"],
-button,
-select {
-  -webkit-appearance: none !important;
-  -webkit-border-radius: none !important;
-  -moz-appearance: none !important;
-  -moz-border-radius: none !important;
+button
+ {
+  -webkit-appearance: none;
+  -webkit-border-radius: none;
+  -moz-appearance: none;
+  -moz-border-radius: none;
   color: #121212;
 }
 
@@ -360,7 +360,7 @@ h4 {
 }
 
 .seasons select {
-  width: 5%;
+  width: 15%;
   margin: 1%;
   text-align: center;
   background: #fafafa;

@@ -139,8 +139,9 @@ const MoviePage = (props) => {
                 </a>
               </li>
             </ul>
+            <p>Total number of seasons: {res?.number_of_seasons}</p>
             <div className="seasons">
-              <h3>Season:</h3>
+              <p>Season:</p>
               <select
                 className="select"
                 onChange={handleChange}
