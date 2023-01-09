@@ -17,8 +17,6 @@ a {
   text-decoration: none;
 }
 
-input[type="text"],
-input[type="button"],
 button
  {
   -webkit-appearance: none;
@@ -754,6 +752,12 @@ h4 {
 }
 
 /* Favorites page */
+.movieTvFav button {
+  border-radius: 500px;
+  padding: 1% 4%;
+  background: #121212;
+  color: #fafafa;
+}
 
 .favPage {
   margin-bottom: 5%;

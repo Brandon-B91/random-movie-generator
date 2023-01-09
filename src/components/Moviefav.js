@@ -3,11 +3,18 @@ import { NavLink } from "react-router-dom";
 import MovieFavSearch from "./MovieFavSearch";
 
 const Moviefav = () => {
+
+  const clearAll = () => {
+    localStorage.clear()
+    window.location.reload()
+  }
+
   const key = Object.keys(localStorage);
 
   return (
     <div className="movieTvFav">
-      <h2>Favorites!</h2>
+      <h2>Favorites!</h2> 
+      <button onClick={clearAll}>Clear all</button>
       <div className="tv-results">
         {key.length > 0
           ? key.map((item) => {
