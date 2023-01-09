@@ -770,6 +770,15 @@ h4 {
   border-radius: 0 16px 16px 0;
   width: 110px;
   height: 165px;
+  position: relative;
+}
+
+.results .icon {
+  position: absolute;
+  background: #12121280;
+  color: #fafafa;
+  font-size: 16px;
+  padding: 2%;
 }
 
 .results-body {

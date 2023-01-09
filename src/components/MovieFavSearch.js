@@ -47,6 +47,7 @@ const MovieFavSearch = (props) => {
           />
         </Link>
       }
+      <div className="icon">{response?.results[0].media_type == "tv" ? "TV" : "Movie" }</div>
       <div className="results-body">
         <h3>{response?.results[0].title || response?.results[0].name}</h3>
         <p>
