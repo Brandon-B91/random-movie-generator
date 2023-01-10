@@ -156,7 +156,6 @@ const MoviePage = (props) => {
               </select>
             </div>
             <p>Episodes: {res?.seasons[num].episode_count ? res?.seasons[num].episode_count : "TBA" }</p>
-            <p>Season overview: {res?.seasons[num].overview == "" ? "No overview available." : res?.seasons[num].overview}</p>
             <div className="genres">
             <h3>Genre</h3>
             <ul>

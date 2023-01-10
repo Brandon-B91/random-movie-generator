@@ -22,7 +22,6 @@ const DropDownTv = (props) => {
     )
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         let data = response;
         setData(data);
         let random = Math.floor(Math.random() * 100);

@@ -24,7 +24,6 @@ const AutoLoad = (props) => {
         });
         setId(id);
         setTrending(trending);
-        console.log(trending);
         return fetch(`
         https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=f79df266a37e366257a09e6b64a14de9`);
       })
