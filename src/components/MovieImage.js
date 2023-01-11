@@ -3,9 +3,10 @@ import photo from "../images/photo.png";
 
 const baseUrl = ``;
 
-const timer = setTimeout(() => {
+setTimeout(() => {
   return photo
 }, 100)
+
 
 const MovieImage = (props) => {
   return (
@@ -13,7 +14,7 @@ const MovieImage = (props) => {
       <img
         src={
           props.item?.poster_path == null
-            ? timer
+            ? photo
             : props.baseUrl + props.item?.poster_path
         }
         alt="movie poster"

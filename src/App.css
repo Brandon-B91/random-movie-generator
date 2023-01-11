@@ -35,6 +35,12 @@ button:active {
   transform: translateY(4px);
 }
 
+.rotate {
+  transform: rotate(90deg);
+  width: 100%;
+  margin-left: 20%;
+}
+
 /* Header */
 
 header {
@@ -282,16 +288,51 @@ button.bounce {
   z-index: 9;
 }
 
+.media {
+  margin-top: 10%;
+  margin-bottom: 10%;
+  height: 500px;
+  width: 300px;
+  border-radius: 16px 16px 16px 16px;
+  box-shadow: 4px 4px 8px black;
+  transition: .5s all;
+  display: flex;
+  align-items: center;
+  background: black;
+}
+
+.left iframe {
+  transform: rotate(-90deg);
+}
+
 .left img {
+  width: 100%;
+}
+
+.left {
+  width: 50%;
+  position: relative;
+}
+
+.left p {
   margin-top: 10%;
   width: 300px;
   height: 500px;
   border-radius: 0 16px 16px 0;
   box-shadow: 4px 4px 8px black;
+  transition: .5s all;
 }
 
-.left {
-  width: 50%;
+.left cite {
+  position: absolute;
+  bottom: 10%;
+  right: 15%;
+  color: blue;
+  box-shadow: 2px 2px 4px gray;
+}
+
+.left cite:hover {
+  cursor: pointer;
 }
 
 .right {
@@ -487,11 +528,13 @@ h4 {
 .recommended-card {
   width: 90%;
   margin: 3% auto;
-  min-height: 50px;
+  height: 500px;
   border: 1px solid black;
   border-radius: 16px;
   background: #121212;
   color: #fafafa;
+  display: flex;
+  flex-direction: column;
   position: relative;
   margin-bottom: 40px;
   box-shadow: 4px 4px 8px gray;
@@ -504,7 +547,7 @@ h4 {
 .recommended-card img {
   width: 100%;
   border-radius: 16px 16px 0 0;
-  object-fit: contain;
+  /* object-fit: cover; */
 }
 
 .recommended-card p {
@@ -822,7 +865,6 @@ h4 {
 @media screen and (max-width: 600px) {
   /* Home page */
 
-
   .App {
     margin-bottom: 15%;
   }
@@ -842,6 +884,7 @@ h4 {
     width: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
   }
 
   .left img {
@@ -868,6 +911,26 @@ h4 {
 
   .right a {
     color: #121212;
+  }
+
+  .left iframe {
+    width: 100%;
+  }
+
+  .media {
+    width: 100%;
+  }
+
+  .rotate  {  
+    margin: 0 auto;  
+  }
+
+  .left cite {
+    bottom: 1%;
+    right: 5%;
+    color: #fafafa;
+    background: #121212;
+    box-shadow: 2px 2px 4px #121212;
   }
 
   .searchStyle {

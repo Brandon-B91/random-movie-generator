@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Nav from "../components/Nav";
 import { FaPlus, FaRegStar, FaStar, FaSms } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,6 +10,7 @@ import "swiper/css/pagination";
 import MovieImage from "../components/MovieImage";
 import MovieBackdrop from "../components/MovieBackdrop";
 import TopNav from "../components/TopNav";
+import Video from "../components/Video";
 
 const MoviePage = () => {
   const [res, setRes] = useState();
@@ -27,7 +28,8 @@ const MoviePage = () => {
   const [title, setTitle] = useState();
   const [isActive, setIsActive] = useState(null);
   const [ids, setIds] = useState();
-  const [genre, setGenre] = useState()
+  const [genre, setGenre] = useState();
+  const [rotate, setRotate] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -58,8 +60,8 @@ const MoviePage = () => {
         setReview(review);
         let title = response.title;
         setTitle(title);
-        let genre = response.genres
-        setGenre(genre)
+        let genre = response.genres;
+        setGenre(genre);
       });
   }, [params.id]);
 
@@ -75,6 +77,19 @@ const MoviePage = () => {
     return Math.round(res?.vote_average * 10);
   };
 
+  const trailer = () => {
+    setRotate(!rotate);
+  };
+
+  const video = () => {
+    return (
+      <video constrols width="100%">
+        <source src="/video-example.webm" type="video/webm" />
+        <source src="/video-example.mp4" type="video/mp4" />
+      </video>
+    );
+  };
+
   return (
     <>
       <div className="moviePage">
@@ -86,10 +101,17 @@ const MoviePage = () => {
             className={"main-img"}
           />
           <div className="left">
-            <MovieImage
-              item={res}
-              baseUrl={"https://image.tmdb.org/t/p/w780/"}
-            />
+            <div className={rotate ? "rotate media" : "media"}>
+              {!rotate ? (
+                <MovieImage
+                  item={res}
+                  baseUrl={"https://image.tmdb.org/t/p/w780/"}
+                />
+              ) : (
+                <Video item={res} baseUrl={"https://www.youtube.com/embed/"} />
+              )}
+            </div>
+            <cite onClick={trailer}>Trailer</cite>
           </div>
           <div className="right">
             <h2>
@@ -128,10 +150,12 @@ const MoviePage = () => {
               </li>
             </ul>
             <ul>
-              {genre?.slice(0 ,3).map((item) => {
-                return(
-                <li className="badge" key={item.id}>{item.name}</li>
-                )
+              {genre?.slice(0, 3).map((item) => {
+                return (
+                  <li className="badge" key={item.id}>
+                    {item.name}
+                  </li>
+                );
               })}
             </ul>
             <h3>Overview</h3>
@@ -147,7 +171,9 @@ const MoviePage = () => {
                     className="linkName"
                     key={item.id}
                   >
-                    <li className="name-badge" key={item.id}>{item.name}</li>
+                    <li className="name-badge" key={item.id}>
+                      {item.name}
+                    </li>
                   </Link>
                 );
               })}
@@ -235,7 +261,7 @@ const MoviePage = () => {
             ""
           )}
           <Swiper
-            slidesPerView={1}
+            slidesPerView={2}
             freeMode={true}
             pagination={{
               clickable: true,
@@ -260,15 +286,23 @@ const MoviePage = () => {
               return (
                 <>
                   <SwiperSlide>
-                    <div className="recommended-card" id={item.id}>
+                    <div
+                      className="recommended-card"
+                      id={item.id}
+                      key={item.id}
+                    >
                       <Link to={`/MoviePage/${item.id}`} className="linkName">
                         <MovieImage
                           item={item}
                           className={""}
-                          baseUrl={"https://image.tmdb.org/t/p/w780/"}
+                          baseUrl={"https://image.tmdb.org/t/p/w300/"}
                         />
                       </Link>
-                      <p>{item.overview}</p>
+                      <p>
+                        {item.overview
+                          ? item.overview
+                          : "No overview available"}
+                      </p>
                       <div className="card-bottom">
                         <ul>
                           <li>
