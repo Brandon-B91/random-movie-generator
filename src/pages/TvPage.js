@@ -31,12 +31,11 @@ const MoviePage = (props) => {
   const [num, setNum] = useState(0);
   const [rotate, setRotate] = useState(false);
 
-
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsFavorite(false);
     fetch(
-      `https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations,credits,reviews`
+      `https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations,credits,reviews,videos`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -86,6 +85,10 @@ const MoviePage = (props) => {
     }
   };
 
+  const trailer = () => {
+    setRotate(!rotate);
+  };
+
   return (
     <>
       <div className="moviePage">
@@ -97,7 +100,7 @@ const MoviePage = (props) => {
             className="main-img"
           />
           <div className="left">
-          <div className={rotate ? "rotate media" : "media"}>
+            <div className={rotate ? "rotate media" : "media"}>
               {!rotate ? (
                 <MovieImage
                   item={res}
@@ -105,9 +108,12 @@ const MoviePage = (props) => {
                   className="left-img"
                 />
               ) : (
-                <Video item={res} baseUrl={"https://www.youtube.com/embed/"} />
+                <Video res={res} baseUrl={"https://www.youtube.com/embed/"} />
               )}
             </div>
+            <cite onClick={trailer}>
+                {!rotate ? "Show trailer" : "Hide trailer"}
+              </cite>
           </div>
           <div className="right">
             <h2>
@@ -152,27 +158,29 @@ const MoviePage = (props) => {
             <p>Total number of seasons: {res?.number_of_seasons}</p>
             <div className="seasons">
               <p>Season:</p>
-              <select
-                className="select"
-                onChange={handleChange}
-              >
+              <select className="select" onChange={handleChange}>
                 {res?.seasons.map((item) => {
                   return (
                     <option value={item.season_number} key={item.season_number}>
-                      {item.season_number }
+                      {item.season_number}
                     </option>
                   );
                 })}
               </select>
             </div>
-            <p>Episodes: {res?.seasons[num].episode_count ? res?.seasons[num].episode_count : "TBA" }</p>
+            <p>
+              Episodes:{" "}
+              {res?.seasons[num].episode_count
+                ? res?.seasons[num].episode_count
+                : "TBA"}
+            </p>
             <div className="genres">
-            <h3>Genre</h3>
-            <ul>
-              {genre?.slice(0, 3).map((item) => {
-                return <li className="badge">{item.name}</li>;
-              })}
-            </ul>
+              <h3>Genre</h3>
+              <ul>
+                {genre?.slice(0, 3).map((item) => {
+                  return <li className="badge">{item.name}</li>;
+                })}
+              </ul>
             </div>
 
             <h3>Overview</h3>

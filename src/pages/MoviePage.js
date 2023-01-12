@@ -100,7 +100,7 @@ const MoviePage = () => {
                   className="left-img"
                 />
               ) : (
-                <Video item={res} baseUrl={"https://www.youtube.com/embed/"} />
+                <Video res={res} baseUrl={"https://www.youtube.com/embed/"} />
               )}
             </div>
             <cite onClick={trailer}>{!rotate ? "Show trailer" : "Hide trailer"}</cite>
