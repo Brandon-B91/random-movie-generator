@@ -11,6 +11,8 @@ import ActorPage from './pages/ActorPage'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
+serviceWorkerRegistration.register()
+
 navigator.serviceWorker.getRegistrations()
   .then(registrationsArray => {
     registrationsArray[0].update();
@@ -34,5 +36,4 @@ ReactDOM.render(
   document.getElementById("root"),
 );
 
-serviceWorkerRegistration.register()
 

@@ -111,7 +111,7 @@ const MoviePage = () => {
                 <Video item={res} baseUrl={"https://www.youtube.com/embed/"} />
               )}
             </div>
-            <cite onClick={trailer}>Trailer</cite>
+            <cite onClick={trailer}>{!rotate ? "Show trailer" : "Hide trailer"}</cite>
           </div>
           <div className="right">
             <h2>
@@ -261,7 +261,7 @@ const MoviePage = () => {
             ""
           )}
           <Swiper
-            slidesPerView={2}
+            slidesPerView={"auto"}
             freeMode={true}
             pagination={{
               clickable: true,

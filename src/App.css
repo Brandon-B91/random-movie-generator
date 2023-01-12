@@ -526,9 +526,9 @@ h4 {
 }
 
 .recommended-card {
-  width: 90%;
+  width: 75%;
   margin: 3% auto;
-  height: 500px;
+  height: 600px;
   border: 1px solid black;
   border-radius: 16px;
   background: #121212;
@@ -547,7 +547,7 @@ h4 {
 .recommended-card img {
   width: 100%;
   border-radius: 16px 16px 0 0;
-  /* object-fit: cover; */
+  object-fit: contain;
 }
 
 .recommended-card p {
@@ -889,6 +889,7 @@ h4 {
 
   .left img {
     margin: 0;
+    height: 100%;
     width: 100%;
     border-radius: 0;
   }
@@ -918,6 +919,8 @@ h4 {
   }
 
   .media {
+    margin: 0;
+    height: 100%;
     width: 100%;
   }
 
