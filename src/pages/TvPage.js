@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import MovieBackdrop from "../components/MovieBackdrop";
 import MovieImage from "../components/MovieImage";
 import TopNavTv from "../components/TopNavTv";
+import Video from "../components/Video";
 import { FaStar, FaRegStar, FaSms } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper";
@@ -28,6 +29,8 @@ const MoviePage = (props) => {
   const [isActive, setIsActive] = useState(null);
   const [genre, setGenre] = useState();
   const [num, setNum] = useState(0);
+  const [rotate, setRotate] = useState(false);
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -94,10 +97,17 @@ const MoviePage = (props) => {
             className="main-img"
           />
           <div className="left">
-            <MovieImage
-              item={res}
-              baseUrl={"https://image.tmdb.org/t/p/w780/"}
-            />
+          <div className={rotate ? "rotate media" : "media"}>
+              {!rotate ? (
+                <MovieImage
+                  item={res}
+                  baseUrl={"https://image.tmdb.org/t/p/w780/"}
+                  className="left-img"
+                />
+              ) : (
+                <Video item={res} baseUrl={"https://www.youtube.com/embed/"} />
+              )}
+            </div>
           </div>
           <div className="right">
             <h2>

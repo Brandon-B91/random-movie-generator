@@ -295,7 +295,7 @@ button.bounce {
   width: 300px;
   border-radius: 16px 16px 16px 16px;
   box-shadow: 4px 4px 8px black;
-  transition: .5s all;
+  transition: .5s ease-in-out;
   display: flex;
   align-items: center;
   background: black;
@@ -305,8 +305,10 @@ button.bounce {
   transform: rotate(-90deg);
 }
 
-.left img {
+.left-img {
+  height: 500px;
   width: 100%;
+  border-radius: 16px;
 }
 
 .left {
@@ -326,9 +328,10 @@ button.bounce {
 .left cite {
   position: absolute;
   bottom: 10%;
-  right: 15%;
+  right: 8%;
   color: blue;
   box-shadow: 2px 2px 4px gray;
+  z-index: 999;
 }
 
 .left cite:hover {
@@ -526,9 +529,9 @@ h4 {
 }
 
 .recommended-card {
-  width: 75%;
+  width: 90%;
   margin: 3% auto;
-  height: 600px;
+  height: 550px;
   border: 1px solid black;
   border-radius: 16px;
   background: #121212;
@@ -920,7 +923,7 @@ h4 {
 
   .media {
     margin: 0;
-    height: 100%;
+    /* height: 100%; */
     width: 100%;
   }
 

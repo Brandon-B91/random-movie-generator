@@ -10,7 +10,7 @@ setTimeout(() => {
 
 const MovieImage = (props) => {
   return (
-    <div className={""}>
+    // <div className={""}>
       <img
         src={
           props.item?.poster_path == null
@@ -20,7 +20,7 @@ const MovieImage = (props) => {
         alt="movie poster"
         className={props.className}
       />
-    </div>
+    // </div>
   );
 };
 

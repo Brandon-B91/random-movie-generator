@@ -81,15 +81,6 @@ const MoviePage = () => {
     setRotate(!rotate);
   };
 
-  const video = () => {
-    return (
-      <video constrols width="100%">
-        <source src="/video-example.webm" type="video/webm" />
-        <source src="/video-example.mp4" type="video/mp4" />
-      </video>
-    );
-  };
-
   return (
     <>
       <div className="moviePage">
@@ -106,6 +97,7 @@ const MoviePage = () => {
                 <MovieImage
                   item={res}
                   baseUrl={"https://image.tmdb.org/t/p/w780/"}
+                  className="left-img"
                 />
               ) : (
                 <Video item={res} baseUrl={"https://www.youtube.com/embed/"} />
