@@ -110,10 +110,10 @@ const MoviePage = (props) => {
               ) : (
                 <Video res={res} baseUrl={"https://www.youtube.com/embed/"} />
               )}
-              <cite onClick={trailer}>
-                {!rotate ? "Show trailer" : "Hide trailer"}
-              </cite>
             </div>
+            <cite onClick={trailer}>
+              {!rotate ? "Show trailer" : "Hide trailer"}
+            </cite>
           </div>
           <div className="right">
             <h2>
