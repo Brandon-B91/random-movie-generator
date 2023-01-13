@@ -4,17 +4,17 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "rmgicon192.png",
+      "src": "Movie.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "rmgicon192.png",
+      "src": "Movie.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "rmgicon512.png",
+      "src": "Movie.png",
       "type": "image/png",
       "sizes": "512x512"
     }
