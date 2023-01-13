@@ -33,7 +33,7 @@ const AutoLoad = (props) => {
 
   return (
     <div className="trendingList" key={id}>
-      <h1>Top in Movies This Week!</h1>
+      <h2>Top in Movies This Week!</h2>
       <Swiper
         slidesPerView={2}
         spaceBetween={5}

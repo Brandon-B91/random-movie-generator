@@ -35,7 +35,7 @@ const AutoLoadTv = () => {
 
   return (
     <div className="trendingList">
-      <h1>Top in TV Today!</h1>
+      <h2>Top in TV Today!</h2>
       <Swiper
         slidesPerView={2}
         spaceBetween={5}
