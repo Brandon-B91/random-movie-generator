@@ -36,7 +36,7 @@ const AutoLoad = (props) => {
       <h1>Top in Movies This Week!</h1>
       <Swiper
         slidesPerView={2}
-        spaceBetween={10}
+        spaceBetween={5}
         freeMode={true}
         pagination={{
           clickable: true,

@@ -14,7 +14,7 @@ const Moviefav = () => {
   return (
     <div className="movieTvFav">
       <h2>Favorites!</h2> 
-      {key.length > 0 ? <button onClick={clearAll}>Clear all</button> : ""}
+      {key.length > 0 ? <button className="movieTvFav-button" onClick={clearAll}>Clear all</button> : ""}
       <div className="tv-results">
         {key.length > 0
           ? key.map((item) => {

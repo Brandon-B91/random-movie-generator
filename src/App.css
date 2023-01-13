@@ -1,6 +1,6 @@
 :root {
   --light: #fafafa;
-  --dark:
+  --dark: ;
 }
 
 * {
@@ -22,8 +22,7 @@ a {
   text-decoration: none;
 }
 
-button
- {
+button {
   -webkit-appearance: none;
   -webkit-border-radius: none;
   -moz-appearance: none;
@@ -43,14 +42,36 @@ button:active {
 
 /* Header */
 
-header {
-  width: 100%;
+.header {
+  height: 100px;
   max-width: 1600px;
   margin: 0 auto;
+  background: black;
+  display: flex;
 }
 
-header img {
-  width: 100%;
+.header-logo {
+  width: 10%;
+}
+
+.header-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+}
+
+
+.header-img {
+  width: 100px;
+  height: 100px;
+  padding: 1%;
+  display: inline-block;
+}
+
+.header-h1 {
+  color: #fafafa;
+  display: inline-block;
 }
 
 /* Navigation */
@@ -295,7 +316,7 @@ button.bounce {
   width: 300px;
   border-radius: 16px 16px 16px 16px;
   box-shadow: 4px 4px 8px black;
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
   display: flex;
   align-items: center;
   background: black;
@@ -322,7 +343,7 @@ button.bounce {
   height: 500px;
   border-radius: 0 16px 16px 0;
   box-shadow: 4px 4px 8px black;
-  transition: .5s all;
+  transition: 0.5s all;
 }
 
 .left cite {
@@ -367,7 +388,6 @@ button.bounce {
 
 .social-ul li {
   display: inline;
-
 }
 
 .social-ul li:nth-child(1) {
@@ -407,7 +427,7 @@ h4 {
 }
 
 .seasons select {
-  width: 15%;
+  width: 50px;
   margin: 1%;
   text-align: center;
   background: #fafafa;
@@ -450,49 +470,49 @@ h4 {
   font-size: 16px;
   padding: 1%;
   border-bottom: 1px solid lightgray;
- }
+}
 
- .review:hover {
+.review:hover {
   cursor: pointer;
- }
+}
 
- .review-head {
-   display: flex;
-   align-items: center;
- }
- 
- .review-head-left {
+.review-head {
+  display: flex;
+  align-items: center;
+}
+
+.review-head-left {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 10%;
   border-right: 2px solid lightgray;
- }
- 
- .review-head-left span {
-   margin-left: 10%;
-   font-size: 24px;
- }
- 
- .review-head-right {
-   width: 90%;
-   text-align: center;
- }
- 
- .review-body {
-   height: 0;
-   overflow: hidden;
-   transition: 0.6s all;
- }
+}
 
- .review-body-open {
+.review-head-left span {
+  margin-left: 10%;
+  font-size: 24px;
+}
+
+.review-head-right {
+  width: 90%;
+  text-align: center;
+}
+
+.review-body {
+  height: 0;
+  overflow: hidden;
+  transition: 0.6s all;
+}
+
+.review-body-open {
   height: 200px;
   overflow: scroll;
   transition: 1s all;
   font-size: 16px;
- }
+}
 
- .badge {
+.badge {
   background: lightgray;
   display: inline-block;
   padding: 0.5% 1%;
@@ -531,7 +551,7 @@ h4 {
 .recommended-card {
   width: 100%;
   margin: 3% auto;
-  height: 600px;
+  min-height: 650px;
   border: 1px solid black;
   border-radius: 16px;
   background: #121212;
@@ -550,7 +570,7 @@ h4 {
 .recommended-card img {
   width: 100%;
   border-radius: 16px 16px 0 0;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .recommended-card p {
@@ -803,7 +823,7 @@ h4 {
 }
 
 /* Favorites page */
-.movieTvFav button {
+.movieTvFav-button {
   border-radius: 500px;
   padding: 1% 4%;
   background: #121212;
@@ -843,33 +863,46 @@ h4 {
 .results p {
   height: 100px;
   margin: 0 3%;
+  width: 90%;
 }
 
-.results button {
-  position: absolute; 
+.results-button {
+  position: absolute;
   right: 0;
-  font-size: 20px;
+  font-size: 28px;
   height: 173px;
   width: 35px;
   outline: none;
   border: none;
   background: #ff2a04;
   color: #121212;
-  /* border-radius: 50%; */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.results button:hover {
+.results-button:hover {
   cursor: pointer;
 }
 
-@media screen and (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   /* Home page */
 
   .App {
     margin-bottom: 15%;
+  }
+
+  .header-logo {
+    width: 30%; 
+    display: flex;
+    align-items: center;
+  }
+
+  .header-body {
+    width: 70%;
+    display: flex;
+    justify-content: flex-start;
+    /* display: none; */
   }
 
   .main {
@@ -909,12 +942,12 @@ h4 {
   /*  Movie Page */
 
   .recommended-card {
-    height: 700px;
-    width: 90%
+    height: 600px;
+    width: 90%;
   }
 
   .recommended-card img {
-    width: 100%
+    width: 100%;
   }
 
   /* Movie Search page */
@@ -937,8 +970,8 @@ h4 {
     width: 100%;
   }
 
-  .rotate  {  
-    margin: 0 auto;  
+  .rotate {
+    margin: 0 auto;
   }
 
   .left cite {

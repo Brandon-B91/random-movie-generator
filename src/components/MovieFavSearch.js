@@ -57,7 +57,7 @@ const MovieFavSearch = (props) => {
           ...
         </p>
       </div>
-      <button onClick={removeItem}>X</button>
+      <button className="results-button" onClick={removeItem}>X</button>
     </div>
   );
 };

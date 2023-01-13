@@ -270,7 +270,7 @@ const MoviePage = () => {
                 spaceBetween: 20,
               },
               1024: {
-                slidesPerView: 4,
+                slidesPerView: 5,
                 spaceBetween: 30,
               },
             }}
@@ -289,7 +289,7 @@ const MoviePage = () => {
                         <MovieImage
                           item={item}
                           className={""}
-                          baseUrl={"https://image.tmdb.org/t/p/w300/"}
+                          baseUrl={"https://image.tmdb.org/t/p/w780/"}
                         />
                       </Link>
                       <p>
