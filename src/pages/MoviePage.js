@@ -157,7 +157,7 @@ const MoviePage = () => {
               {res?.overview == "" ? "No overview available..." : res?.overview}
             </p>
             <h3>Cast</h3>
-            <ul className="name-badge-list">
+            <div className="name-badge-list">
               {name?.slice(0, 3).map((item) => {
                 return (
                   <Link
@@ -165,13 +165,11 @@ const MoviePage = () => {
                     className="linkName"
                     key={item.id}
                   >
-                    <li className="name-badge" key={item.id}>
-                      {item.name}
-                    </li>
+                      <span className="name-badge">{item.name}</span>
                   </Link>
                 );
               })}
-            </ul>
+              </div>
           </div>
         </div>
         <h4>Reviews!</h4>
