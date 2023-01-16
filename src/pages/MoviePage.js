@@ -290,6 +290,7 @@ const MoviePage = () => {
                           baseUrl={"https://image.tmdb.org/t/p/w780/"}
                         />
                       </Link>
+                      <h3>{item.title}</h3>
                       <p>
                         {item.overview
                           ? item.overview
@@ -303,7 +304,7 @@ const MoviePage = () => {
                           <li>
                             <cite>
                               Rating: {Math.round(item?.vote_average * 10)}%{" "}
-                              {Math.round(item?.vote_average * 10) > 70 ? (
+                              {Math.round(item?.vote_average * 10) >= 70 ? (
                                 <FaStar />
                               ) : (
                                 <FaRegStar />
