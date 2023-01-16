@@ -4,16 +4,15 @@ import photo from "../images/photo.png";
 const baseUrl = ``;
 
 const MovieImage = (props) => {
+  function loadImage() {
+    if (props.item?.poster_path !== null) {
+      return props.baseUrl + props.item?.poster_path;
+    } else {
+      setTimeout(photo, 700);
+    }
+  }
   return (
-    <img
-      src={
-        props.item?.poster_path !== null
-          ? props.baseUrl + props.item?.poster_path
-          : setTimeout(photo, 700)
-      }
-      alt="movie poster"
-      className={props.className}
-    />
+    <img src={loadImage()} alt="movie poster" className={props.className} />
   );
 };
 

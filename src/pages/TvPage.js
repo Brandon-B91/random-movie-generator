@@ -194,7 +194,7 @@ const MoviePage = (props) => {
                 return (
                   <Link
                     to={`/ActorPage/${item.id}`}
-                    className="linkName"
+                    className="name-badge"
                     key={item.id}
                   >
                     <li className="name-badge">{item.name}</li>
