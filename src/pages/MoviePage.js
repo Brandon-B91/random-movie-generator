@@ -162,14 +162,14 @@ const MoviePage = () => {
                 return (
                   <Link
                     to={`/ActorPage/${item.id}`}
-                    className="linkName"
+                    className="name-badge"
                     key={item.id}
                   >
-                      <span className="name-badge">{item.name}</span>
+                    <span>{item.name}</span>
                   </Link>
                 );
               })}
-              </div>
+            </div>
           </div>
         </div>
         <h4>Reviews!</h4>

@@ -9,9 +9,9 @@ const MovieBackdrop = (props) => {
     <div className={''}>
       <img
         src={
-          props.item?.backdrop_path == null
-            ? photo
-            : props.baseUrl + props.item?.backdrop_path
+          props.item?.backdrop_path !== null
+            ?  props.baseUrl + props.item?.backdrop_path
+            : setTimeout(photo, 700)
         }
         alt="movie poster"
         className={props.className}

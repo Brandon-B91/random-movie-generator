@@ -449,23 +449,16 @@ h4 {
 
 .name-badge-list {
   padding: 2.5% 0;
-  overflow-wrap: none;
   display: flex;
-  align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
-span.name-badge {
+a.name-badge {
   background: #121212;
   color: #fafafa;
   border-radius: 500px;
-  width: 120%;
-  text-align: center;
-  font-size: 0.9rem;
-  transition: all 0.4s;
-  display: block;
-  padding: 2%;
+  padding: .5%;
 }
 
 .name-badge:hover {
@@ -830,9 +823,10 @@ span.name-badge {
 }
 
 /* Favorites page */
+
 .movieTvFav-button {
   border-radius: 500px;
-  padding: 1% 4%;
+  padding: 1% 2%;
   background: #121212;
   color: #fafafa;
 }
@@ -850,17 +844,20 @@ span.name-badge {
 .results img {
   box-shadow: 4px 4px 8px gray;
   border-radius: 0 16px 16px 0;
-  width: 110px;
-  height: 165px;
-  position: relative;
+  /* width: 110px; */
+  height: 100%
+  /* position: relative; */
 }
 
 .results .icon {
   position: absolute;
+  top: 0;
+  left: 1px;
   background: #12121280;
   color: #fafafa;
-  font-size: 16px;
-  padding: 2%;
+  font-size: 14px;
+  display: block;
+  padding: 5px;
 }
 
 .results-body {
@@ -877,7 +874,7 @@ span.name-badge {
   position: absolute;
   right: 0;
   font-size: 28px;
-  height: 173px;
+  height: 100%;
   width: 35px;
   outline: none;
   border: none;
@@ -966,6 +963,12 @@ span.name-badge {
 
   .right a {
     color: #121212;
+  }
+
+  a.name-badge {
+    background: #121212;
+    color: #fafafa;
+    margin: 1% 0;
   }
 
   .left iframe {
