@@ -565,6 +565,10 @@ a.name-badge {
   box-shadow: 4px 4px 8px gray;
 }
 
+.recommended-card:hover {
+  cursor: pointer;
+}
+
 .recommended-card h3 {
   color: #fafafa;
 }

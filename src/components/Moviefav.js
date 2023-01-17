@@ -10,6 +10,7 @@ const Moviefav = () => {
   }
 
   const key = Object.keys(localStorage);
+  const id = Object.values(localStorage)
 
   return (
     <div className="movieTvFav">
@@ -21,7 +22,7 @@ const Moviefav = () => {
               encodeURI(item);
               return (
                 <div>
-                  <MovieFavSearch item={item} />
+                  <MovieFavSearch item={item} id={id} />
                 </div>
               );
             })

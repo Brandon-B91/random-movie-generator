@@ -24,7 +24,7 @@ const TopNav = (props) => {
     //   localStorage.setItem("arrObjectTv", JSON.stringify(arrObjectTv));
     // }
 
-    localStorage.getItem(props.res.name) == null ? localStorage.setItem(props.res.name, props.res.name) : localStorage.removeItem(props.res.name);
+    localStorage.getItem(props.res.name) == null ? localStorage.setItem(props.res.name, props.res.id) : localStorage.removeItem(props.res.name);
   };
   const animate = () => {
     setBounce(true);
