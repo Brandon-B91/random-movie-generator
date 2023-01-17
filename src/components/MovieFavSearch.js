@@ -15,11 +15,11 @@ const MovieFavSearch = (props) => {
       });
   }, []);
 
-  let obj = {};
+  let obj;
 
   response?.results.map((item) => {
     if(item.id == props.id){
-      return obj = JSON.stringify(item)
+      return obj = item  
     } else {
        return null
     }
@@ -27,49 +27,45 @@ const MovieFavSearch = (props) => {
   
 
   console.log(obj)
-  console.log(JSON.parse(obj))
-  const obj1 = JSON.parse(obj)
-  // console.log(props.item)
-  // console.log(props.id)
 
   let page;
   let width = window.innerWidth;
 
   {
-    obj1.media_type == "movie"
+    obj?.media_type == "movie"
       ? (page = "MoviePage")
       : (page = "TvPage");
   }
 
   function removeItem() {
     localStorage.removeItem(
-      obj1.title || obj1.name
+      obj?.title || obj?.name
     );
     window.location.reload();
   }
 
   return (
-    <div className="results" key={obj1.id}>
+    <div className="results" key={obj?.id}>
       {
-        <Link to={`/${page}/${obj1.id}`} className="linkName">
+        <Link to={`/${page}/${obj?.id}`} className="linkName">
           <img
             src={
               `https://image.tmdb.org/t/p/w154/` +
-              obj1.poster_path
+              obj?.poster_path
             }
-            alt={obj1.id}
+            alt={obj?.id}
           />
         </Link>
       }
       <div className="icon">
-        {obj1.media_type == "tv" ? "TV" : "Movie"}
+        {obj?.media_type == "tv" ? "TV" : "Movie"}
       </div>
       <div className="results-body">
-        <h3>{obj1.title || obj1.name}</h3>
+        <h3>{obj?.title || obj?.name}</h3>
         <p>
           {window.innerWidth < 600
-            ? obj1.overview.slice(0, 150)
-            : obj1.overview.slice(0, 450)}
+            ? obj?.overview.slice(0, 150)
+            : obj?.overview.slice(0, 450)}
           ...
         </p>
       </div>

@@ -32,7 +32,7 @@ const TopNav = (props) => {
     //   }
     // }
 
-    localStorage.getItem(props.res.title) === null ? localStorage.setItem(props.res.id, props.res.title) : localStorage.removeItem(props.res.title);
+    localStorage.getItem(props.res.title) === null ? localStorage.setItem(props.res.title, props.res.id) : localStorage.removeItem(props.res.title);
   };
   const animate = () => {
     setBounce(true);
