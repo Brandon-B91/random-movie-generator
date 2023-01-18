@@ -676,14 +676,15 @@ a.name-badge {
 }
 
 .top-rated {
+  margin-top: 10%;
   margin-bottom: 20%;
 }
 
 /* Movie discover */
 
-/* .container {
-  margin-bottom: 75px;
-} */
+.container {
+  margin-bottom: 100px;
+}
 
 .discover-card {
   width: 100%;
@@ -711,7 +712,7 @@ a.name-badge {
   justify-content: center;
   align-items: center;
   width: 50%;
-  margin: 7% auto 7%;
+  margin: 7% auto 15%;
   position: relative;
 }
 
