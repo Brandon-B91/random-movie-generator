@@ -675,11 +675,15 @@ a.name-badge {
   cursor: pointer;
 }
 
+.top-rated {
+  margin-bottom: 20%;
+}
+
 /* Movie discover */
 
-.container {
+/* .container {
   margin-bottom: 75px;
-}
+} */
 
 .discover-card {
   width: 100%;

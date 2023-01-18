@@ -6,6 +6,7 @@ import Nav from "../components/Nav";
 import MovieSearch from "../components/MovieSearch";
 import { FaSearch } from "react-icons/fa";
 import MovieImage from "../components/MovieImage";
+import TopRatedMovies from "../components/TopRatedMovies";
 
 const Movies = () => {
   const [showSearch, setShowSearch] = useState(false);
@@ -58,6 +59,7 @@ const Movies = () => {
           />
         </Link>
       ) : null}
+      <TopRatedMovies />
       <Nav />
     </div>
   );

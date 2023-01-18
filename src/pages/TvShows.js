@@ -4,6 +4,7 @@ import DropDownTv from "../components/DropDownTv";
 import TvSearch from "../components/TvSearch";
 import Nav from "../components/Nav";
 import { FaSearch } from "react-icons/fa";
+import TopRatedTv from "../components/TopRatedTv";
 
 const TvShows = () => {
   const [showSearch, setShowSearch] = useState(false);
@@ -33,6 +34,7 @@ const TvShows = () => {
       </div>
       {showRandom ? <DropDownTv /> : null}
       {showSearch ? <TvSearch /> : null}
+      <TopRatedTv />
       <Nav />
     </div>
   );
