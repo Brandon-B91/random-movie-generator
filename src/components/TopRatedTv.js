@@ -24,7 +24,7 @@ const TopRatedTv = () => {
 
   return (
     <div className="top-rated">
-      <h4>Why not check out these top rated movies!</h4>
+      <h4>Why not check out these top rated Tv shows!</h4>
       <Swiper
         slidesPerView={2}
         spaceBetween={5}
