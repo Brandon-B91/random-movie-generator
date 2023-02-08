@@ -843,7 +843,7 @@ a.name-badge {
 }
 
 .favPage {
-  margin-bottom: 5%;
+  margin-bottom: 20%;
 }
 
 .results {
@@ -1019,6 +1019,10 @@ a.name-badge {
 
   .movieContainer .card {
     margin-left: 5%;
+  }
+
+  .results {
+    margin: 5% 0;
   }
 
   /* Movie Discover */

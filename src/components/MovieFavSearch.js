@@ -44,7 +44,7 @@ const MovieFavSearch = (props) => {
         <h3>{res?.title || res?.name}</h3>
         <p>
           {window.innerWidth < 600
-            ? res?.overview.slice(0, 150)
+            ? res?.overview.slice(0, 130)
             : res?.overview.slice(0, 450)}
           ...
         </p>
