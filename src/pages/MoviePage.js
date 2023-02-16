@@ -132,8 +132,7 @@ const MoviePage = () => {
             </ul>
             <ul className="social-ul">
               <li>
-                {" "}
-                <cite className="length">Length: {res?.runtime} Minutes</cite>
+                <span className="length">Length: {res?.runtime} Minutes</span>
               </li>
               <li>
               Age Rating:
