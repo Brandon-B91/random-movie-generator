@@ -1,36 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaLongArrowAltLeft, FaHeart, FaRegHeart } from "react-icons/fa";
-import { IoShareOutline } from "react-icons/io5"
+import { IoShare } from "react-icons/io5"
 
 const TopNav = (props) => {
   const favorite = () => {
     const newFavoriteState = !isFavorite;
     setIsFavorite(newFavoriteState);
-    // if (newFavoriteState) {
-    //   let arrObject = [];
-    //   if (
-    //     localStorage.getItem("arrObject") &&
-    //     localStorage.getItem("arrObject").length > 0
-    //   )
-    //     arrObject = JSON.parse(localStorage.getItem("arrObject"));
-    //   let arrObj = {
-    //     name: props.res.title,
-    //     id: props.res.id,
-    //     img: props.res.poster_path,
-    //     overview: props.res.overview,
-    //   };
-    //   arrObject.push(arrObj);
-    //   localStorage.setItem("arrObject", JSON.stringify(arrObject));
-    // }
-    //  else if (!newFavoriteState) {
-    //     let removeData = JSON.parse(localStorage.getItem('arrObject'))
-    //     for(let i = 0; i < removeData.length; i++){
-    //     if(data[i].name === res.title) {
-    //       localStorage.removeItem()
-    //     }
-    //   }
-    // }
 
     localStorage.getItem(props.res.title) === null
       ? localStorage.setItem(props.res.title, props.res.id)
@@ -57,7 +33,7 @@ const TopNav = (props) => {
           rel="noopener noreferrer"
           className="socialShare"
         >
-          <IoShareOutline />
+          <IoShare />
         </a>
       <button
         onClick={() => {

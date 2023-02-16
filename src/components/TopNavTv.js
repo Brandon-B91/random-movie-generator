@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaLongArrowAltLeft, FaHeart, FaRegHeart } from "react-icons/fa";
-import { IoShareOutline } from "react-icons/io5"
+import { IoShare } from "react-icons/io5"
 
 const TopNav = (props) => {
   const favorite = () => {
@@ -33,7 +33,7 @@ const TopNav = (props) => {
         rel="noopener noreferrer"
         className="socialShare"
       >
-        <IoShareOutline />
+        <IoShare/>
       </a>
       <button
         onClick={() => {
