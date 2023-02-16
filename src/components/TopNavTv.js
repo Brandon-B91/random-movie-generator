@@ -1,30 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaLongArrowAltLeft, FaHeart, FaRegHeart } from "react-icons/fa";
-
+import { IoShareOutline } from "react-icons/io5"
 
 const TopNav = (props) => {
   const favorite = () => {
     const newFavoriteState = !isFavorite;
-    setIsFavorite(newFavoriteState) ? <FaRegHeart /> : <FaHeart />
-    // if (newFavoriteState) {
-    //   let arrObjectTv = [];
-    //   if (
-    //     localStorage.getItem("arrObjectTv") &&
-    //     localStorage.getItem("arrObjectTv").length > 0
-    //   )
-    //     arrObjectTv = JSON.parse(localStorage.getItem("arrObjectTv"));
-    //   let arrObj = {
-    //     name: props.res.title,
-    //     id: props.res.id,
-    //     img: props.res.poster_path,
-    //     overview: props.res.overview,
-    //   };
-    //   arrObjectTv.push(arrObj);
-    //   localStorage.setItem("arrObjectTv", JSON.stringify(arrObjectTv));
-    // }
+    setIsFavorite(newFavoriteState) ? <FaRegHeart /> : <FaHeart />;
 
-    localStorage.getItem(props.res.name) == null ? localStorage.setItem(props.res.name, props.res.id) : localStorage.removeItem(props.res.name);
+    localStorage.getItem(props.res.name) == null
+      ? localStorage.setItem(props.res.name, props.res.id)
+      : localStorage.removeItem(props.res.name);
   };
   const animate = () => {
     setBounce(true);
@@ -41,6 +27,14 @@ const TopNav = (props) => {
       <button onClick={() => navigate(-1)} className="back">
         <FaLongArrowAltLeft className="back-arrow" />
       </button>
+      <a
+        href={"sms:?&body=You need to watch this! " + window.location.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="socialShare"
+      >
+        <IoShareOutline />
+      </a>
       <button
         onClick={() => {
           favorite();
@@ -49,7 +43,11 @@ const TopNav = (props) => {
         className={bounce ? "bounce" : "favorite"}
       >
         {/* {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "} */}
-        {localStorage.getItem(props.res?.name) == null ?  <FaRegHeart /> : <FaHeart /> }
+        {localStorage.getItem(props.res?.name) == null ? (
+          <FaRegHeart />
+        ) : (
+          <FaHeart />
+        )}
       </button>
     </div>
   );

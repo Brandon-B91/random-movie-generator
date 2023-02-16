@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaLongArrowAltLeft, FaHeart, FaRegHeart } from "react-icons/fa";
-
+import { IoShareOutline } from "react-icons/io5"
 
 const TopNav = (props) => {
   const favorite = () => {
@@ -32,7 +32,9 @@ const TopNav = (props) => {
     //   }
     // }
 
-    localStorage.getItem(props.res.title) === null ? localStorage.setItem(props.res.title, props.res.id) : localStorage.removeItem(props.res.title);
+    localStorage.getItem(props.res.title) === null
+      ? localStorage.setItem(props.res.title, props.res.id)
+      : localStorage.removeItem(props.res.title);
   };
   const animate = () => {
     setBounce(true);
@@ -49,6 +51,14 @@ const TopNav = (props) => {
       <button onClick={() => navigate(-1)} className="back">
         <FaLongArrowAltLeft className="back-arrow" />
       </button>
+      <a
+          href={"sms:?&body=You need to watch this! " + window.location.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="socialShare"
+        >
+          <IoShareOutline />
+        </a>
       <button
         onClick={() => {
           favorite();
@@ -57,7 +67,11 @@ const TopNav = (props) => {
         className={bounce ? "bounce" : "favorite"}
       >
         {/* {isFavorite ? <FaHeart /> : <FaRegHeart />}{" "} */}
-        {localStorage.getItem(props.res?.title) == null ?  <FaRegHeart /> : <FaHeart /> }
+        {localStorage.getItem(props.res?.title) == null ? (
+          <FaRegHeart />
+        ) : (
+          <FaHeart />
+        )}
       </button>
     </div>
   );

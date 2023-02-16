@@ -30,12 +30,13 @@ const MoviePage = () => {
   const [ids, setIds] = useState();
   const [genre, setGenre] = useState();
   const [rotate, setRotate] = useState(false);
+  const [ageRating, setAgeRating] = useState();
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsFavorite(false);
     fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations,credits,reviews,videos`
+      `https://api.themoviedb.org/3/movie/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations,credits,reviews,videos,release_dates`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -62,6 +63,8 @@ const MoviePage = () => {
         setTitle(title);
         let genre = response.genres;
         setGenre(genre);
+        let ageRating = response.release_dates.results;
+        setAgeRating(ageRating);
       });
   }, [params.id]);
 
@@ -80,6 +83,8 @@ const MoviePage = () => {
   const trailer = () => {
     setRotate(!rotate);
   };
+
+  let age1;
 
   return (
     <>
@@ -131,16 +136,15 @@ const MoviePage = () => {
                 <cite className="length">Length: {res?.runtime} Minutes</cite>
               </li>
               <li>
-                <a
-                  href={
-                    "sms:?&body=You need to watch this! " + window.location.href
+              Age Rating:
+              {res?.release_dates.results.map((item) => {
+                  if(item.iso_3166_1 === "US"){
+                    age1 = item.release_dates[0].certification
+                  }else {
+                    return null
                   }
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="socialShare"
-                >
-                  <FaSms />
-                </a>
+                  return <li> {age1 === null ? "TBD" : age1 } </li>;
+                })}
               </li>
             </ul>
             <ul>

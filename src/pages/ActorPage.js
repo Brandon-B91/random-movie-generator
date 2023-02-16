@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Nav from "../components/Nav";
 import MovieImage from "../components/MovieImage";
 import ActorImg from "../components/ActorImg";
+import photo from "../images/photo.png";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper";
@@ -42,9 +43,11 @@ const ActorPage = () => {
           <img
             src={
               `https://image.tmdb.org/t/p/w780/` +
-              res?.movie_credits.cast[0].poster_path
-            }
-            alt=""
+              res?.movie_credits.cast[0].poster_path ?
+              `https://image.tmdb.org/t/p/w780/` +
+              res?.movie_credits.cast[0].poster_path : photo
+            } 
+            alt="actor image"
             className="actor-main-img"
           />
           <div className="actor-left">
@@ -69,7 +72,7 @@ const ActorPage = () => {
             <p>
               {res?.biography
                 ? res?.biography
-                : "Not much is know of this person oh, what am mystery they are!"}
+                : "Not much is known of this person oh, what am mystery they are!"}
             </p>
           </div>
         </div>

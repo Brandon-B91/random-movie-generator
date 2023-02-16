@@ -35,7 +35,7 @@ const MoviePage = (props) => {
     window.scrollTo(0, 0);
     setIsFavorite(false);
     fetch(
-      `https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations,credits,reviews,videos`
+      `https://api.themoviedb.org/3/tv/${id}?api_key=f79df266a37e366257a09e6b64a14de9&language=en-US&append_to_response=watch%2Fproviders,recommendations,credits,reviews,videos,content_ratings`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -88,6 +88,8 @@ const MoviePage = (props) => {
   const trailer = () => {
     setRotate(!rotate);
   };
+
+  let age1;
 
   return (
     <>
@@ -143,17 +145,15 @@ const MoviePage = (props) => {
                 </cite>
               </li>
               <li>
-                {" "}
-                <a
-                  href={
-                    "sms:?&body=You need to watch this! " + window.location.href
+                Age rating:
+              {res?.content_ratings.results.map((item) => {
+                  if(item.iso_3166_1 === "US"){
+                    age1 = item.rating
+                  }else {
+                    return null
                   }
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="socialShare"
-                >
-                  <FaSms />
-                </a>
+                  return <li> {age1 === null ? "TBD" : age1 } </li>;
+                })}
               </li>
             </ul>
             <p>Total number of seasons: {res?.number_of_seasons}</p>
