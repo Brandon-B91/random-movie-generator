@@ -31,6 +31,7 @@ const MoviePage = () => {
   const [genre, setGenre] = useState();
   const [rotate, setRotate] = useState(false);
   const [ageRating, setAgeRating] = useState();
+  const [wordCount, setWordCount] = useState(0)
 
   useEffect(() => {
     window.scrollTo(0, 0);
