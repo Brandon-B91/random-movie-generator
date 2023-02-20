@@ -143,7 +143,7 @@ const MoviePage = () => {
                   }else {
                     return null
                   }
-                  return <li> {age1 === null ? "TBD" : age1 } </li>;
+                  return <li> {age1 == null ? "TBD" : age1 } </li>;
                 })}
               </li>
             </ul>

@@ -141,7 +141,7 @@ const MoviePage = (props) => {
               <li>
                 {" "}
                 <cite>
-                  Length: {res?.episode_run_time[0]} Minutes per episode
+                  Length: {res?.episode_run_time[0]} minute episodes
                 </cite>
               </li>
               <li>
